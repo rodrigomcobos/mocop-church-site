@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FaTimes, FaBars } from 'react-icons/fa'
+import LogoWhite from '../../assets/logos/logowhite.png'
+import LogoColor from '../../assets/logos/logocolor.png'
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -37,10 +39,14 @@ const Navbar = () => {
                 {/* Logo */}
                 <NavLink
                     to="/"
-                    className={`text-2xl font-bold transition-colors duration-300 ${isScrolled ? 'text-yellow-700' : 'text-white'}`}
+                    className="text-2xl font-bold transition-colors duration-300"
                     aria-label="Home"
                 >
-                    MOCOP CHURCH
+                    <img
+                        src={isScrolled ? LogoColor : LogoWhite}
+                        alt="MOCOP Church Logo"
+                        className="w-auto h-12 transition-all duration-300"
+                    />
                 </NavLink>
 
                 {/* Mobile Menu Toggle Button */}
