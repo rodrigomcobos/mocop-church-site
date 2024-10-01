@@ -12,6 +12,8 @@ const HomeSermons = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-12 items-center mx-12 max-w-full max-lg:max-w-2xl max-sm:max-w-sm">
                     <div>
                         <h2 className="text-4xl font-bold text-yellow-600 uppercase mb-4">PREGAÇÕES</h2>
+                        <hr className="border-t-2 border-yellow-500 mb-6 max-w-[15rem]" />
+
                         <h2 className="text-3xl max-md:text-2xl font-extrabold text-gray-800">Revisite nossas pregações de Domingos passados</h2>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">

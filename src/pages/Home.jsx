@@ -7,6 +7,7 @@ import HomeStrip from '../components/specific/HomeStrip'
 import HomeSermons from '../components/specific/HomeSermons'
 import WeekEvents from '../components/specific/WeekEvents'
 import WhyUs from '../components/specific/WhyUs'
+import WaysToGive from '../components/specific/WaysToGive'
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <HomeSermons />
             <WeekEvents />
             <WhyUs />
+            <WaysToGive />
             <Footer />
         </section>
     )

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FaTimes, FaBars } from 'react-icons/fa'
+import { FaTimes, FaBars, FaPhoneAlt } from 'react-icons/fa'
 import LogoWhite from '../../assets/logos/logowhite.png'
 import LogoColor from '../../assets/logos/logocolor.png'
 
@@ -33,7 +33,7 @@ const Navbar = () => {
                 }`}
         >
             <section className='py-2 bg-yellow-600 text-white text-right px-10'>
-                <p className='text-sm'>2345 S State Hwy 121, Lewisville, TX 75067<span className="mx-3 font-bold">Telefone:</span>1800333665</p>
+                <p className='text-sm'>2345 S State Hwy 121, Lewisville, TX 75067<span className="mx-3 font-bold">Telefone:</span>(214) 677-6646</p>
             </section>
             <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 min-h-[70px]">
                 {/* Logo */}
