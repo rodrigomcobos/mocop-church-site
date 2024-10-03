@@ -27,6 +27,16 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen)
     }
 
+    const navItems = [
+        { path: '/', name: 'Início' },
+        { path: '/about', name: 'Sobre' },
+        { path: '/giving', name: 'Ofertas' },
+        { path: '/missions', name: 'Missões' },
+        { path: '/messages', name: 'Mensagens' },
+        { path: '/gallery', name: 'Galeria' },
+        { path: '/contact', name: 'Contato' },
+    ];
+
     return (
         <>
             <header
@@ -34,19 +44,19 @@ const Navbar = () => {
                     }`}
             >
                 {/* Top Bar Section */}
-                <section className='py-2 bg-gradient-to-r from-amber-800 via-amber-700 to-yellow-600 text-white text-right px-10'>
-                    <p className='text-sm flex items-center justify-end'>
+                <section className='py-2 bg-gradient-to-r from-amber-800 via-amber-700 to-yellow-600 text-white px-2'>
+                    <p className='text-xs sm:text-sm flex items-center justify-center md:justify-end'>
                         <FaMapMarkerAlt className="mr-1" />
                         <span>2345 S State Hwy 121, Lewisville, TX 75067</span>
-                        <span className="mx-3 font-bold flex items-center">
-                            <FaPhoneAlt className="mr-1" />
+                        <span className="mx-2 font-bold flex items-center">
+                            <FaPhoneAlt />
                         </span>
                         <span>(214) 677-6646</span>
                     </p>
                 </section>
 
                 {/* Navbar Section */}
-                <div className="max-w-[85%] mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-4 min-h-[70px]">
+                <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-4 min-h-[70px]">
                     {/* Logo */}
                     <NavLink
                         to="/"
@@ -56,18 +66,22 @@ const Navbar = () => {
                         <img
                             src={isScrolled ? LogoColor : LogoWhite}
                             alt="MOCOP Church Logo"
-                            className="w-auto h-12 transition-all duration-300"
+                            className="w-auto h-8 sm:h-12 transition-all duration-300"
                         />
                     </NavLink>
 
                     {/* Mobile Menu Toggle Button */}
                     <button
                         onClick={toggleMenu}
-                        className="lg:hidden text-2xl focus:outline-none focus:ring-2 focus:ring-yellow-bg-yellow-600 rounded"
+                        className="lg:hidden text-2xl focus:outline-none focus:ring-yellow-bg-yellow-600 rounded"
                         aria-label="Toggle navigation menu"
                         aria-expanded={isMenuOpen}
                     >
-                        {isMenuOpen ? <FaTimes /> : <FaBars />}
+                        {isMenuOpen ? (
+                            <FaTimes className="text-black" />
+                        ) : (
+                            <FaBars className={`${isScrolled ? 'text-black' : 'text-white'}`} />
+                        )}
                     </button>
 
                     {/* Navigation Links */}
@@ -75,20 +89,20 @@ const Navbar = () => {
                         className={`${isMenuOpen ? 'block' : 'hidden'
                             } lg:block w-full lg:w-auto`}
                     >
-                        <ul className="flex flex-col lg:flex-row lg:space-x-6 mt-4 lg:mt-0">
-                            {['/', '/about', '/giving', '/missions', '/next-steps', '/gallery', '/contact'].map((path, index) => (
+                        <ul className="flex flex-col lg:flex-row lg:space-x-6 mt-4 lg:mt-0 bg-white lg:bg-transparent p-4 lg:p-0 lg:space-y-0 space-y-2">
+                            {navItems.map((item, index) => (
                                 <li key={index}>
                                     <NavLink
-                                        to={path}
+                                        to={item.path}
                                         className={({ isActive }) =>
                                             `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
                                                 ? 'text-yellow-600'
-                                                : isScrolled ? 'text-black' : 'text-white'
+                                                : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
                                             }`
                                         }
                                         onClick={() => setIsMenuOpen(false)}
                                     >
-                                        {['Início', 'Sobre', 'Ofertas', 'Missões', 'Mensagens', 'Galeria', 'Contato'][index]}
+                                        {item.name}
                                     </NavLink>
                                 </li>
                             ))}

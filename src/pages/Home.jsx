@@ -16,7 +16,7 @@ import Testimonials from '../components/specific/Testimonials'
 const Home = () => {
     return (
         <section>
-            <Navbar />
+            {/* <Navbar /> */}
             <Hero />
             <HomeStrip />
             <MeetThePastor />
@@ -27,7 +27,7 @@ const Home = () => {
             <WaysToGive />
             <Testimonials />
             <Subscribe />
-            <Footer />
+            {/* <Footer /> */}
         </section>
     )
 }

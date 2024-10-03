@@ -1,6 +1,8 @@
 // src/App.jsx
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/common/Navbar'
+import Footer from './components/common/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
@@ -12,22 +14,34 @@ import Messages from './pages/Messages'
 import AdminDashboard from './pages/AdminDashboard'
 import NotFound from './pages/NotFound'
 
+// Layout component to wrap all pages
+const Layout = ({ children }) => (
+  <>
+    <Navbar />
+    <main className="min-h-screen">
+      {children}
+    </main>
+    <Footer />
+  </>
+)
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />}>
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="giving" element={<Giving />} />
-        <Route path="live" element={<Live />} />
-        <Route path="missions" element={<Missions />} />
-        <Route path="messages" element={<Messages />} />
-        <Route path="admin-dashboard" element={<AdminDashboard />} />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/giving" element={<Giving />} />
+        <Route path="/live" element={<Live />} />
+        <Route path="/missions" element={<Missions />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         {/* Add a fallback route for 404 Not Found */}
         <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </Layout>
   )
 }
 

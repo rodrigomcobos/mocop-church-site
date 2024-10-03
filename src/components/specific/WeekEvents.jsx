@@ -6,10 +6,10 @@ import { PiHandsPrayingDuotone } from "react-icons/pi";
 const WeekEvents = () => {
     return (
         <>
-            <div className="bg-gradient-to-r from-orange-100 via-orange-100 to-amber-100 font-[sans-serif] py-14">
-                <div className="max-w-7xl mx-auto py-8 md:py-16 px-4">
+            <div className="bg-gradient-to-r from-orange-100 via-orange-100 to-amber-100 font-[sans-serif] py-10">
+                <div className="max-w-7xl mx-auto py-8 md:py-16 px-6">
                     <h2 className="text-yellow-700 text-3xl md:text-4xl text-center font-bold mb-4">Programação da Semana</h2>
-                    <p className="text-black text-center mb-10 md:mb-16 text-base md:text-lg max-w-5xl mx-auto">
+                    <p className="text-yellow-800 text-center mb-10 md:mb-16 text-base md:text-md max-w-5xl mx-auto">
                         Junte-se a nós em um ambiente acolhedor, onde a fé e a comunhão se encontram. Nossas reuniões oferecem a oportunidade perfeita para adorar, aprender e crescer juntos na palavra de Deus. Venha participar e fortalecer sua caminhada espiritual com nossa comunidade.
                     </p>
 

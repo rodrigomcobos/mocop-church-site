@@ -1,16 +1,16 @@
 import React from 'react';
 import StripImg from '../../assets/images/churchimg35.png';
-import StripImg2 from '../../assets/images/churchimg36.jpg';
-import StripImg3 from '../../assets/images/churchimg37.jpg';
+import StripImg2 from '../../assets/images/churchimg39.jpg';
+import StripImg3 from '../../assets/images/churchimg40.jpg';
 
 const WhyUs = () => {
     return (
         <>
             <div className="font-sans px-4 py-24">
-                <h2 className="text-yellow-700 text-3xl md:text-4xl text-center font-bold mb-12">Porque participar de nossa igreja?</h2>
-                <div className="grid lg:grid-cols-2 gap-20 lg:max-w-6xl max-w-2xl mx-auto">
+                <h2 className="text-yellow-700 text-3xl md:text-4xl text-center font-bold mb-14 sm:mb-16">Porque participar de nossa igreja?</h2>
+                <div className="grid lg:grid-cols-2 gap-20 md:gap-y-36 sm:gap-y-12 lg:max-w-6xl max-w-2xl mx-auto">
                     {/* Image container with overlapping images */}
-                    <section className="relative">
+                    <section className="relative mb-12 md:mb-24 sm:mb-12">
                         {/* Larger Image */}
                         <img
                             src={StripImg2}
@@ -22,7 +22,7 @@ const WhyUs = () => {
                         <img
                             src={StripImg3}
                             alt="Overlapping Image"
-                            className="absolute top-[40%] right-1/4 w-[90%] rounded-lg shadow-lg lg:block md:hidden sm:hidden"
+                            className="absolute top-[40%] sm:top-[50%] right-1/4 w-[90%] rounded-lg shadow-lg lg:block"
                         />
                     </section>
 

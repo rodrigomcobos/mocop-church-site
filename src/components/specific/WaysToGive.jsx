@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdOutlineVolunteerActivism } from "react-icons/md";
 import StripImg from '../../assets/images/churchimg38.jpg';
+import Donate from '../../assets/images/donate.svg';
 
 const WaysToGive = () => {
     return (
@@ -8,10 +9,8 @@ const WaysToGive = () => {
             <div className="bg-gradient-to-r from-amber-800 via-amber-700 to-yellow-600 px-6 md:px-8 py-16 md:py-24 font-[sans-serif] relative">
                 <div className="max-w-7xl mx-auto grid md:grid-cols-2 justify-center items-center gap-12 relative">
                     {/* Icon in the background */}
-                    <MdOutlineVolunteerActivism
-                        className="absolute left-0 top-[75%] transform -translate-y-1/2 text-white opacity-10"
-                        size={300} /* Adjust icon size for smaller screens */
-                    />
+                    <img src={Donate} className="absolute right-80 top-[65%] transform -translate-y-1/2 opacity-10" alt="donate image" />
+
                     <div className="text-center md:text-left relative z-10">
                         <h2 className="text-white text-5xl md:text-5xl font-bold mb-4 font-seaweed">Maneiras de Doar</h2>
                         <p className="text-sm md:text-md text-white mb-5">"Dê a outras pessoas e Deus dará a você. Ele lhe dará ainda mais do que você deu". <span className='font-thin italic'>- Lucas 6:38</span></p>
@@ -30,8 +29,8 @@ const WaysToGive = () => {
                     </div>
 
                     {/* Image - Hidden on smaller screens */}
-                    <div className="hidden md:block text-center">
-                        <img src={StripImg} alt="Premium Benefits" className="max-w-sm md:max-w-md mx-auto rounded-lg shadow-md" />
+                    <div className="hidden md:block text-center overflow-hidden">
+                        <img src={StripImg} alt="giving image" className="max-w-sm md:max-w-md mx-auto rounded-lg shadow-md" />
                     </div>
                 </div>
             </div>

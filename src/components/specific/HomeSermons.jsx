@@ -9,13 +9,16 @@ const HomeSermons = () => {
     return (
         <>
             <div className="p-6 py-24">
-                <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-12 items-center mx-auto max-w-[85%] max-lg:max-w-2xl max-sm:max-w-sm text-center lg:text-left">
-                    <div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-12 gap-12 items-center mx-auto max-w-7xl text-center lg:text-left">
+                    <section>
                         <h2 className="text-3xl text-yellow-600 mb-4 font-bold">Pregações</h2>
                         <hr className="border-t-2 border-yellow-500 mb-6 max-w-[15rem] mx-auto lg:mx-0" />
                         <h2 className="text-3xl max-md:text-2xl font-extrabold text-gray-800">Revisite nossas pregações de Domingos passados</h2>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">
+                        <button className='mt-8 w-fit mx-auto  bg-gradient-to-r from-amber-800 via-amber-700 to-yellow-600 hover:bg-transparent hover:ring-2 hover:ring-yellow-600 text-white px-6 py-3 rounded-md transition duration-300 ease-in-out hover:shadow-xl font-bold uppercase'>
+                            VEJA MAIS
+                        </button>
+                    </section>
+                    <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">
                         <div className="cursor-pointer rounded overflow-hidden group">
                             <img src={CardImg1} alt="Blog Post 1" className="w-full h-52 object-cover rounded-md" />
                             <div className="py-6">
@@ -44,7 +47,7 @@ const HomeSermons = () => {
                                 <h3 className="text-xl font-bold text-gray-800 group-hover:text-yellow-600 transition-all">Título da Pregação vai aqui</h3>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </>
