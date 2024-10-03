@@ -8,7 +8,7 @@ import Gallery from './pages/Gallery'
 import Giving from './pages/Giving'
 import Live from './pages/Live'
 import Missions from './pages/Missions'
-import NextSteps from './pages/NextSteps'
+import Messages from './pages/Messages'
 import AdminDashboard from './pages/AdminDashboard'
 import NotFound from './pages/NotFound'
 
@@ -22,7 +22,7 @@ function App() {
         <Route path="giving" element={<Giving />} />
         <Route path="live" element={<Live />} />
         <Route path="missions" element={<Missions />} />
-        <Route path="next-steps" element={<NextSteps />} />
+        <Route path="messages" element={<Messages />} />
         <Route path="admin-dashboard" element={<AdminDashboard />} />
         {/* Add a fallback route for 404 Not Found */}
         <Route path="*" element={<NotFound />} />

@@ -8,6 +8,10 @@ import HomeSermons from '../components/specific/HomeSermons'
 import WeekEvents from '../components/specific/WeekEvents'
 import WhyUs from '../components/specific/WhyUs'
 import WaysToGive from '../components/specific/WaysToGive'
+import Subscribe from '../components/specific/Subscribe'
+import MeetThePastor from '../components/specific/MeetThePastor'
+import CallToActionStrip from '../components/specific/CallToActionStrip'
+import Testimonials from '../components/specific/Testimonials'
 
 const Home = () => {
     return (
@@ -15,10 +19,14 @@ const Home = () => {
             <Navbar />
             <Hero />
             <HomeStrip />
+            <MeetThePastor />
+            <CallToActionStrip />
             <HomeSermons />
             <WeekEvents />
             <WhyUs />
             <WaysToGive />
+            <Testimonials />
+            <Subscribe />
             <Footer />
         </section>
     )
