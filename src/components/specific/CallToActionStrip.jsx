@@ -1,6 +1,21 @@
 import React from 'react'
+import { motion } from 'framer-motion';
+
 
 const CallToActionStrip = () => {
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
+
     return (
         <div>
             <div className="bg-bottomBar text-white py-16 px-6 mx-auto">
@@ -13,9 +28,15 @@ const CallToActionStrip = () => {
 
                     {/* Button Section */}
                     <div>
-                        <button type="button" className="btn mt-6 md:mt-0">
+                        <motion.button
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            type="button"
+                            className="btn mt-6 md:mt-4"
+                        >
                             Planeje sua Visita
-                        </button>
+                        </motion.button>
                     </div>
                 </div>
             </div>

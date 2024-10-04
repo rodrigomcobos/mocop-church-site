@@ -29,7 +29,7 @@ const TeamMemberCard = ({ name, role, image, description }) => (
             <p className="text-gray-600 text-md mt-1">{role}</p>
         </div>
         <div className="absolute inset-0 bg-bottomBar bg-opacity-95 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-            <div className="p-4 text-white">
+            <div className="p-6 text-white">
                 <h4 className="text-lg font-bold mb-2">{name}</h4>
                 <p className="text-sm leading-relaxed overflow-y-auto max-h-[200px]">{description}</p>
             </div>
@@ -46,7 +46,7 @@ const Team = () => {
                     <p className="text-gray-600 text-sm mt-4 leading-relaxed">Unidos pela fé e pelo propósito de servir, nossa equipe está comprometida em liderar, guiar e fortalecer nossa comunidade em cada passo da jornada espiritual.</p>
                 </div>
 
-                <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-10 max-md:justify-center mt-12">
+                <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-10 max-md:justify-center mt-16">
                     {teamMembers.map((member, index) => (
                         <TeamMemberCard key={index} {...member} />
                     ))}

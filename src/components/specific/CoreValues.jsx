@@ -1,6 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { motion } from 'framer-motion';
 import { PiNumberSquareOneFill, PiNumberSquareTwoFill, PiNumberSquareThreeFill, PiNumberSquareFourFill, PiNumberSquareFiveFill, PiNumberSquareSixFill } from "react-icons/pi";
-import Img from '../../assets/images/churchimg44.jpg'
+import Img from '../../assets/images/churchimg44.jpg';
+
+const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } }
+};
+
+const slideIn = {
+    hidden: { x: -50, opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.5 } }
+};
+
+const staggerChildren = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
 
 const CoreValues = () => {
     const values = [
@@ -13,35 +29,52 @@ const CoreValues = () => {
     ];
 
     return (
-        <div>
-            <div className="mx-auto py-24 bg-bottomBar">
-                <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-14 items-center max-w-7xl max-md:max-w-xl mx-auto px-6">
+        <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            className="mx-auto py-24 bg-bottomBar"
+        >
+            <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-14 items-center max-w-7xl max-md:max-w-xl mx-auto px-6">
+                <motion.div
+                    variants={slideIn}
+                    whileHover={{ scale: 1.05 }}
+                >
+                    <img src={Img} className="max-width-[400px] rounded-lg" alt="Core Values" />
+                </motion.div>
+
+                <motion.div
+                    className="xl:col-span-2 max-md:px-6"
+                    variants={slideIn}
+                >
                     <div>
-                        <img src={Img} className="max-width-[400px] rounded-lg" alt="Core Values" />
+                        <h2 className="text-white sm:text-4xl text-2xl font-extrabold">Nossos valores fundamentais</h2>
+                        <p className="text-sm text-white leading-relaxed mt-6">A base da nossa fé está firmemente alicerçada na Bíblia, a Palavra de Deus. Acreditamos que a Bíblia é divinamente inspirada, viva, e eternamente relevante para todas as gerações. Ela é mais do que um livro de ensinamentos; é a manifestação da vontade de Deus para a humanidade, sendo ativa e operante no mundo.
+                        </p>
+                        <p className="text-sm text-white leading-relaxed mt-6">Cremos que através das Escrituras, Deus se revela ao Seu povo, oferecendo direção, consolo, e transformação espiritual. A Bíblia não apenas nos guia em nossos momentos de dúvida e dificuldade, mas também nos exorta a viver de acordo com os Seus preceitos. Ela ilumina o caminho para uma vida plena em Cristo, mostrando-nos como amar, servir, e seguir os passos de Jesus.</p>
+                        <p className="text-sm text-white leading-relaxed mt-6">Cada página das Escrituras é rica em sabedoria e verdade, e nela encontramos o alicerce da nossa fé. Desde Gênesis até Apocalipse, a Bíblia nos conta a grande história da redenção, o amor incondicional de Deus por Sua criação, e o plano de salvação que culmina em Jesus Cristo.</p>
+                        <p className="text-sm text-white leading-relaxed mt-6">Portanto, não apenas vemos a Bíblia como um documento histórico ou religioso, mas como a Palavra viva de Deus, sempre presente, moldando nossas vidas, nossa igreja, e a missão que nos foi dada. Ela é infalível, imutável e eterna — o fundamento sobre o qual tudo em nossa fé é construído.</p>
                     </div>
 
-                    <div className="xl:col-span-2 max-md:px-6">
-                        <div>
-                            <h2 className="text-white sm:text-4xl text-2xl font-extrabold">Nossos valores fundamentais</h2>
-                            <p className="text-sm text-white leading-relaxed mt-6">A base da nossa fé está firmemente alicerçada na Bíblia, a Palavra de Deus. Acreditamos que a Bíblia é divinamente inspirada, viva, e eternamente relevante para todas as gerações. Ela é mais do que um livro de ensinamentos; é a manifestação da vontade de Deus para a humanidade, sendo ativa e operante no mundo.
-                            </p>
-                            <p className="text-sm text-white leading-relaxed mt-6">Cremos que através das Escrituras, Deus se revela ao Seu povo, oferecendo direção, consolo, e transformação espiritual. A Bíblia não apenas nos guia em nossos momentos de dúvida e dificuldade, mas também nos exorta a viver de acordo com os Seus preceitos. Ela ilumina o caminho para uma vida plena em Cristo, mostrando-nos como amar, servir, e seguir os passos de Jesus.</p>
-                            <p className="text-sm text-white leading-relaxed mt-6">Cada página das Escrituras é rica em sabedoria e verdade, e nela encontramos o alicerce da nossa fé. Desde Gênesis até Apocalipse, a Bíblia nos conta a grande história da redenção, o amor incondicional de Deus por Sua criação, e o plano de salvação que culmina em Jesus Cristo.</p>
-                            <p className="text-sm text-white leading-relaxed mt-6">Portanto, não apenas vemos a Bíblia como um documento histórico ou religioso, mas como a Palavra viva de Deus, sempre presente, moldando nossas vidas, nossa igreja, e a missão que nos foi dada. Ela é infalível, imutável e eterna — o fundamento sobre o qual tudo em nossa fé é construído.</p>
-                        </div>
-
-                        <section className="grid xl:grid-cols-3 sm:grid-cols-2 gap-6 mt-12">
-                            {values.map((value, index) => (
-                                <div key={index} className="flex items-start gap-3">
-                                    <value.icon size={28} className="text-white text-2xl flex-shrink-0 mt-1" />
-                                    <h6 className="text-base text-white font-bold">{value.text}</h6>
-                                </div>
-                            ))}
-                        </section>
-                    </div>
-                </div>
+                    <motion.section
+                        className="grid xl:grid-cols-3 sm:grid-cols-2 gap-6 mt-12"
+                        variants={staggerChildren}
+                    >
+                        {values.map((value, index) => (
+                            <motion.div
+                                key={index}
+                                className="flex items-start gap-3"
+                                variants={fadeIn}
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                <value.icon size={28} className="text-white text-2xl flex-shrink-0 mt-1" />
+                                <h6 className="text-base text-white font-bold">{value.text}</h6>
+                            </motion.div>
+                        ))}
+                    </motion.section>
+                </motion.div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
