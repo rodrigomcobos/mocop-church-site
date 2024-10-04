@@ -7,7 +7,7 @@ const WhyUs = () => {
     return (
         <>
             <div className="font-sans px-4 py-24">
-                <h2 className="text-yellow-700 text-3xl md:text-4xl text-center font-bold mb-14 sm:mb-16">Porque participar de nossa igreja?</h2>
+                <h2 className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-14 sm:mb-16">Porque participar de nossa igreja?</h2>
                 <div className="grid lg:grid-cols-2 gap-20 md:gap-y-36 sm:gap-y-12 lg:max-w-6xl max-w-2xl mx-auto">
                     {/* Image container with overlapping images */}
                     <section className="relative mb-12 md:mb-24 sm:mb-12">
@@ -27,10 +27,10 @@ const WhyUs = () => {
                     </section>
 
                     <section className="text-left px-4">
-                        <h2 className="text-yellow-600 text-2xl font-bold mb-2">"Tu és a Rocha e sobre esta rocha edificarei a minha Igreja"</h2>
+                        <h2 className="text-yellowBtnHover text-2xl font-bold mb-2">"Tu és a Rocha e sobre esta rocha edificarei a minha Igreja"</h2>
                         <p className='text-black italic text-lg font-thin mb-6'>- Mateus 16:18</p>
 
-                        <hr className="border-t-2 border-yellow-500 mb-6" />
+                        <hr className="border-t-2 border-yellowBtnHover mb-6" />
 
                         <p className="mb-4 text-md text-gray-500">Ser membro de uma igreja e frequentá-la semanalmente é fundamental para quem pretende seguir ao Senhor de forma plena, ou seja, fazendo e cumprindo convênios sagrados e guardando Seus mandamentos. Precisamos da igreja por muitas razões.</p>
 

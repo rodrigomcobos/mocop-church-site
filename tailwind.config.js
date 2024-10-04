@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss/plugin';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -7,7 +9,27 @@ export default {
         allison: ['Allison', 'sans-serif'],
         seaweed: ['Seaweed Script', 'cursive'],
       },
+      backgroundImage: {
+        background: "url('/src/assets/images/bg.png')",
+      },
+      colors: {
+        primary: '#f4ebdc',
+        yellowBtn: '#ffc360',
+        yellowBtnHover: '#b66a25',
+        footer: '#52504c',
+        bottomBar: '#ab8b7a',
+        lightGray: '#a9a8a6',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addComponents }) {
+      addComponents({
+        '.btn': {
+          '@apply uppercase bg-yellowBtn text-footer hover:bg-yellowBtnHover hover:text-white text-sm md:text-base tracking-wide px-6 py-3 rounded-md transition duration-300 ease-in-out hover:shadow-xl hover:ring-2 hover:ring-white font-bold inline-block w-fit mx-auto':
+            {},
+        },
+      });
+    }),
+  ],
 };

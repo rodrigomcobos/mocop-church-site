@@ -44,7 +44,7 @@ const Navbar = () => {
                     }`}
             >
                 {/* Top Bar Section */}
-                <section className='py-2 bg-gradient-to-r from-amber-800 via-amber-700 to-yellow-600 text-white px-2'>
+                <section className='py-2 bg-bottomBar text-white px-2'>
                     <p className='text-xs sm:text-sm flex items-center justify-center md:justify-end'>
                         <FaMapMarkerAlt className="mr-1" />
                         <span>2345 S State Hwy 121, Lewisville, TX 75067</span>
@@ -66,14 +66,15 @@ const Navbar = () => {
                         <img
                             src={isScrolled ? LogoColor : LogoWhite}
                             alt="MOCOP Church Logo"
-                            className="w-auto h-8 sm:h-12 transition-all duration-300"
+                            className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-14'
+                                }`}
                         />
                     </NavLink>
 
                     {/* Mobile Menu Toggle Button */}
                     <button
                         onClick={toggleMenu}
-                        className="lg:hidden text-2xl focus:outline-none focus:ring-yellow-bg-yellow-600 rounded"
+                        className="lg:hidden text-2xl focus:outline-none rounded"
                         aria-label="Toggle navigation menu"
                         aria-expanded={isMenuOpen}
                     >
@@ -96,7 +97,7 @@ const Navbar = () => {
                                         to={item.path}
                                         className={({ isActive }) =>
                                             `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
-                                                ? 'text-yellow-600'
+                                                ? 'text-yellowBtn'
                                                 : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
                                             }`
                                         }

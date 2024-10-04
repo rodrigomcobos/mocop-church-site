@@ -25,7 +25,7 @@ const MeetThePastor = () => {
                     <p className="mt-4 text-gray-600 text-md md:text-md text-left">
                         Nossa experiência de adoração envolve louvor moderno e canções de adoração seguidas por um ensino centrado na Bíblia. Como uma igreja interdenominacional, damos boas-vindas a pessoas de todas as esferas da vida para se juntarem a nós.
                     </p>
-                    <button className="mt-8 w-fit mx-auto  bg-gradient-to-r from-amber-800 via-amber-700 to-yellow-600 hover:bg-transparent hover:ring-2 hover:ring-yellow-600 text-white px-6 py-3 rounded-md transition duration-300 ease-in-out hover:shadow-xl font-bold uppercase">
+                    <button className="btn mt-10">
                         No que acreditamos
                     </button>
                 </div>

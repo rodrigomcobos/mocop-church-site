@@ -7,7 +7,7 @@ const Subscribe = () => {
                 <div className="max-w-7xl mx-auto px-6 my-20 flex flex-col md:flex-row items-center justify-center gap-8">
                     {/* Left Side */}
                     <div className="w-full md:w-1/2 md:pr-4 text-center md:text-left">
-                        <h2 className="text-yellow-600 text-2xl md:text-3xl font-bold mb-6">Inscreva-se e Fique por Dentro!</h2>
+                        <h2 className="text-yellowBtnHover text-2xl md:text-3xl font-bold mb-6">Inscreva-se e Fique por Dentro!</h2>
                         <p className="text-gray-800 text-md">Se você deseja acompanhar tudo o que acontece na nossa igreja e ser parte da nossa jornada de fé, inscreva-se na nossa newsletter. Receba notícias sobre cultos, eventos especiais, estudos bíblicos e muito mais diretamente no seu e-mail. Sua participação é muito importante para nós!</p>
                     </div>
                     {/* Right Side */}
@@ -21,7 +21,7 @@ const Subscribe = () => {
                             />
                             <button
                                 type="button"
-                                className="w-max px-6 py-4 text-sm md:text-md tracking-wider outline-none border-none bg-gradient-to-r from-amber-800 via-amber-700 to-yellow-600 hover:bg-transparent hover:ring-2 hover:ring-yellow-600 text-white transition ease-in duration-300 uppercase font-bold"
+                                className="btn"
                             >
                                 Inscrever-se
                             </button>
