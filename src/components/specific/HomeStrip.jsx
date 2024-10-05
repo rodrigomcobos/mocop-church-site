@@ -43,9 +43,9 @@ const HomeStrip = () => {
                     <h1 className="text-lg md:text-xl lg:text-xl text-gray-800 font-semibold">
                         Verso do Dia
                     </h1>
-                    <p className="text-xl md:text-2xl lg:text-2xl text-yellow-800 font-bold mt-2">
+                    <p className="text-xl md:text-2xl lg:text-2xl text-yellowBtnHover font-bold mt-2">
                         "{verse.text}"
-                        <span className="block md:inline text-gray-800 font-normal text-lg md:text-lg lg:text-lg italic">
+                        <span className="block md:inline text-footer font-normal text-lg md:text-lg lg:text-lg italic">
                             &nbsp; &nbsp; - {verse.reference}
                         </span>
                     </p>
