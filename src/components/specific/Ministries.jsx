@@ -31,7 +31,7 @@ const Ministries = () => {
                 className="text-yellowBtnHover text-4xl font-extrabold text-center mb-20"
                 variants={slideIn}
             >
-                Ministérios
+                Faça parte de um de nossos Ministérios
             </motion.h2>
             <div className="md:max-w-7xl max-w-xl mx-auto">
                 <motion.section

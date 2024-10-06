@@ -29,10 +29,10 @@ const Hero = () => {
 
     return (
         <>
-            <div className="relative bg-gradient-to-r from-black to-yellow-900 font-[sans-serif] h-[90dvh] sm:h-[850px]">
+            <div className="relative bg-gradient-to-r from-black to-yellow-900 font-[sans-serif] h-[90dvh] sm:h-[1000px]">
                 {/* Set the image to cover the entire container */}
                 <div className="absolute inset-0">
-                    <img src={HeroImg} alt="Background Image" className="w-full h-[90dvh] sm:h-[850px] object-cover object-top opacity-45" />
+                    <img src={HeroImg} alt="Background Image" className="w-full h-[90dvh] sm:h-[1000px] object-cover object-top opacity-45" />
                 </div>
 
                 <motion.section
@@ -45,16 +45,15 @@ const Hero = () => {
                         <motion.h2 variants={itemVariants} className="text-md md:text-2xl mb-8 uppercase">Um lugar de fé, esperança e comunhão</motion.h2>
                         <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-seaweed mb-4 drop-shadow-md shadow-gray-950">Você é Bem Vindo Aqui</motion.h1>
                         <motion.p variants={itemVariants} className="pt-8 text-sm md:text-lg mb-8 max-w-2xl">Venha fazer parte de uma comunidade que vive e compartilha o amor de Cristo. Aqui, você encontrará acolhimento, propósito e crescimento espiritual. Junte-se a nós para adorar, servir e transformar vidas com a graça de Deus.</motion.p>
-                        <motion.button
+                        <motion.a
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            type="button"
+                            href="/about"
                             className="btn mt-6 md:mt-4"
                         >
-                            Saiba mais
-                        </motion.button>
-                    </div>
+                            Conheça Nossa Igreja
+                        </motion.a>                    </div>
                 </motion.section>
             </div>
         </>

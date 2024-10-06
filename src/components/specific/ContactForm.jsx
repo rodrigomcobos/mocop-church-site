@@ -47,7 +47,7 @@ const ContactForm = () => {
             animate="visible"
             variants={containerVariants}
         >
-            <div className="max-w-7xl mx-auto my-24">
+            <div className="max-w-7xl mx-auto my-16 sm:my-24">
                 <motion.div
                     className="grid lg:grid-cols-3 items-center max-lg:justify-center gap-6 h-full sm:p-12 p-8 max-sm:p-4"
                     variants={containerVariants}
@@ -56,21 +56,21 @@ const ContactForm = () => {
                         className="max-w-lg max-lg:mx-auto max-lg:text-center max-lg:mb-6"
                         variants={itemVariants}
                     >
-                        <h2 className="text-4xl font-extrabold text-footer">Estamos Aqui Para Ouvir e Ajudar!</h2>
+                        <h2 className="text-3xl sm:text-4xl font-extrabold text-footer">Estamos Aqui Para Ouvir e Ajudar!</h2>
                         <p className="text-sm text-gray-600 mt-4 leading-relaxed">Seja para tirar dúvidas, solicitar informações, ou compartilhar suas necessidades de oração, ficaremos felizes em receber sua mensagem. Nossa equipe está comprometida em atender você com carinho, orientação e suporte espiritual.</p>
 
                         <motion.form
-                            className="mx-auto mt-8 bg-white rounded-lg p-6 shadow-md space-y-4"
+                            className="mx-auto mt-8 bg-primary rounded-lg p-6 shadow-md space-y-4"
                             variants={itemVariants}
                         >
                             <motion.input whileFocus={{ scale: 1.02 }} type='text' placeholder='Nome'
-                                className="w-full rounded-md h-12 px-6 bg-[#f0f1f2] text-sm outline-none" />
+                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none" />
                             <motion.input whileFocus={{ scale: 1.02 }} type='email' placeholder='Email'
-                                className="w-full rounded-md h-12 px-6 bg-[#f0f1f2] text-sm outline-none" />
+                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none" />
                             <motion.input whileFocus={{ scale: 1.02 }} type='text' placeholder='Assunto'
-                                className="w-full rounded-md h-12 px-6 bg-[#f0f1f2] text-sm outline-none" />
+                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none" />
                             <motion.textarea whileFocus={{ scale: 1.02 }} placeholder='Mensagem' rows="6"
-                                className="w-full rounded-md px-6 bg-[#f0f1f2] text-sm pt-3 outline-none"></motion.textarea>
+                                className="w-full rounded-md px-6 bg-white text-sm pt-3 outline-none"></motion.textarea>
                             <motion.button
                                 type="button"
                                 className="btn mx-auto w-full"
@@ -92,7 +92,7 @@ const ContactForm = () => {
                 </motion.div>
 
                 <motion.div
-                    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 my-24"
+                    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 my-24 px-4"
                     variants={containerVariants}
                 >
                     {[
@@ -116,7 +116,7 @@ const ContactForm = () => {
                 </motion.div>
 
                 <motion.div
-                    className="mt-12"
+                    className="mt-12 px-4"
                     variants={itemVariants}
                 >
                     <h3 className="text-2xl font-bold text-yellowBtnHover mb-4">Nossa Localização</h3>

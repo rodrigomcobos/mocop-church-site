@@ -47,17 +47,17 @@ const MeetThePastor = () => {
                 >
                     <motion.h2 variants={itemVariants} className="text-lg md:text-xl font-bold text-gray-800 uppercase">O Poder de</motion.h2>
                     <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl font-bold text-gray-800 uppercase">Jesus Muda</motion.h2>
-                    <motion.h2 variants={itemVariants} className="text-8xl md:text-7xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3">Tudo</motion.h2>
+                    <motion.h2 variants={itemVariants} className="text-8xl md:text-8xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3">Tudo</motion.h2>
                     <motion.p variants={itemVariants} className="mt-4 text-gray-600 text-md md:text-md text-left">
                         Igreja é um momento para se reunir com uma comunidade de crentes, ser desafiado, encorajado e equipado pela palavra de Deus.
                     </motion.p>
                     <motion.p variants={itemVariants} className="mt-4 text-gray-600 text-md md:text-md text-left">
                         Nossa experiência de adoração envolve louvor moderno e canções de adoração seguidas por um ensino centrado na Bíblia. Como uma igreja interdenominacional, damos boas-vindas a pessoas de todas as esferas da vida para se juntarem a nós.
                     </motion.p>
-                    <motion.button variants={itemVariants} whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }} className="btn mt-8">
+                    <motion.a variants={itemVariants} whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }} href="/what-do-we-believe" className="btn mt-8">
                         No que acreditamos
-                    </motion.button>
+                    </motion.a>
                 </motion.div>
             </div>
         </div>

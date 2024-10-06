@@ -33,9 +33,20 @@ const CoreValues = () => {
             initial="hidden"
             animate="visible"
             variants={fadeIn}
-            className="mx-auto py-24 bg-bottomBar"
+            className="mx-auto py-24 bg-bottomBar relative overflow-hidden"
         >
-            <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-14 items-center max-w-7xl max-md:max-w-xl mx-auto px-6">
+            <motion.div
+                className="absolute left-0 top-0 w-full h-full flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+            >
+                <div className="text-white text-[20dvh] translate-x-[-60%] font-extrabold transform -rotate-90 whitespace-nowrap select-none">
+                    VALORES
+                </div>
+            </motion.div>
+
+            <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-14 items-center max-w-7xl max-md:max-w-xl mx-auto px-6 relative z-10">
                 <motion.div
                     variants={slideIn}
                     whileHover={{ scale: 1.05 }}

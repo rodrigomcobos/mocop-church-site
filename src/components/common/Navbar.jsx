@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FaTimes, FaBars, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaTimes, FaBars, FaPhoneAlt, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa'
 import LogoWhite from '../../assets/logos/logowhite.png'
 import LogoColor from '../../assets/logos/logocolor.png'
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false)
 
-    // Handle scroll to change navbar background and link colors
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
@@ -22,14 +22,26 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Toggle mobile menu
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
+        if (isAboutDropdownOpen) setIsAboutDropdownOpen(false)
+    }
+
+    const toggleAboutDropdown = () => {
+        setIsAboutDropdownOpen(!isAboutDropdownOpen)
     }
 
     const navItems = [
         { path: '/', name: 'Início' },
-        { path: '/about', name: 'Sobre' },
+        {
+            name: 'Sobre',
+            dropdown: [
+                { path: '/about', name: 'Sobre a Igreja' },
+                { path: '/what-do-we-believe', name: 'O Que Cremos' },
+                { path: '/about-the-pastor', name: 'Sobre o Pastor' },
+                { path: '/ministry', name: 'Ministérios' },
+            ]
+        },
         { path: '/giving', name: 'Ofertas' },
         { path: '/missions', name: 'Missões' },
         { path: '/messages', name: 'Mensagens' },
@@ -39,10 +51,7 @@ const Navbar = () => {
 
     return (
         <>
-            <header
-                className={`fixed top-0 left-0 w-full transition-colors duration-300 z-50 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
-                    }`}
-            >
+            <header className={`fixed top-0 left-0 w-full transition-colors duration-300 z-50 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
                 {/* Top Bar Section */}
                 <section className='py-2 bg-bottomBar text-white px-2'>
                     <p className='text-xs sm:text-sm flex items-center justify-center md:justify-end'>
@@ -58,26 +67,12 @@ const Navbar = () => {
                 {/* Navbar Section */}
                 <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-4 min-h-[70px]">
                     {/* Logo */}
-                    <NavLink
-                        to="/"
-                        className="text-2xl font-bold transition-colors duration-300"
-                        aria-label="Home"
-                    >
-                        <img
-                            src={isScrolled ? LogoColor : LogoWhite}
-                            alt="MOCOP Church Logo"
-                            className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-14'
-                                }`}
-                        />
+                    <NavLink to="/" className="text-2xl font-bold transition-colors duration-300" aria-label="Home">
+                        <img src={isScrolled ? LogoColor : LogoWhite} alt="MOCOP Church Logo" className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-14'}`} />
                     </NavLink>
 
                     {/* Mobile Menu Toggle Button */}
-                    <button
-                        onClick={toggleMenu}
-                        className="lg:hidden text-2xl focus:outline-none rounded"
-                        aria-label="Toggle navigation menu"
-                        aria-expanded={isMenuOpen}
-                    >
+                    <button onClick={toggleMenu} className="lg:hidden text-2xl focus:outline-none rounded" aria-label="Toggle navigation menu" aria-expanded={isMenuOpen}>
                         {isMenuOpen ? (
                             <FaTimes className="text-black" />
                         ) : (
@@ -86,25 +81,50 @@ const Navbar = () => {
                     </button>
 
                     {/* Navigation Links */}
-                    <nav
-                        className={`${isMenuOpen ? 'block' : 'hidden'
-                            } lg:block w-full lg:w-auto`}
-                    >
+                    <nav className={`${isMenuOpen ? 'block' : 'hidden'} lg:block w-full lg:w-auto`}>
                         <ul className="flex flex-col lg:flex-row lg:space-x-6 mt-4 lg:mt-0 bg-white lg:bg-transparent p-4 lg:p-0 lg:space-y-0 space-y-2">
                             {navItems.map((item, index) => (
-                                <li key={index}>
-                                    <NavLink
-                                        to={item.path}
-                                        className={({ isActive }) =>
-                                            `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
-                                                ? 'text-yellowBtn'
-                                                : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
-                                            }`
-                                        }
-                                        onClick={() => setIsMenuOpen(false)}
-                                    >
-                                        {item.name}
-                                    </NavLink>
+                                <li key={index} className="relative">
+                                    {item.dropdown ? (
+                                        <>
+                                            <button
+                                                onClick={toggleAboutDropdown}
+                                                className={`flex items-center justify-between w-full lg:w-auto px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isScrolled || isMenuOpen ? 'text-black' : 'text-white'}`}
+                                            >
+                                                {item.name}
+                                                <FaChevronDown className={`ml-1 transform transition-transform duration-200 ${isAboutDropdownOpen ? 'rotate-180' : ''}`} />
+                                            </button>
+                                            <ul className={`lg:absolute lg:left-0 lg:mt-4 space-y-2 lg:w-48 bg-white lg:shadow-lg ${isAboutDropdownOpen ? 'block' : 'hidden'}`}>
+                                                {item.dropdown.map((subItem, subIndex) => (
+                                                    <li key={subIndex}>
+                                                        <NavLink
+                                                            to={subItem.path}
+                                                            className="block px-4 py-4 text-sm text-gray-700 hover:bg-bottomBar hover:text-white"
+                                                            onClick={() => {
+                                                                setIsMenuOpen(false)
+                                                                setIsAboutDropdownOpen(false)
+                                                            }}
+                                                        >
+                                                            {subItem.name}
+                                                        </NavLink>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </>
+                                    ) : (
+                                        <NavLink
+                                            to={item.path}
+                                            className={({ isActive }) =>
+                                                `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
+                                                    ? 'bg-bottomBar text-white'
+                                                    : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
+                                                }`
+                                            }
+                                            onClick={() => setIsMenuOpen(false)}
+                                        >
+                                            {item.name}
+                                        </NavLink>
+                                    )}
                                 </li>
                             ))}
                         </ul>

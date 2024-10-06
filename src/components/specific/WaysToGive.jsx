@@ -36,8 +36,8 @@ const WaysToGive = () => {
                 <img src={Donate} className="absolute right-80 top-[65%] transform -translate-y-1/2 opacity-10" alt="donate image" />
 
                 <motion.div className="text-center md:text-left relative z-10" variants={containerVariants}>
-                    <motion.h2 variants={itemVariants} className="text-white text-5xl md:text-5xl font-bold mb-4 font-seaweed">Maneiras de Doar</motion.h2>
-                    <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-5">"Dê a outras pessoas e Deus dará a você. Ele lhe dará ainda mais do que você deu". <span className='font-thin italic'>- Lucas 6:38</span></motion.p>
+                    <motion.h2 variants={itemVariants} className="text-white text-5xl md:text-6xl mb-2 font-seaweed">Maneiras de Doar</motion.h2>
+                    <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-10">"Dê a outras pessoas e Deus dará a você. Ele lhe dará ainda mais do que você deu". <span className='font-thin italic'>- Lucas 6:38</span></motion.p>
                     <motion.h4 variants={itemVariants} className="text-lg md:text-2xl font-extrabold text-white mb-1">Dizíme nos Domingos</motion.h4>
                     <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-5">Aproveite a chance de fazer parte de algo maior e contribua com a nossa igreja durante os cultos dominicais. Sua doação não apenas apoia as atividades da nossa comunidade de fé, mas também fortalece os projetos que espalham amor e esperança.</motion.p>
                     <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
@@ -48,7 +48,7 @@ const WaysToGive = () => {
                     <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-5">Estenda suas mãos e ajude um missionário da nossa igreja! Através de suas contribuições, estamos fortalecendo o trabalho de missionários dedicados que, com fé inabalável, levam esperança e amor a pessoas necessitadas em todo o mundo. Juntos, podemos apoiar essa missão sagrada de alcançar os perdidos e transformar vidas.</motion.p>
 
                     <motion.a
-                        href="#;"
+                        href="/giving"
                         className="btn mt-8"
                         variants={itemVariants}
                         whileHover={{ scale: 1.05 }}

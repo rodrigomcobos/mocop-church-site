@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.21.0",
+    "cloudinary-react": "^1.8.1",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.11.1",
     "leaflet": "^1.9.4",

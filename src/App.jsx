@@ -13,6 +13,9 @@ import Missions from './pages/Missions'
 import Messages from './pages/Messages'
 import AdminDashboard from './pages/AdminDashboard'
 import NotFound from './pages/NotFound'
+import AboutThePastor from './pages/AboutThePastor'
+import Ministry from './pages/Ministry'
+import WhatDoWeBelieve from './pages/WhatDoWeBelieve'
 
 // Layout component to wrap all pages
 const Layout = ({ children }) => (
@@ -38,6 +41,9 @@ function App() {
         <Route path="/missions" element={<Missions />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/about-the-pastor" element={<AboutThePastor />} />
+        <Route path="/ministry" element={<Ministry />} />
+        <Route path="/what-do-we-believe" element={<WhatDoWeBelieve />} />
         {/* Add a fallback route for 404 Not Found */}
         <Route path="*" element={<NotFound />} />
       </Routes>

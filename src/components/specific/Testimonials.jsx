@@ -73,8 +73,20 @@ const Testimonials = () => {
                                 <p className="text-md leading-relaxed">{testimonial.text}</p>
                             </div>
                         </motion.div>
+
                     ))}
                 </div>
+                <motion.a
+                    href="https://www.google.com/search?q=igreja+brasileira+em+lewisville&sca_esv=210a01dbe07330e6&sxsrf=ADLYWIKDjnkT0bZTbbH4qocPhUb8Hsv92Q%3A1728089586196&source=hp&ei=8o0AZ8q7Cbi40PEPrNHS-Aw&iflsig=AL9hbdgAAAAAZwCcAvcVFjKGICKJnLHmIEGyp5JGMc7D&oq=igre&gs_lp=Egdnd3Mtd2l6IgRpZ3JlKgIIADIEECMYJzIKECMYgAQYJxiKBTIEECMYJzILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgUQABiABDIQEC4YgAQYFBiHAhjHARivATIFEAAYgAQyBRAAGIAEMhAQLhiABBgUGIcCGMcBGK8BSIgQUJ0EWKsHcAF4AJABAJgBZqAB8wKqAQMzLjG4AQPIAQD4AQGYAgWgAoADqAIKwgIHECMYJxjqAsICCxAuGIAEGJECGIoFwgILEAAYgAQYsQMYgwHCAggQLhiABBixA8ICCBAuGIAEGNQCwgIOEC4YgAQYsQMY0QMYxwHCAg4QLhiABBjHARiOBRivAcICDRAAGIAEGLEDGBQYhwLCAggQABiABBixA5gDBJIHAzQuMaAH1jQ&sclient=gws-wiz#"
+                    target='_blank'
+                    rel="noreferrer"
+                    type="button"
+                    className="btn flex mt-24"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Deixe sua avaliação
+                </motion.a>
             </div>
         </motion.div>
     )

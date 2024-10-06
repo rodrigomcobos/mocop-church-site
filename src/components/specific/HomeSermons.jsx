@@ -42,16 +42,17 @@ const HomeSermons = () => {
         >
             <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-12 gap-12 items-center mx-auto max-w-7xl text-center lg:text-left">
                 <motion.section variants={itemVariants}>
-                    <h2 className="text-3xl text-yellowBtnHover mb-4 font-bold">Pregações</h2>
+                    <h2 className="text-3xl text-yellowBtnHover mb-4 font-bold">Mensagens</h2>
                     <hr className="border-t-2 border-yellowBtnHover mb-6 max-w-[15rem] mx-auto lg:mx-0" />
                     <h2 className="text-3xl max-md:text-2xl font-extrabold text-gray-800">Revisite nossas pregações de Domingos passados</h2>
-                    <motion.button
+                    <motion.a
+                        href="/messages"
                         className='btn mt-6 md:mt-8'
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         VEJA MAIS
-                    </motion.button>
+                    </motion.a>
                 </motion.section>
                 <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">
                     {[
