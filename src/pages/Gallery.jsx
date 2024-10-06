@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroImg from '../../src/assets/images/churchimg.jpg'
-import GallerySection from '../components/specific/GalleryContent'
+import GalleryContent from '../components/specific/GalleryContent'
 
 
 const Gallery = () => {
@@ -19,6 +19,7 @@ const Gallery = () => {
                     </div>
                 </section>
             </header>
+            <GalleryContent />
         </div>
     )
 }
