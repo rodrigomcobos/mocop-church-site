@@ -33,7 +33,7 @@ const WeekEvents = () => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-footer text-3xl md:text-4xl text-center font-bold mb-4"
+                        className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-4"
                     >
                         Programação da Semana
                     </motion.h2>

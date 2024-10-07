@@ -40,6 +40,7 @@ const Navbar = () => {
                 { path: '/what-do-we-believe', name: 'O Que Cremos' },
                 { path: '/about-the-pastor', name: 'Sobre o Pastor' },
                 { path: '/ministry', name: 'Ministérios' },
+                { path: '/next-step', name: 'Próximo Passos' },
             ]
         },
         { path: '/giving', name: 'Ofertas' },
