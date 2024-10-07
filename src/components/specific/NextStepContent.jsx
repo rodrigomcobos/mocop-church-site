@@ -22,7 +22,7 @@ const staggerChildren = {
 const NextStepContent = () => {
     return (
         <motion.div
-            className="py-24 px-6"
+            className="py-12 sm:py-24 px-6"
             initial="hidden"
             animate="visible"
             variants={fadeIn}

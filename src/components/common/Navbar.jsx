@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FaTimes, FaBars, FaPhoneAlt, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa'
 import LogoWhite from '../../assets/logos/logowhite.png'
@@ -8,6 +8,7 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false)
+    const dropdownRef = useRef(null)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,8 +19,19 @@ const Navbar = () => {
             }
         }
 
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsAboutDropdownOpen(false)
+            }
+        }
+
         window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
     }, [])
 
     const toggleMenu = () => {
@@ -37,16 +49,16 @@ const Navbar = () => {
             name: 'Sobre',
             dropdown: [
                 { path: '/about', name: 'Sobre a Igreja' },
-                { path: '/what-do-we-believe', name: 'O Que Cremos' },
                 { path: '/about-the-pastor', name: 'Sobre o Pastor' },
+                { path: '/what-do-we-believe', name: 'O Que Cremos' },
                 { path: '/ministry', name: 'Ministérios' },
-                { path: '/next-step', name: 'Próximo Passos' },
+
             ]
         },
         { path: '/giving', name: 'Ofertas' },
         { path: '/missions', name: 'Missões' },
         { path: '/messages', name: 'Mensagens' },
-        { path: '/gallery', name: 'Galeria' },
+        { path: '/next-step', name: 'Próximo Passos' },
         { path: '/contact', name: 'Contato' },
     ];
 
@@ -87,7 +99,7 @@ const Navbar = () => {
                             {navItems.map((item, index) => (
                                 <li key={index} className="relative">
                                     {item.dropdown ? (
-                                        <>
+                                        <div ref={dropdownRef}>
                                             <button
                                                 onClick={toggleAboutDropdown}
                                                 className={`flex items-center justify-between w-full lg:w-auto px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isScrolled || isMenuOpen ? 'text-black' : 'text-white'}`}
@@ -111,7 +123,7 @@ const Navbar = () => {
                                                     </li>
                                                 ))}
                                             </ul>
-                                        </>
+                                        </div>
                                     ) : (
                                         <NavLink
                                             to={item.path}
