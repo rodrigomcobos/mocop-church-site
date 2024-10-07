@@ -3,6 +3,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/common/Navbar'
 import Footer from './components/common/Footer'
+import CookieDisclaimer from './components/specific/CookieDisclaimer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
@@ -26,6 +27,7 @@ const Layout = ({ children }) => (
       {children}
     </main>
     <Footer />
+    <CookieDisclaimer />
   </>
 )
 
