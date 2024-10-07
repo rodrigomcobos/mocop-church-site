@@ -32,7 +32,7 @@ const AboutContent = () => {
             animate="visible"
             variants={fadeIn}
         >
-            <div className="bg-white flex max-lg:flex-col px-4 my-14 sm:my-24 gap-12 max-w-7xl mx-auto">
+            <div className="bg-white flex max-lg:flex-col px-6 my-14 sm:my-24 gap-12 max-w-7xl mx-auto">
                 <motion.div variants={slideIn}>
                     <h2 className="text-yellowBtnHover text-3xl sm:text-4xl font-extrabold mb-6">Nossa Visão e Missão</h2>
                     <p className="text-black text-sm leading-relaxed">Nossa igreja foi fundada em 2004, na vibrante cidade de Lewisville, Texas. Nossa jornada começou de maneira humilde, quando nos reunimos inicialmente como uma célula em uma igreja brasileira. Durante esse período, fomos abençoados com a presença de Deus e experimentamos um crescimento significativo, tanto espiritual quanto em número de membros. </p>

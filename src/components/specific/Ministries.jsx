@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import MensGroup from '../../assets/images/mensgroup.jpg';
 import WomenGroup from '../../assets/images/womensgroup.jpg';
 import KidsGroup from '../../assets/images/childrensgroup.jpg';
+import WorshipGroup from '../../assets/images/worshipgroup.jpg';
 
 const fadeIn = {
     hidden: { opacity: 0 },
@@ -103,6 +104,32 @@ const Ministries = () => {
                         whileHover={{ scale: 1.05 }}
                     >
                         <img src={KidsGroup} alt="Ministério Infantil" className="w-full h-full object-cover" />
+                    </motion.div>
+                </motion.section>
+
+                <motion.hr
+                    className="border-gray-300 my-12"
+                    variants={fadeIn}
+                />
+                <motion.section
+                    className="grid md:grid-cols-2 gap-12"
+                    variants={staggerChildren}
+                >
+                    <motion.div
+                        className="h-80 overflow-hidden rounded-lg max-md:order-1"
+                        variants={fadeIn}
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        <img src={WorshipGroup} alt="Grupo das Mulheres" className="w-full h-full object-cover" />
+                    </motion.div>
+                    <motion.div
+                        className="text-left"
+                        variants={slideIn}
+                    >
+                        <h2 className="text-yellowBtnHover text-2xl font-bold mb-4">Grupo de Louvor</h2>
+                        <p className="mb-4 text-sm text-black">O Grupo de Louvor é uma parte essencial dos cultos dominicais, liderando a igreja em momentos de adoração vibrante e transformadora. Com uma equipe de músicos e vocalistas talentosos e dedicados, o grupo tem como objetivo criar uma atmosfera onde todos possam se conectar profundamente com Deus por meio da música. Eles se dedicam a selecionar canções que não apenas elevam o nome de Jesus, mas também que tocam o coração da congregação, levando-a a momentos de reflexão, gratidão e entrega.</p>
+                        <p className="mb-4 text-sm text-black">Além de simplesmente cantar, o grupo entende seu papel como ministros de adoração, guiando a igreja em uma jornada espiritual a cada domingo. Com um repertório que inclui tanto músicas contemporâneas quanto hinos tradicionais, eles procuram envolver todos os presentes, independente de idade ou preferências musicais. Através de harmonias bem executadas, letras inspiradoras e um profundo senso de devoção, o Grupo de Louvor busca criar uma experiência de adoração onde a presença de Deus seja sentida de maneira palpável, unindo corações em uma só voz para glorificar o Senhor.</p>
+                        <p className="text-sm text-black">Acima de tudo, o foco do grupo é apontar para Cristo em tudo o que fazem, lembrando à igreja que a adoração vai além da música – é um estilo de vida, uma expressão contínua de amor, gratidão e submissão a Deus.</p>
                     </motion.div>
                 </motion.section>
             </div>

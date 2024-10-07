@@ -29,10 +29,10 @@ const Hero = () => {
 
     return (
         <>
-            <div className="relative bg-gradient-to-r from-black to-yellow-900 font-[sans-serif] h-[90dvh] sm:h-[1000px]">
+            <div className="relative bg-gradient-to-r from-black to-yellow-900 font-[sans-serif] h-[95dvh] sm:h-[1000px]">
                 {/* Set the image to cover the entire container */}
                 <div className="absolute inset-0">
-                    <img src={HeroImg} alt="Background Image" className="w-full h-[90dvh] sm:h-[1000px] object-cover object-top opacity-45" />
+                    <img src={HeroImg} alt="Background Image" className="w-full h-[95dvh] sm:h-[1000px] object-cover object-top opacity-45" />
                 </div>
 
                 <motion.section
@@ -50,7 +50,7 @@ const Hero = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             href="/about"
-                            className="btn mt-6 md:mt-4"
+                            className="btn mt-0 md:mt-6"
                         >
                             Conheça Nossa Igreja
                         </motion.a>                    </div>

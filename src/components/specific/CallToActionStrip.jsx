@@ -28,15 +28,15 @@ const CallToActionStrip = () => {
 
                     {/* Button Section */}
                     <div>
-                        <motion.button
+                        <motion.a
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            type="button"
+                            href="/plan-your-visit"
                             className="btn mt-6 md:mt-4"
                         >
                             Planeje sua Visita
-                        </motion.button>
+                        </motion.a>
                     </div>
                 </div>
             </div>

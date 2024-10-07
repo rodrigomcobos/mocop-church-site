@@ -9,12 +9,12 @@ const Subscribe = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="max-w-7xl mx-auto px-6 my-20 flex flex-col md:flex-row items-center justify-center gap-8">
-                <div className="w-full md:w-1/2 md:pr-4 text-center md:text-left">
+            <div className="max-w-7xl mx-auto my-20 flex flex-col md:flex-row items-center justify-center gap-12 px-6">
+                <div className="w-full md:w-1/2 text-center md:text-left">
                     <h2 className="text-yellowBtnHover text-2xl md:text-3xl font-bold mb-6">Inscreva-se e Fique por Dentro!</h2>
                     <p className="text-gray-800 text-md">Se você deseja acompanhar tudo o que acontece na nossa igreja e ser parte da nossa jornada de fé, inscreva-se na nossa newsletter. Receba notícias sobre cultos, eventos especiais, estudos bíblicos e muito mais diretamente no seu e-mail. Sua participação é muito importante para nós!</p>
                 </div>
-                <div className="w-full md:w-1/2 md:pl-4">
+                <div className="w-full md:w-1/2">
                     <div className="mt-4 md:mt-8 flex items-center bg-gray-100 rounded overflow-hidden">
                         <input
                             name="name"
