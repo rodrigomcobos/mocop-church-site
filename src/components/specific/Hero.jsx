@@ -1,8 +1,12 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import HeroImg from '../../assets/images/churchimg19.jpeg'
+import { Link } from 'react-router-dom';
+
 
 const Hero = () => {
+    const MotionLink = motion(Link);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -45,15 +49,16 @@ const Hero = () => {
                         <motion.h2 variants={itemVariants} className="text-md md:text-2xl mb-8 uppercase">Um lugar de fé, esperança e comunhão</motion.h2>
                         <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-seaweed mb-4 drop-shadow-md shadow-gray-950">Você é Bem Vindo Aqui</motion.h1>
                         <motion.p variants={itemVariants} className="pt-8 text-sm md:text-lg mb-8 max-w-2xl">Venha fazer parte de uma comunidade que vive e compartilha o amor de Cristo. Aqui, você encontrará acolhimento, propósito e crescimento espiritual. Junte-se a nós para adorar, servir e transformar vidas com a graça de Deus.</motion.p>
-                        <motion.a
+                        <MotionLink
+                            to="/about"
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            href="/about"
                             className="btn mt-0 md:mt-6"
                         >
                             Conheça Nossa Igreja
-                        </motion.a>                    </div>
+                        </MotionLink>
+                    </div>
                 </motion.section>
             </div>
         </>

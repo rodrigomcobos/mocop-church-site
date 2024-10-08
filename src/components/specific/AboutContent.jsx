@@ -2,6 +2,7 @@ import React from 'react'
 import { FaPeopleRoof, FaBookBible } from "react-icons/fa6";
 import { FaGlobeAfrica, FaHands, FaHandsHelping } from "react-icons/fa";
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const fadeIn = {
     hidden: { opacity: 0 },
@@ -19,6 +20,8 @@ const staggerChildren = {
 };
 
 const AboutContent = () => {
+    const MotionLink = motion(Link);
+
     const cards = [
         { icon: FaGlobeAfrica, title: "Sustentar a Obra Missionária Global", content: "Acreditamos firmemente na importância da missão de levar a mensagem do Evangelho a todos os cantos da Terra. Para isso, nos comprometemos a sustentar obras missionárias através de doações e recursos. Além de enviar novos obreiros para áreas onde a necessidade é maior, buscamos também apoiar e manter os missionários que já estão atuando no campo, garantindo que eles tenham o suporte necessário para continuar seu trabalho vital.", hasButton: true },
         { icon: FaHands, title: "Exaltar o Nome do Senhor", content: "Nossa visão é glorificar o nome do Senhor em todas as situações e contextos. Isso se reflete em nosso testemunho pessoal, nas ministrações da Palavra, nos louvores e nas nossas orações. Acreditamos que nossa vida deve ser um reflexo da fé que professamos, e por isso nos esforçamos para viver de maneira que honre a Deus em todas as nossas interações, mostrando Sua bondade e amor aos outros." },
@@ -53,14 +56,14 @@ const AboutContent = () => {
                             <h3 className="text-footer text-xl font-semibold mt-6 mb-3 relative z-10">{card.title}</h3>
                             <p className="text-black text-sm leading-relaxed relative z-10">{card.content}</p>
                             {card.hasButton && (
-                                <motion.button
-                                    type="button"
+                                <MotionLink
+                                    to="/missions"
                                     className="btn mt-8 relative z-10"
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     Veja mais sobre Missões
-                                </motion.button>
+                                </MotionLink>
                             )}
                         </motion.div>
                     ))}

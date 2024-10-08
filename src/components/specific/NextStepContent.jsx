@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import BaptismImg from '../../assets/images/baptismimg.jpg'
 import MinistryImg from '../../assets/images/churchimg41.jpg'
 import ServingImg from '../../assets/images/servingimg.jpg'
+import { Link } from 'react-router-dom';
 
 const fadeIn = {
     hidden: { opacity: 0 },
@@ -20,6 +21,8 @@ const staggerChildren = {
 };
 
 const NextStepContent = () => {
+    const MotionLink = motion(Link);
+
     return (
         <motion.div
             className="py-12 sm:py-24 px-6"
@@ -35,14 +38,14 @@ const NextStepContent = () => {
                     <div className="text-left">
                         <p className="mb-4 text-sm text-black">Nossa jornada espiritual está sempre em movimento, e há momentos em que somos chamados a ir mais fundo. Se você sente esse chamado, seja para se aproximar mais de Deus, fazer parte da nossa comunidade ou descobrir maneiras de servir, estamos aqui para ajudá-lo. </p>
                         <p className="text-sm text-black">Queremos que você saiba que não importa onde você esteja na sua caminhada, há sempre um próximo passo esperando por você. Pode ser pelo batismo, envolvimento em um ministério, ou encontrando uma forma de servir. Aqui na nossa igreja, há espaço para você crescer e fazer a diferença.</p>
-                        <motion.a
-                            href="/contact"
+                        <MotionLink
+                            to="/contact"
                             className="mt-6 btn"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             Entre em Contato
-                        </motion.a>
+                        </MotionLink>
                     </div>
                 </motion.section>
 

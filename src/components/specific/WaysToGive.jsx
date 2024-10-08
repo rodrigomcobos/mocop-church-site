@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import { MdOutlineVolunteerActivism } from "react-icons/md";
 import StripImg from '../../assets/images/churchimg38.jpg';
 import Donate from '../../assets/images/donate.svg';
+import { Link } from 'react-router-dom';
 
 const WaysToGive = () => {
+    const MotionLink = motion(Link);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -47,15 +50,15 @@ const WaysToGive = () => {
                     <motion.h4 variants={itemVariants} className="text-lg md:text-2xl font-extrabold text-white mb-1">Ajude um missionário</motion.h4>
                     <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-5">Estenda suas mãos e ajude um missionário da nossa igreja! Através de suas contribuições, estamos fortalecendo o trabalho de missionários dedicados que, com fé inabalável, levam esperança e amor a pessoas necessitadas em todo o mundo. Juntos, podemos apoiar essa missão sagrada de alcançar os perdidos e transformar vidas.</motion.p>
 
-                    <motion.a
-                        href="/giving"
+                    <MotionLink
+                        to="/giving"
                         className="btn mt-8"
                         variants={itemVariants}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         Mande uma Oferta
-                    </motion.a>
+                    </MotionLink>
                 </motion.div>
 
                 <motion.div

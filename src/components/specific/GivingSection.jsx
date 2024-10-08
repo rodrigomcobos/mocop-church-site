@@ -68,14 +68,13 @@ const GivingSection = () => {
                         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-sm:gap-8 mt-12"
                         variants={containerVariants}
                     >
-                        {/* Card 1, 2, 3 */}
                         {[
-                            { img: Venmo, title: "Contribua pelo Venmo", content: "Facilite sua contribuição enviando ofertas rapidamente pelo Venmo. Uma maneira prática e segura de apoiar nossa missão e fortalecer a obra de Deus.", link: "https://venmo.com/u/MOCOP-church", linkText: "Venmo" },
-                            { img: Zelle, title: "Contribua pelo Zelle", content: "Contribua de forma simples e segura usando o Zelle. Apoie nossa comunidade e ajude a expandir o reino de Deus com facilidade.", link: "https://zelle.com/", linkText: "Zelle" },
-                            { img: Donate, title: "Durante o Culto", content: "Quer trazer sua oferta pessoalmente? Você pode contribuir durante o culto de domingo. Sua presença e apoio são muito importantes para nós!", additionalInfo: "Domingos às 6:00PM" }
+                            { img: Venmo, title: "Contribua pelo Venmo", content: "Facilite sua contribuição enviando ofertas rapidamente pelo Venmo. Uma maneira prática e segura de apoiar nossa missão e fortalecer a obra de Deus.", link: "https://venmo.com/u/MOCOP-church", linkText: "Venmo", bgColor: "bg-blue-300" },
+                            { img: Zelle, title: "Contribua pelo Zelle", content: "Contribua de forma simples e segura usando o Zelle. Apoie nossa comunidade e ajude a expandir o reino de Deus com facilidade.", link: "https://zelle.com/", linkText: "Zelle", bgColor: "bg-purple-300" },
+                            { img: Donate, title: "Durante o Culto", content: "Quer trazer sua oferta pessoalmente? Você pode contribuir durante o culto de domingo. Sua presença e apoio são muito importantes para nós!", additionalInfo: "Domingos às 6:00PM", bgColor: "bg-stone-300" }
                         ].map((card, index) => (
                             <motion.div key={index} className="group overflow-hidden p-4 rounded-md hover:bg-primary transition-all duration-300" variants={itemVariants}>
-                                <div className={`bg-${index === 0 ? 'blue' : index === 1 ? 'purple' : 'stone'}-300 rounded-md`}>
+                                <div className={`${card.bgColor} rounded-md`}>
                                     <img src={card.img} alt={card.title} className="w-full h-64 object-cover object-top rounded-md" />
                                 </div>
                                 <div className="text-center">

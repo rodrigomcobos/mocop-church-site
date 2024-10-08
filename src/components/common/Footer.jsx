@@ -1,9 +1,16 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logos/logocolor.png'
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     const navItems = [
         { path: '/', name: 'Início' },
         { path: '/about', name: 'Sobre Nós' },
@@ -17,6 +24,11 @@ const Footer = () => {
         { path: '/contact', name: 'Contato' },
     ];
 
+    const handleNavClick = (path) => {
+        navigate(path);
+        window.scrollTo(0, 0);
+    };
+
     return (
         <footer className="bg-[#c9b2a0] font-sans tracking-wide">
             {/* Main Content Section with max-w-7xl */}
@@ -25,7 +37,7 @@ const Footer = () => {
 
                     {/* Logo, Description, and Social Media */}
                     <div className="lg:col-span-2">
-                        <NavLink to='/'><img src={Logo} alt="logo" className='w-44 mb-8' /></NavLink>
+                        <NavLink to='/' onClick={() => handleNavClick('/')}><img src={Logo} alt="logo" className='w-44 mb-8' /></NavLink>
                         <p className="text-footer mr-0 sm:mr-14 text-sm mb-6">Junte-se a nós para descobrir como a fé em Jesus pode transformar sua vida. Através do amor e da graça de Cristo, somos capacitados a enfrentar qualquer desafio e a viver com propósito.</p>
                         <h4 className="text-lg font-semibold mb-4 text-footer">Redes Sociais</h4>
                         <ul className="flex gap-6">
@@ -44,6 +56,7 @@ const Footer = () => {
                                     <NavLink
                                         to={item.path}
                                         className="text-footer hover:text-white hover:underline text-sm"
+                                        onClick={() => handleNavClick(item.path)}
                                     >
                                         {item.name}
                                     </NavLink>

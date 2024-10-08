@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import PastorImage from '../../assets/images/pastor.png'; // Adjust the path as necessary
+import PastorImage from '../../assets/images/pastor.png';
+import { Link } from 'react-router-dom';
 
 const MeetThePastor = () => {
+    const MotionLink = motion(Link);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -54,10 +57,15 @@ const MeetThePastor = () => {
                     <motion.p variants={itemVariants} className="mt-4 text-gray-600 text-md md:text-md text-left">
                         Nossa experiência de adoração envolve louvor moderno e canções de adoração seguidas por um ensino centrado na Bíblia. Como uma igreja interdenominacional, damos boas-vindas a pessoas de todas as esferas da vida para se juntarem a nós.
                     </motion.p>
-                    <motion.a variants={itemVariants} whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }} href="/what-do-we-believe" className="btn mt-8">
+                    <MotionLink
+                        to="/what-do-we-believe"
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="btn mt-8"
+                    >
                         No que acreditamos
-                    </motion.a>
+                    </MotionLink>
                 </motion.div>
             </div>
         </div>

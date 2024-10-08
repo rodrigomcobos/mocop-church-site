@@ -4,8 +4,11 @@ import CardImg1 from '../../assets/images/churchimg3.jpeg'
 import CardImg2 from '../../assets/images/churchimg10.jpeg'
 import CardImg3 from '../../assets/images/churchimg8.jpeg'
 import CardImg4 from '../../assets/images/churchimg7.jpeg'
+import { Link } from 'react-router-dom';
 
 const HomeSermons = () => {
+    const MotionLink = motion(Link);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -45,14 +48,14 @@ const HomeSermons = () => {
                     <h2 className="text-3xl text-yellowBtnHover mb-4 font-bold">Mensagens</h2>
                     <hr className="border-t-2 border-yellowBtnHover mb-6 max-w-[15rem] mx-auto lg:mx-0" />
                     <h2 className="text-3xl max-md:text-2xl font-extrabold text-gray-800">Revisite nossas pregações de Domingos passados</h2>
-                    <motion.a
-                        href="/messages"
+                    <MotionLink
+                        to="/messages"
                         className='btn mt-6 md:mt-8'
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         VEJA MAIS
-                    </motion.a>
+                    </MotionLink>
                 </motion.section>
                 <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">
                     {[
