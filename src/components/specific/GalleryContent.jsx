@@ -20,7 +20,6 @@ const GalleryContent = () => {
                         { tag: 'mission-images' } // Use the tag you've added to your images
                     ],
                     carouselLocation: 'bottom',
-                    carouselStyle: 'thumnails',
                     carouselOffset: 50,
                     carouselStyle: 'indicators',
                     thumbnailProps: { width: 100, height: 100, crop: 'fill', navigationArrows: 'always' }

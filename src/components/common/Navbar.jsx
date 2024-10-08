@@ -58,7 +58,7 @@ const Navbar = () => {
         { path: '/giving', name: 'Ofertas' },
         { path: '/missions', name: 'Missões' },
         { path: '/messages', name: 'Mensagens' },
-        { path: '/next-step', name: 'Próximo Passos' },
+        { path: '/next-step', name: 'Próximos Passos' },
         { path: '/contact', name: 'Contato' },
     ];
 

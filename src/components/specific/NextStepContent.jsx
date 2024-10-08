@@ -30,13 +30,13 @@ const NextStepContent = () => {
             <div className="md:max-w-7xl max-w-lg mx-auto">
                 <motion.section className="grid md:grid-cols-2 gap-6" variants={slideIn}>
                     <div className="max-w-sm">
-                        <h2 className="text-yellowBtnHover text-3xl font-semibold mb-4 leading-10">Dando os Próximos Passos em Sua Caminhada de Fé</h2>
+                        <h2 className="text-yellowBtnHover text-3xl font-semibold mb-4 leading-10">Dando os Próximos Passos em Sua Caminhada na Fé</h2>
                     </div>
                     <div className="text-left">
                         <p className="mb-4 text-sm text-black">Nossa jornada espiritual está sempre em movimento, e há momentos em que somos chamados a ir mais fundo. Se você sente esse chamado, seja para se aproximar mais de Deus, fazer parte da nossa comunidade ou descobrir maneiras de servir, estamos aqui para ajudá-lo. </p>
                         <p className="text-sm text-black">Queremos que você saiba que não importa onde você esteja na sua caminhada, há sempre um próximo passo esperando por você. Pode ser pelo batismo, envolvimento em um ministério, ou encontrando uma forma de servir. Aqui na nossa igreja, há espaço para você crescer e fazer a diferença.</p>
                         <motion.a
-                            href="/contato"
+                            href="/contact"
                             className="mt-6 btn"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
