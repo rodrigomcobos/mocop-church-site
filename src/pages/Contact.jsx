@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroImg from '../../src/assets/images/headerimg8.jpg'
+import HeroImg from '../../src/assets/images/headerimg8.png'
 import Subscribe from '../components/specific/Subscribe'
 import ContactForm from '../components/specific/ContactForm'
 

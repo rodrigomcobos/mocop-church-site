@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import MensGroup from '../../assets/images/mensgroup.jpg';
-import WomenGroup from '../../assets/images/womensgroup.jpg';
+import MensGroup from '../../assets/images/mensgroup.png';
+import WomenGroup from '../../assets/images/womensgroup.png';
 import KidsGroup from '../../assets/images/childrensgroup.jpg';
 import WorshipGroup from '../../assets/images/worshipgroup.jpg';
 

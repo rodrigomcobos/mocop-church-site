@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroImg from '../../src/assets/images/headerimg4.jpg'
+import HeroImg from '../../src/assets/images/headerimg4.jpeg'
 import GivingSection from '../components/specific/GivingSection'
 import Subscribe from '../components/specific/Subscribe'
 import GivingFaq from '../components/specific/GivingFaq'

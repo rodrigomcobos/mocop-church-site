@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroImg from '../../src/assets/images/headerimg6.jpg'
+import HeroImg from '../../src/assets/images/headerimg6.png'
 import NextStepContent from '../components/specific/NextStepContent'
 import Subscribe from '../components/specific/Subscribe'
 import { motion } from 'framer-motion'

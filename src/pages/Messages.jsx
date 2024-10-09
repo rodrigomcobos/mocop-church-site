@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroImg from '../../src/assets/images/headerimg10.jpeg'
-
+import MessagesContent from '../components/specific/MessagesContent'
+import Subscribe from '../components/specific/Subscribe'
 
 const Messages = () => {
     return (
@@ -18,6 +19,9 @@ const Messages = () => {
                     </div>
                 </section>
             </header>
+
+            <MessagesContent />
+            <Subscribe />
         </div>
     )
 }
