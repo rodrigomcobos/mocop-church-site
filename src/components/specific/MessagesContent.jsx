@@ -13,8 +13,8 @@ const MessagesContent = () => {
 
     const API_KEY_1 = import.meta.env.VITE_YOUTUBE_API_KEY_1;
     const API_KEY_2 = import.meta.env.VITE_YOUTUBE_API_KEY_2;
-    const CHANNEL_ID_1 = 'UCrbGrH-d7Gwr1lAGE6hcIrA';
-    const CHANNEL_ID_2 = 'UCBvRRqL6ivkDYJDBI1sVb1w';
+    const CHANNEL_ID_1 = import.meta.env.VITE_YOUTUBE_CHANNEL_ID_1;
+    const CHANNEL_ID_2 = import.meta.env.VITE_YOUTUBE_CHANNEL_ID_2;
     const CACHE_KEY = 'messagesContentVideos';
     const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
 
@@ -279,7 +279,7 @@ const MessagesContent = () => {
                 </div>
             </motion.div>
 
-            <motion.div className="flex justify-center mt-8 mb-16" variants={itemVariants}>
+            <motion.div className="flex justify-center mt-8 mb-16 px-6" variants={itemVariants}>
                 <motion.button
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}

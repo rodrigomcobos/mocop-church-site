@@ -8,7 +8,7 @@ const HomeSermons = () => {
     const MotionLink = motion.create(Link);
 
     const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY_1;
-    const CHANNEL_ID = 'UCrbGrH-d7Gwr1lAGE6hcIrA';
+    const CHANNEL_ID_1 = import.meta.env.VITE_YOUTUBE_CHANNEL_ID_1;
     const CACHE_KEY = 'homeSermonVideos';
     const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
 
@@ -27,7 +27,7 @@ const HomeSermons = () => {
                 const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
                     params: {
                         part: 'snippet',
-                        channelId: CHANNEL_ID,
+                        channelId: CHANNEL_ID_1,
                         maxResults: 4,
                         order: 'date',
                         type: 'video',
