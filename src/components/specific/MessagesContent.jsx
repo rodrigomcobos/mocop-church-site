@@ -1,40 +1,114 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { FaSearch, FaChevronLeft, FaChevronRight, FaChevronDown, FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const MessagesContent = () => {
     const [videos, setVideos] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [dateFilter, setDateFilter] = useState('any');
+    const [yearFilter, setYearFilter] = useState('all');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [videosPerPage] = useState(12);
 
-    const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-    const CHANNEL_ID = 'UCrbGrH-d7Gwr1lAGE6hcIrA';
+    const API_KEY_1 = import.meta.env.VITE_YOUTUBE_API_KEY_1;
+    const API_KEY_2 = import.meta.env.VITE_YOUTUBE_API_KEY_2;
+    const CHANNEL_ID_1 = 'UCrbGrH-d7Gwr1lAGE6hcIrA';
+    const CHANNEL_ID_2 = 'UCBvRRqL6ivkDYJDBI1sVb1w';
+    const CACHE_KEY = 'messagesContentVideos';
+    const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
+
+    const sectionRef = useRef(null);
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5 }
+        }
+    };
 
     useEffect(() => {
         fetchVideos();
     }, []);
 
-    const fetchVideos = async (query = '', dateFilter = 'any') => {
+    const fetchVideos = async (query = '', dateFilter = 'any', year = 'all') => {
+        const cacheKey = `${CACHE_KEY}_${query}_${dateFilter}_${year}`;
+        const cachedData = localStorage.getItem(cacheKey);
+        if (cachedData) {
+            const { timestamp, videos } = JSON.parse(cachedData);
+            if (Date.now() - timestamp < CACHE_DURATION) {
+                setVideos(videos);
+                return;
+            }
+        }
+
         try {
-            const publishedAfter = getPublishedAfterDate(dateFilter);
-            const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-                params: {
-                    part: 'snippet',
-                    channelId: CHANNEL_ID,
-                    maxResults: 50,
-                    order: 'date',
-                    type: 'video',
-                    q: query,
-                    key: API_KEY,
-                    ...(publishedAfter && { publishedAfter })
-                }
-            });
-            setVideos(response.data.items);
+            const publishedAfter = getPublishedAfterDate(dateFilter, year);
+            const publishedBefore = year !== 'all' ? `${parseInt(year) + 1}-01-01T00:00:00Z` : undefined;
+
+            const [response1, response2] = await Promise.all([
+                axios.get('https://www.googleapis.com/youtube/v3/search', {
+                    params: {
+                        part: 'snippet',
+                        channelId: CHANNEL_ID_1,
+                        maxResults: 50,
+                        order: 'date',
+                        type: 'video',
+                        q: query,
+                        key: API_KEY_1,
+                        ...(publishedAfter && { publishedAfter }),
+                        ...(publishedBefore && { publishedBefore })
+                    }
+                }),
+                axios.get('https://www.googleapis.com/youtube/v3/search', {
+                    params: {
+                        part: 'snippet',
+                        channelId: CHANNEL_ID_2,
+                        maxResults: 50,
+                        order: 'date',
+                        type: 'video',
+                        q: query,
+                        key: API_KEY_2,
+                        ...(publishedAfter && { publishedAfter }),
+                        ...(publishedBefore && { publishedBefore })
+                    }
+                })
+            ]);
+
+            const videos1 = response1.data.items.map(item => ({ ...item, channelId: CHANNEL_ID_1 }));
+            const videos2 = response2.data.items.map(item => ({ ...item, channelId: CHANNEL_ID_2 }));
+            const allVideos = [...videos1, ...videos2].sort((a, b) =>
+                new Date(b.snippet.publishedAt) - new Date(a.snippet.publishedAt)
+            );
+
+            setVideos(allVideos);
+            localStorage.setItem(cacheKey, JSON.stringify({
+                timestamp: Date.now(),
+                videos: allVideos
+            }));
+            setCurrentPage(1);
         } catch (error) {
             console.error('Error fetching videos:', error);
         }
     };
 
-    const getPublishedAfterDate = (filter) => {
+    const getPublishedAfterDate = (filter, year) => {
+        if (year !== 'all') {
+            return `${year}-01-01T00:00:00Z`;
+        }
+
         const now = new Date();
         switch (filter) {
             case 'day':
@@ -52,65 +126,191 @@ const MessagesContent = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        fetchVideos(searchQuery, dateFilter);
+        fetchVideos(searchQuery, dateFilter, yearFilter);
     };
 
     const handleDateFilterChange = (e) => {
         setDateFilter(e.target.value);
-        fetchVideos(searchQuery, e.target.value);
+        fetchVideos(searchQuery, e.target.value, yearFilter);
     };
 
+    const handleYearFilterChange = (e) => {
+        setYearFilter(e.target.value);
+        fetchVideos(searchQuery, dateFilter, e.target.value);
+    };
+
+    const generateYearOptions = () => {
+        const currentYear = new Date().getFullYear();
+        const years = [];
+        for (let year = currentYear; year >= 2010; year--) {
+            years.push(
+                <option key={year} value={year.toString()}>
+                    {year}
+                </option>
+            );
+        }
+        return years;
+    };
+
+    const clearFilters = () => {
+        setSearchQuery('');
+        setDateFilter('any');
+        setYearFilter('all');
+        fetchVideos('', 'any', 'all');
+    };
+
+    const indexOfLastVideo = currentPage * videosPerPage;
+    const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
+    const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        // Scroll to the top of the section
+        if (sectionRef.current) {
+            sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     return (
-        <div>
-            {/* Search Bar and Date Filter */}
-            <form onSubmit={handleSearch} className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-3xl mx-auto my-14">
-                <div className="flex rounded-lg border-2 border-bottomBar overflow-hidden w-full sm:w-2/3">
+        <motion.section
+            ref={sectionRef}
+            className='px-6 pb-4'
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+        >
+            <motion.div className="max-w-6xl mx-auto text-center my-14" variants={itemVariants}>
+                <h2 className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-4">Explore Nossas Pregações e Sermões</h2>
+                <p className="text-md text-gray-800 mt-6 leading-relaxed">Explore as pregações e sermões da Comunidade Cristã Brasileira em Lewisville, disponíveis desde 2010. Aprofunde-se na palavra de Deus com mensagens inspiradoras e cheias de sabedoria, compartilhadas ao longo dos anos por pastores e líderes da nossa igreja. Acesse nossos vídeos e fortaleça sua fé com ensinamentos bíblicos para todas as fases da vida cristã.</p>
+            </motion.div>
+            <motion.form
+                id='search-form'
+                onSubmit={handleSearch}
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-6xl mx-auto my-14"
+                variants={itemVariants}
+            >
+                <div className="flex rounded-lg border-2 border-bottomBar overflow-hidden w-full sm:w-2/4">
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search videos..."
-                        className="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3"
+                        placeholder="Pesquise pregações..."
+                        className="w-full outline-none bg-white text-footer text-md px-4 py-3"
                     />
-                    <button type='submit' className="flex items-center justify-center bg-bottomBar px-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px" className="fill-white">
-                            <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
-                        </svg>
-                    </button>
+                    <motion.button
+                        type='submit'
+                        className="flex items-center justify-center bg-bottomBar px-5 m-[.15rem] rounded-md"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <FaSearch className="text-white text-lg" />
+                    </motion.button>
                 </div>
-                <select
-                    value={dateFilter}
-                    onChange={handleDateFilterChange}
-                    className="w-full sm:w-auto bg-white border-2 border-bottomBar text-gray-600 text-sm rounded-lg px-4 py-3 outline-none appearance-none"
-                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.75rem center', backgroundSize: '1em', paddingRight: '2.5rem' }}
+                <div className="relative w-full sm:w-1/4">
+                    <select
+                        value={dateFilter}
+                        onChange={handleDateFilterChange}
+                        className="w-full bg-white border-2 border-bottomBar text-footer text-md rounded-lg px-4 py-3 pr-10 outline-none appearance-none"
+                    >
+                        <option value="any">Todos os Videos</option>
+                        <option value="day">Últimos 24 horas</option>
+                        <option value="week">Dessa semana</option>
+                        <option value="month">Desse mês</option>
+                        <option value="year">Desse ano</option>
+                    </select>
+                    <FaChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-footer pointer-events-none" />
+                </div>
+                <div className="relative w-full sm:w-1/4">
+                    <select
+                        value={yearFilter}
+                        onChange={handleYearFilterChange}
+                        className="w-full bg-white border-2 border-bottomBar text-footer text-md rounded-lg px-4 py-3 pr-10 outline-none appearance-none"
+                    >
+                        <option value="all">Todos os Anos</option>
+                        {generateYearOptions()}
+                    </select>
+                    <FaChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-footer pointer-events-none" />
+                </div>
+                <motion.button
+                    type="button"
+                    onClick={clearFilters}
+                    className="w-full sm:w-auto bg-bottomBar text-white px-4 py-3 rounded-lg hover:bg-red-600 transition-colors duration-300 flex items-center justify-center whitespace-nowrap"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                 >
-                    <option value="any">Any time</option>
-                    <option value="day">Last 24 hours</option>
-                    <option value="week">This week</option>
-                    <option value="month">This month</option>
-                    <option value="year">This year</option>
-                </select>
-            </form>
+                    <FaTimes className="mr-2" /> Limpar Filtros
+                </motion.button>
+            </motion.form>
 
-            {/* Cards Section */}
-            <div className="bg-white my-4">
+            <motion.div className="bg-white my-4" variants={itemVariants}>
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 max-lg:max-w-3xl max-md:max-w-md mx-auto">
-                        {videos.map((video) => (
-                            <div key={video.id.videoId} className="bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg relative top-0 hover:-top-2 transition-all duration-300">
-                                <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className="w-full h-60 object-cover" />
-                                <div className="p-6">
-                                    <span className="text-sm block text-gray-400 mb-2">{new Date(video.snippet.publishedAt).toLocaleDateString()}</span>
-                                    <h3 className="text-xl font-bold text-gray-800">{video.snippet.title}</h3>
-                                    <hr className="my-4" />
-                                    <p className="text-gray-400 text-sm">{video.snippet.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <AnimatePresence>
+                        <motion.div
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 max-lg:max-w-3xl max-md:max-w-md mx-auto"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            {currentVideos.map((video) => (
+                                <motion.div
+                                    key={video.id.videoId}
+                                    className="bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg relative top-0 hover:-top-2 transition-all duration-300"
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.03 }}
+                                >
+                                    <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className="w-full h-60 object-cover" />
+                                    <div className="p-6">
+                                        <span className="text-md block text-gray-400 mb-2">
+                                            Pregação do dia&nbsp;
+                                            {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                                            {/* Channel {video.channelId === CHANNEL_ID_1 ? '1' : '2'} */}
+                                        </span>
+                                        <h3 className="text-xl font-bold text-yellowBtnHover">{video.snippet.title}</h3>
+                                        <hr className="my-4" />
+                                        <p className="text-footer text-md">
+                                            {video.snippet.description
+                                                ? video.snippet.description
+                                                : "Nenhuma descrição disponível para este vídeo."}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
-            </div>
-        </div>
+            </motion.div>
+
+            <motion.div className="flex justify-center mt-8 mb-16" variants={itemVariants}>
+                <motion.button
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="mx-1 px-4 py-2 bg-bottomBar text-white rounded-md disabled:bg-gray-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <FaChevronLeft />
+                </motion.button>
+                {[...Array(Math.ceil(videos.length / videosPerPage)).keys()].map((number) => (
+                    <motion.button
+                        key={number + 1}
+                        onClick={() => paginate(number + 1)}
+                        className={`mx-1 px-4 py-2 rounded-md ${currentPage === number + 1 ? 'bg-bottomBar text-white' : 'bg-gray-200'}`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {number + 1}
+                    </motion.button>
+                ))}
+                <motion.button
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === Math.ceil(videos.length / videosPerPage)}
+                    className="mx-1 px-4 py-2 bg-bottomBar text-white rounded-md disabled:bg-gray-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <FaChevronRight />
+                </motion.button>
+            </motion.div>
+        </motion.section>
     );
 };
 

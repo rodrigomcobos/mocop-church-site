@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const CallToActionStrip = () => {
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const itemVariants = {
         hidden: { opacity: 0, y: 20 },

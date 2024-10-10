@@ -6,7 +6,7 @@ import Donate from '../../assets/images/donate.svg';
 import { Link } from 'react-router-dom';
 
 const WaysToGive = () => {
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },

@@ -1,13 +1,52 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import CardImg1 from '../../assets/images/churchimg3.jpeg'
-import CardImg2 from '../../assets/images/churchimg10.jpeg'
-import CardImg3 from '../../assets/images/churchimg8.jpeg'
-import CardImg4 from '../../assets/images/churchimg7.jpeg'
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const HomeSermons = () => {
-    const MotionLink = motion(Link);
+    const [latestVideos, setLatestVideos] = useState([]);
+    const MotionLink = motion.create(Link);
+
+    const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY_1;
+    const CHANNEL_ID = 'UCrbGrH-d7Gwr1lAGE6hcIrA';
+    const CACHE_KEY = 'homeSermonVideos';
+    const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
+
+    useEffect(() => {
+        const fetchVideos = async () => {
+            const cachedData = localStorage.getItem(CACHE_KEY);
+            if (cachedData) {
+                const { timestamp, videos } = JSON.parse(cachedData);
+                if (Date.now() - timestamp < CACHE_DURATION) {
+                    setLatestVideos(videos);
+                    return;
+                }
+            }
+
+            try {
+                const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+                    params: {
+                        part: 'snippet',
+                        channelId: CHANNEL_ID,
+                        maxResults: 4,
+                        order: 'date',
+                        type: 'video',
+                        key: API_KEY
+                    }
+                });
+                const videos = response.data.items;
+                setLatestVideos(videos);
+                localStorage.setItem(CACHE_KEY, JSON.stringify({
+                    timestamp: Date.now(),
+                    videos
+                }));
+            } catch (error) {
+                console.error('Error fetching videos:', error);
+            }
+        };
+
+        fetchVideos();
+    }, []);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -58,36 +97,35 @@ const HomeSermons = () => {
                     </MotionLink>
                 </motion.section>
                 <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">
-                    {[
-                        { img: CardImg1, date: "10 FEB 2024", pastor: "PR CARLOS OLIVEIRA" },
-                        { img: CardImg2, date: "7 JUN 2024", pastor: "PRA KESIA VERAS" },
-                        { img: CardImg3, date: "5 OCT 2024", pastor: "PR CARLOS OLIVEIRA" },
-                        { img: CardImg4, date: "10 DEC 2024", pastor: "PRA KESIA VERAS" }
-                    ].map((sermon, index) => (
+                    {latestVideos.map((video, index) => (
                         <motion.div
-                            key={index}
+                            key={video.id.videoId}
                             className="cursor-pointer rounded overflow-hidden group"
                             variants={itemVariants}
                         >
                             <div className="overflow-hidden rounded-md">
                                 <motion.img
-                                    src={sermon.img}
-                                    alt={`Blog Post ${index + 1}`}
+                                    src={video.snippet.thumbnails.high.url}
+                                    alt={video.snippet.title}
                                     className="w-full h-52 object-cover"
                                     whileHover="hover"
                                     variants={imageHoverVariants}
                                 />
                             </div>
                             <div className="py-6">
-                                <span className="text-sm block text-gray-400 mb-2">{sermon.date} | {sermon.pastor}</span>
-                                <h3 className="text-xl font-bold text-gray-800 group-hover:text-yellow-600 transition-all">Título da Pregação vai aqui</h3>
+                                <span className="text-sm block text-gray-400 mb-2">
+                                    Pregação do dia                                    {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                                </span>
+                                <h3 className="text-xl font-bold text-gray-800 group-hover:text-yellow-600 transition-all">
+                                    {video.snippet.title}
+                                </h3>
                             </div>
                         </motion.div>
                     ))}
                 </section>
             </div>
         </motion.div>
-    )
-}
+    );
+};
 
-export default HomeSermons
+export default HomeSermons;

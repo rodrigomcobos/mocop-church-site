@@ -4,7 +4,7 @@ import PastorImage from '../../assets/images/pastor.png';
 import { Link } from 'react-router-dom';
 
 const MeetThePastor = () => {
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },

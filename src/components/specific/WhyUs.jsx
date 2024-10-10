@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import StripImg from '../../assets/images/churchimg35.png';
 import StripImg2 from '../../assets/images/churchimg39.jpg';
 import StripImg3 from '../../assets/images/churchimg40.jpg';
 

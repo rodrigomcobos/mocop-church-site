@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const Hero = () => {
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },

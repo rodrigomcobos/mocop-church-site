@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdClose } from "react-icons/md";
 
-
 const CookieDisclaimer = () => {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -9,12 +8,29 @@ const CookieDisclaimer = () => {
         const hasAcceptedCookies = localStorage.getItem('cookiesAccepted');
         if (!hasAcceptedCookies) {
             setIsVisible(true);
+            // Set a timeout to automatically accept cookies after a delay
+            const timer = setTimeout(() => {
+                handleAccept();
+            }, 10000); // 10 seconds delay, adjust as needed
+
+            // Clear the timer if the component unmounts
+            return () => clearTimeout(timer);
         }
     }, []);
 
     const handleAccept = () => {
         localStorage.setItem('cookiesAccepted', 'true');
         setIsVisible(false);
+        // Here you would typically initialize your cookies or tracking scripts
+        initializeCookies();
+    };
+
+    const initializeCookies = () => {
+        // Implement your cookie initialization logic here
+        console.log('Cookies initialized');
+        // For example:
+        // initializeAnalytics();
+        // initializeMarketing();
     };
 
     if (!isVisible) return null;
@@ -29,9 +45,9 @@ const CookieDisclaimer = () => {
                 >
                     <MdClose size={24} />
                 </button>
-                <div className="pr-8"> {/* Add right padding to prevent text from going under the close button */}
+                <div className="pr-8">
                     <p className="text-sm text-gray-600 mb-4">
-                        Usamos cookies para fornecer a melhor experiência possível para você. Ao fechar este banner ou continuar a usar nosso site, você reconhece que aceita nossa Termos e Privacidade de nosso site.
+                        Usamos cookies para fornecer a melhor experiência possível para você. Ao fechar este banner ou continuar a usar nosso site, você reconhece que aceita nossos Termos e Política de Privacidade.
                     </p>
                     <div className="flex justify-between items-center">
                         <a href="#" target='_blank' className="text-md text-yellowBtnHover hover:underline">Termos & Privacidade</a>
