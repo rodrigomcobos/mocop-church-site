@@ -69,11 +69,15 @@ const Navbar = () => {
                 <section className='py-2 bg-bottomBar text-white px-2'>
                     <p className='text-xs sm:text-sm flex items-center justify-center md:justify-end'>
                         <FaMapMarkerAlt className="mr-1" />
-                        <span>2345 S State Hwy 121, Lewisville, TX 75067</span>
+                        <a href="https://maps.google.com/maps?q=2345+S+State+Hwy+121,+Lewisville,+TX+75067" target="_blank" rel="noopener noreferrer">
+                            2345 S State Hwy 121, Lewisville, TX 75067
+                        </a>
                         <span className="mx-2 font-bold flex items-center">
                             <FaPhoneAlt />
                         </span>
-                        <span>(214) 677-6646</span>
+                        <a href="tel:+12146776646">
+                            (214) 677-6646
+                        </a>
                     </p>
                 </section>
 

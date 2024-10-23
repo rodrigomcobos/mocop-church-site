@@ -41,9 +41,9 @@ const Footer = () => {
                         <p className="text-footer mr-0 sm:mr-14 text-sm mb-6">Junte-se a nós para descobrir como a fé em Jesus pode transformar sua vida. Através do amor e da graça de Cristo, somos capacitados a enfrentar qualquer desafio e a viver com propósito.</p>
                         <h4 className="text-lg font-semibold mb-4 text-footer">Redes Sociais</h4>
                         <ul className="flex gap-6">
-                            <li><a href="#"><FaYoutube className="text-footer hover:text-white w-6 h-6" /></a></li>
-                            <li><a href="#" className="text-footer hover:text-white"><FaFacebook className="text-footer hover:text-white w-6 h-6" /></a></li>
-                            <li><a href="#" className="text-footer hover:text-white"><FaInstagram className="text-footer hover:text-white w-6 h-6" /></a></li>
+                            <li><a href="https://www.youtube.com/@mocopchurchinlewisville7125" target="_blank" rel="noopener noreferrer" className="text-footer hover:text-white"><FaYoutube className="text-footer hover:text-white w-6 h-6" /></a></li>
+                            <li><a href="https://www.facebook.com/igrejabrasileiratexas" target="_blank" rel="noopener noreferrer" className="text-footer hover:text-white"><FaFacebook className="text-footer hover:text-white w-6 h-6" /></a></li>
+                            <li><a href="https://www.instagram.com/ccbltx/" target="_blank" rel="noopener noreferrer" className="text-footer hover:text-white"><FaInstagram className="text-footer hover:text-white w-6 h-6" /></a></li>
                         </ul>
                     </div>
 
@@ -69,9 +69,9 @@ const Footer = () => {
                     <div>
                         <h4 className="text-lg font-semibold mb-8 text-footer">Contato</h4>
                         <div className="space-y-4">
-                            <p className="text-footer text-sm">2345 State Hwy 121, Lewisville, TX 75067</p>
-                            <p className="text-footer text-sm">lewisvillemocop@gmail.com</p>
-                            <p className="text-footer text-sm">+1 (214) 677-6646</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=2345+State+Hwy+121,+Lewisville,+TX+75067" target="_blank" rel="noopener noreferrer" className="text-footer text-sm block">2345 State Hwy 121, Lewisville, TX 75067</a>
+                            <a href="mailto:lewisvillemocop@gmail.com" className="text-footer text-sm block">lewisvillemocop@gmail.com</a>
+                            <a href="tel:+12146776646" className="text-footer text-sm block">+1 (214) 677-6646</a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ const Footer = () => {
 
             {/* Bottom Section */}
             <div className="text-center py-5 bg-bottomBar">
-                <p className='text-white text-sm'>© Comunidade Cristã Brasileira em Lewisville 2024. All rights reserved. Website criado por Rodrigo Cobos.</p>
+                <p className='text-white text-sm'>© Comunidade Cristã Brasileira em Lewisville 2024. All rights reserved. <a href="https://rodrigomcobos.com" target="_blank" rel="noopener noreferrer" className="hover:no-underline text-white">Website criado por Rodrigo Cobos.</a></p>
             </div>
         </footer>
     )
