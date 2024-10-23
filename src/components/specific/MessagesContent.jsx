@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { FaSearch, FaChevronLeft, FaChevronRight, FaChevronDown, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaChevronLeft, FaChevronRight, FaChevronDown, FaTimes, FaPlayCircle } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import VideoModal from './VideoModal'; // Adjust path as needed
 
 const MessagesContent = () => {
     const [videos, setVideos] = useState([]);
@@ -10,6 +11,7 @@ const MessagesContent = () => {
     const [yearFilter, setYearFilter] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
     const [videosPerPage] = useState(12);
+    const [selectedVideo, setSelectedVideo] = useState(null);
 
     const API_KEY_1 = import.meta.env.VITE_YOUTUBE_API_KEY_1;
     const API_KEY_2 = import.meta.env.VITE_YOUTUBE_API_KEY_2;
@@ -104,6 +106,10 @@ const MessagesContent = () => {
         }
     };
 
+    const handleVideoClick = (videoId) => {
+        setSelectedVideo(videoId);
+    };
+
     const getPublishedAfterDate = (filter, year) => {
         if (year !== 'all') {
             return `${year}-01-01T00:00:00Z`;
@@ -165,11 +171,11 @@ const MessagesContent = () => {
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
-        // Scroll to the top of the section
         if (sectionRef.current) {
             sectionRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     };
+
     return (
         <motion.section
             ref={sectionRef}
@@ -179,11 +185,18 @@ const MessagesContent = () => {
             variants={containerVariants}
         >
             <motion.div className="max-w-6xl mx-auto text-center my-14" variants={itemVariants}>
-                <h2 className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-4">Explore Nossas Pregações e Sermões</h2>
-                <p className="text-md text-gray-800 mt-6 leading-relaxed">Explore as pregações e sermões da Comunidade Cristã Brasileira em Lewisville, disponíveis desde 2010. Aprofunde-se na palavra de Deus com mensagens inspiradoras e cheias de sabedoria, compartilhadas ao longo dos anos por pastores e líderes da nossa igreja. Acesse nossos vídeos e fortaleça sua fé com ensinamentos bíblicos para todas as fases da vida cristã.</p>
+                <h2 className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-4">
+                    Explore Nossas Pregações e Sermões
+                </h2>
+                <p className="text-md text-gray-800 mt-6 leading-relaxed">
+                    Explore as pregações e sermões da Comunidade Cristã Brasileira em Lewisville, disponíveis desde 2010.
+                    Aprofunde-se na palavra de Deus com mensagens inspiradoras e cheias de sabedoria, compartilhadas ao
+                    longo dos anos por pastores e líderes da nossa igreja. Acesse nossos vídeos e fortaleça sua fé com
+                    ensinamentos bíblicos para todas as fases da vida cristã.
+                </p>
             </motion.div>
+
             <motion.form
-                id='search-form'
                 onSubmit={handleSearch}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-6xl mx-auto my-14"
                 variants={itemVariants}
@@ -256,20 +269,32 @@ const MessagesContent = () => {
                                     className="bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg relative top-0 hover:-top-2 transition-all duration-300"
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.03 }}
+                                    onClick={() => handleVideoClick(video.id.videoId)}
                                 >
-                                    <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className="w-full h-60 object-cover" />
+                                    <div className="relative group">
+                                        <img
+                                            src={video.snippet.thumbnails.high.url}
+                                            alt={video.snippet.title}
+                                            className="w-full h-60 object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                                            <motion.div
+                                                className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+                                                whileHover={{ scale: 1.1 }}
+                                            >
+                                                <FaPlayCircle className="text-white text-7xl m-auto" />
+                                            </motion.div>
+                                        </div>
+                                    </div>
                                     <div className="p-6">
                                         <span className="text-md block text-gray-400 mb-2">
                                             Pregação do dia&nbsp;
                                             {new Date(video.snippet.publishedAt).toLocaleDateString()}
-                                            {/* Channel {video.channelId === CHANNEL_ID_1 ? '1' : '2'} */}
                                         </span>
                                         <h3 className="text-xl font-bold text-yellowBtnHover">{video.snippet.title}</h3>
                                         <hr className="my-4" />
                                         <p className="text-footer text-md">
-                                            {video.snippet.description
-                                                ? video.snippet.description
-                                                : "Nenhuma descrição disponível para este vídeo."}
+                                            {video.snippet.description || "Nenhuma descrição disponível para este vídeo."}
                                         </p>
                                     </div>
                                 </motion.div>
@@ -278,6 +303,12 @@ const MessagesContent = () => {
                     </AnimatePresence>
                 </div>
             </motion.div>
+
+            <VideoModal
+                isOpen={!!selectedVideo}
+                onClose={() => setSelectedVideo(null)}
+                videoId={selectedVideo}
+            />
 
             <motion.div className="flex justify-center mt-8 mb-16 px-6" variants={itemVariants}>
                 <motion.button
@@ -293,7 +324,10 @@ const MessagesContent = () => {
                     <motion.button
                         key={number + 1}
                         onClick={() => paginate(number + 1)}
-                        className={`mx-1 px-4 py-2 rounded-md ${currentPage === number + 1 ? 'bg-bottomBar text-white' : 'bg-gray-200'}`}
+                        className={`mx-1 px-4 py-2 rounded-md ${currentPage === number + 1
+                            ? 'bg-bottomBar text-white'
+                            : 'bg-gray-200'
+                            }`}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
