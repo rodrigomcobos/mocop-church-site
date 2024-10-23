@@ -4,7 +4,6 @@ import GivingSection from '../components/specific/GivingSection'
 import Subscribe from '../components/specific/Subscribe'
 import GivingFaq from '../components/specific/GivingFaq'
 
-
 const Giving = () => {
     return (
         <div>
