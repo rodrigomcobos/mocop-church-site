@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FaPlayCircle } from 'react-icons/fa';
+import VideoModal from './VideoModal'; // Adjust path as needed
 
 const HomeSermons = () => {
     const [latestVideos, setLatestVideos] = useState([]);
+    const [selectedVideo, setSelectedVideo] = useState(null);
     const MotionLink = motion.create(Link);
 
     const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY_1;
@@ -48,6 +51,11 @@ const HomeSermons = () => {
         fetchVideos();
     }, []);
 
+    const handleVideoClick = (videoId, e) => {
+        e.preventDefault(); // Prevent navigation if it's a link
+        setSelectedVideo(videoId);
+    };
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -64,13 +72,6 @@ const HomeSermons = () => {
             opacity: 1,
             y: 0,
             transition: { duration: 0.5 }
-        }
-    };
-
-    const imageHoverVariants = {
-        hover: {
-            scale: 1.1,
-            transition: { duration: 0.3 }
         }
     };
 
@@ -97,26 +98,33 @@ const HomeSermons = () => {
                     </MotionLink>
                 </motion.section>
                 <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">
-                    {latestVideos.map((video, index) => (
+                    {latestVideos.map((video) => (
                         <motion.div
                             key={video.id.videoId}
-                            className="cursor-pointer rounded overflow-hidden group"
+                            className="cursor-pointer rounded-lg overflow-hidden hover:-translate-y-1 transition-all duration-300"
                             variants={itemVariants}
+                            onClick={(e) => handleVideoClick(video.id.videoId, e)}
                         >
-                            <div className="overflow-hidden rounded-md">
+                            <div className="relative group">
                                 <motion.img
                                     src={video.snippet.thumbnails.high.url}
                                     alt={video.snippet.title}
                                     className="w-full h-52 object-cover"
-                                    whileHover="hover"
-                                    variants={imageHoverVariants}
                                 />
+                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                                    <motion.div
+                                        className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+                                        whileHover={{ scale: 1.1 }}
+                                    >
+                                        <FaPlayCircle className="text-white text-7xl m-auto" />
+                                    </motion.div>
+                                </div>
                             </div>
                             <div className="py-6">
                                 <span className="text-sm block text-gray-400 mb-2">
-                                    Pregação do dia                                    {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                                    Pregação do dia {new Date(video.snippet.publishedAt).toLocaleDateString()}
                                 </span>
-                                <h3 className="text-xl font-bold text-gray-800 group-hover:text-yellow-600 transition-all">
+                                <h3 className="text-xl font-bold text-gray-800 group-hover:text-yellowBtnHover transition-all">
                                     {video.snippet.title}
                                 </h3>
                             </div>
@@ -124,6 +132,12 @@ const HomeSermons = () => {
                     ))}
                 </section>
             </div>
+
+            <VideoModal
+                isOpen={!!selectedVideo}
+                onClose={() => setSelectedVideo(null)}
+                videoId={selectedVideo}
+            />
         </motion.div>
     );
 };
