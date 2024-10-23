@@ -1,9 +1,10 @@
-import React from 'react'
-import Img from '../../assets/images/churchimg45.jpg'
-import { motion } from 'framer-motion'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import Img from '../../assets/images/churchimg45.jpg';
+import { motion } from 'framer-motion';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { FaMapLocationDot, FaPhone, FaEnvelope } from "react-icons/fa6";
@@ -18,8 +19,18 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const ContactForm = () => {
-    const position = [33.007460, -96.993690]
+    const form = useRef();
+    const position = [33.007460, -96.993690];
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({ show: false, isError: false, message: '' });
+    const [formData, setFormData] = useState({
+        user_name: '',
+        user_email: '',
+        subject: '',
+        message: ''
+    });
 
+    // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -41,6 +52,78 @@ const ContactForm = () => {
         }
     };
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const showNotification = (isError, message) => {
+        setSubmitStatus({ show: true, isError, message });
+        setTimeout(() => {
+            setSubmitStatus({ show: false, isError: false, message: '' });
+        }, 5000);
+    };
+
+    const validateForm = () => {
+        if (!formData.user_name.trim()) {
+            showNotification(true, 'Por favor, digite seu nome.');
+            return false;
+        }
+        if (!formData.user_email.trim()) {
+            showNotification(true, 'Por favor, digite seu email.');
+            return false;
+        }
+        if (!formData.message.trim()) {
+            showNotification(true, 'Por favor, digite sua mensagem.');
+            return false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.user_email)) {
+            showNotification(true, 'Por favor, digite um email válido.');
+            return false;
+        }
+        return true;
+    };
+
+    const resetForm = () => {
+        setFormData({
+            user_name: '',
+            user_email: '',
+            subject: '',
+            message: ''
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!validateForm()) return;
+
+        setIsSubmitting(true);
+
+        try {
+            const result = await emailjs.sendForm(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                form.current,
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            );
+
+            if (result.text === 'OK') {
+                showNotification(false, 'Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                resetForm();
+            }
+        } catch (error) {
+            console.error('EMAILJS ERROR:', error);
+            showNotification(true, 'Erro ao enviar mensagem. Por favor, tente novamente mais tarde.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <motion.div
             initial="hidden"
@@ -56,29 +139,76 @@ const ContactForm = () => {
                         className="max-w-lg max-lg:mx-auto max-lg:text-center max-lg:mb-6"
                         variants={itemVariants}
                     >
-                        <h2 className="text-3xl sm:text-4xl font-extrabold text-footer">Estamos Aqui Para Ouvir e Ajudar!</h2>
-                        <p className="text-sm text-gray-600 mt-4 leading-relaxed">Seja para tirar dúvidas, solicitar informações, ou compartilhar suas necessidades de oração, ficaremos felizes em receber sua mensagem. Nossa equipe está comprometida em atender você com carinho, orientação e suporte espiritual.</p>
+                        <h2 className="text-3xl sm:text-4xl font-extrabold text-footer">
+                            Estamos Aqui Para Ouvir e Ajudar!
+                        </h2>
+                        <p className="text-sm text-gray-600 mt-4 leading-relaxed">
+                            Seja para tirar dúvidas, solicitar informações, ou compartilhar suas necessidades de oração,
+                            ficaremos felizes em receber sua mensagem. Nossa equipe está comprometida em atender você
+                            com carinho, orientação e suporte espiritual.
+                        </p>
+
+                        {submitStatus.show && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`p-4 rounded-lg mt-4 ${submitStatus.isError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+                                    }`}
+                            >
+                                {submitStatus.message}
+                            </motion.div>
+                        )}
 
                         <motion.form
-                            id='contact-form'
+                            ref={form}
+                            onSubmit={handleSubmit}
                             className="mx-auto mt-8 bg-primary rounded-lg p-6 shadow-md space-y-4"
                             variants={itemVariants}
                         >
-                            <motion.input whileFocus={{ scale: 1.02 }} type='text' placeholder='Nome'
-                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none" />
-                            <motion.input whileFocus={{ scale: 1.02 }} type='email' placeholder='Email'
-                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none" />
-                            <motion.input whileFocus={{ scale: 1.02 }} type='text' placeholder='Assunto'
-                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none" />
-                            <motion.textarea whileFocus={{ scale: 1.02 }} placeholder='Mensagem' rows="6"
-                                className="w-full rounded-md px-6 bg-white text-sm pt-3 outline-none"></motion.textarea>
+                            <motion.input
+                                whileFocus={{ scale: 1.02 }}
+                                type="text"
+                                name="user_name"
+                                value={formData.user_name}
+                                onChange={handleInputChange}
+                                placeholder="Nome*"
+                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none"
+                            />
+                            <motion.input
+                                whileFocus={{ scale: 1.02 }}
+                                type="email"
+                                name="user_email"
+                                value={formData.user_email}
+                                onChange={handleInputChange}
+                                placeholder="Email*"
+                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none"
+                            />
+                            <motion.input
+                                whileFocus={{ scale: 1.02 }}
+                                type="text"
+                                name="subject"
+                                value={formData.subject}
+                                onChange={handleInputChange}
+                                placeholder="Assunto"
+                                className="w-full rounded-md h-12 px-6 bg-white text-sm outline-none"
+                            />
+                            <motion.textarea
+                                whileFocus={{ scale: 1.02 }}
+                                name="message"
+                                value={formData.message}
+                                onChange={handleInputChange}
+                                placeholder="Mensagem*"
+                                rows="6"
+                                className="w-full rounded-md px-6 bg-white text-sm pt-3 outline-none"
+                            />
                             <motion.button
-                                type="button"
-                                className="btn mx-auto w-full"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                                type="submit"
+                                disabled={isSubmitting}
+                                className={`btn mx-auto w-full ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
+                                whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
                             >
-                                Mande sua mensagem
+                                {isSubmitting ? 'Enviando...' : 'Mande sua mensagem'}
                             </motion.button>
                         </motion.form>
                     </motion.div>
@@ -137,7 +267,7 @@ const ContactForm = () => {
                 </motion.div>
             </div>
         </motion.div>
-    )
-}
+    );
+};
 
-export default ContactForm
+export default ContactForm;
