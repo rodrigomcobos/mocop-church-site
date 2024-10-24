@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MdOutlineVolunteerActivism } from "react-icons/md";
 import StripImg from '../../assets/images/churchimg38.jpg';
 import Donate from '../../assets/images/donate.svg';
 import { Link } from 'react-router-dom';

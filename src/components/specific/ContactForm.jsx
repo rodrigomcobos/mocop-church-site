@@ -30,6 +30,31 @@ const ContactForm = () => {
         message: ''
     });
 
+    // Contact information with links
+    const contactInfo = [
+        {
+            icon: FaMapLocationDot,
+            title: "Endereço",
+            content: "2345 State Hwy 121, \nLewisville, TX 75067",
+            link: "https://www.google.com/maps/search/?api=1&query=2345+State+Hwy+121+Lewisville+TX+75067",
+            ariaLabel: "Abrir localização no Google Maps"
+        },
+        {
+            icon: FaPhone,
+            title: "Telefone",
+            content: "+1(214) 677-6646",
+            link: "tel:+12146776646",
+            ariaLabel: "Ligar para nossa igreja"
+        },
+        {
+            icon: FaEnvelope,
+            title: "E-mail",
+            content: "lewisvillemocop@gmail.com",
+            link: "mailto:lewisvillemocop@gmail.com",
+            ariaLabel: "Enviar email para nossa igreja"
+        }
+    ];
+
     // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -226,22 +251,35 @@ const ContactForm = () => {
                     className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 my-24 px-4"
                     variants={containerVariants}
                 >
-                    {[
-                        { icon: FaMapLocationDot, title: "Endereço", content: "2345 State Hwy 121, \nLewisville, TX 75067" },
-                        { icon: FaPhone, title: "Telefone", content: "+1(214) 677-6646" },
-                        { icon: FaEnvelope, title: "E-mail", content: "lewisvillemocop@gmail.com" }
-                    ].map((item, index) => (
+                    {contactInfo.map((item, index) => (
                         <motion.div
                             key={index}
                             className="flex flex-col items-center bg-white"
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
                         >
-                            <item.icon size={34} className="text-bottomBar" />
-                            <div className="mt-4 text-center">
-                                <h4 className="text-footer text-xl font-bold">{item.title}</h4>
-                                <p className="text-sm text-gray-500 mt-2">{item.content}</p>
-                            </div>
+                            <motion.a
+                                href={item.link}
+                                target={item.icon === FaMapLocationDot ? "_blank" : "_self"}
+                                rel={item.icon === FaMapLocationDot ? "noopener noreferrer" : ""}
+                                className="group flex flex-col items-center w-full p-4 rounded-lg transition-colors hover:bg-gray-50"
+                                aria-label={item.ariaLabel}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                <item.icon
+                                    size={34}
+                                    className="text-bottomBar group-hover:text-yellowBtnHover transition-colors"
+                                />
+                                <div className="mt-4 text-center">
+                                    <h4 className="text-footer text-xl font-bold group-hover:text-yellowBtnHover transition-colors">
+                                        {item.title}
+                                    </h4>
+                                    <p className="text-sm text-gray-500 mt-2 whitespace-pre-line group-hover:text-gray-700 transition-colors">
+                                        {item.content}
+                                    </p>
+                                </div>
+                            </motion.a>
                         </motion.div>
                     ))}
                 </motion.div>
