@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'react-image-webp';
 import { PiNumberSquareOneFill, PiNumberSquareTwoFill, PiNumberSquareThreeFill, PiNumberSquareFourFill, PiNumberSquareFiveFill, PiNumberSquareSixFill } from "react-icons/pi";
-import Img from '../../assets/images/churchimg44.jpg';
+import ImgJPG from '../../assets/images/churchimg44.jpg';
+import ImgWebP from '../../assets/images/churchimg44.webp';
 
 const fadeIn = {
     hidden: { opacity: 0 },
@@ -51,7 +53,13 @@ const CoreValues = () => {
                     variants={slideIn}
                     whileHover={{ scale: 1.05 }}
                 >
-                    <img src={Img} className="max-width-[400px] rounded-lg" alt="Core Values" />
+                    <Image
+                        src={ImgJPG}
+                        webp={ImgWebP}
+                        className="max-width-[400px] rounded-lg"
+                        alt="Core Values"
+                        loading="lazy"
+                    />
                 </motion.div>
 
                 <motion.div
@@ -89,4 +97,4 @@ const CoreValues = () => {
     )
 }
 
-export default CoreValues
+export default CoreValues;

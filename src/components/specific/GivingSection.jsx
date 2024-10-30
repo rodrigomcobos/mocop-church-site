@@ -1,9 +1,18 @@
-import React from 'react'
-import GivingImg from '../../assets/images/givingimg.jpg'
-import Venmo from '../../assets/images/venmo.png'
-import Zelle from '../../assets/images/zelle.png'
-import Donate from '../../assets/images/donation.png'
-import { motion } from 'framer-motion'
+import React from 'react';
+import Image from 'react-image-webp';
+import { motion } from 'framer-motion';
+
+// JPG/PNG imports
+import GivingImgJPG from '../../assets/images/givingimg.jpg';
+import VenmoImgPNG from '../../assets/images/venmo.png';
+import ZelleImgPNG from '../../assets/images/zelle.png';
+import DonateImgPNG from '../../assets/images/donation.png';
+
+// WebP imports
+import GivingImgWebP from '../../assets/images/givingimg.webp';
+import VenmoImgWebP from '../../assets/images/venmo.webp';
+import ZelleImgWebP from '../../assets/images/zelle.webp';
+import DonateImgWebP from '../../assets/images/donation.webp';
 
 const GivingSection = () => {
     const containerVariants = {
@@ -15,7 +24,7 @@ const GivingSection = () => {
                 staggerChildren: 0.2
             }
         }
-    }
+    };
 
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
@@ -28,7 +37,33 @@ const GivingSection = () => {
                 damping: 10
             }
         }
-    }
+    };
+
+    const cardData = [
+        {
+            img: { src: VenmoImgPNG, webp: VenmoImgWebP },
+            title: "Contribua pelo Venmo",
+            content: "Facilite sua contribuição enviando ofertas rapidamente pelo Venmo. Uma maneira prática e segura de apoiar nossa missão e fortalecer a obra de Deus.",
+            link: "https://venmo.com/u/MOCOP-church",
+            linkText: "Venmo",
+            bgColor: "bg-blue-300"
+        },
+        {
+            img: { src: ZelleImgPNG, webp: ZelleImgWebP },
+            title: "Contribua pelo Zelle",
+            content: "Contribua de forma simples e segura usando o Zelle. Apoie nossa comunidade e ajude a expandir o reino de Deus com facilidade.",
+            link: "https://zelle.com/",
+            linkText: "Zelle",
+            bgColor: "bg-purple-300"
+        },
+        {
+            img: { src: DonateImgPNG, webp: DonateImgWebP },
+            title: "Durante o Culto",
+            content: "Quer trazer sua oferta pessoalmente? Você pode contribuir durante o culto de domingo. Sua presença e apoio são muito importantes para nós!",
+            additionalInfo: "Domingos às 6:00PM",
+            bgColor: "bg-stone-300"
+        }
+    ];
 
     return (
         <div>
@@ -39,21 +74,30 @@ const GivingSection = () => {
                 variants={containerVariants}
             >
                 <motion.div className="max-md:order-1 max-md:text-center" variants={itemVariants}>
-                    <h3 className="text-yellowBtnHover md:text-3xl text-2xl md:leading-10 font-bold">Veja o que Deus pode fazer através da sua generosidade.</h3>
-                    <p className="mt-10 text-sm text-gray-600">Contribuir é muito mais do que simplesmente entregar uma quantia em dinheiro; é uma profunda expressão de fé e gratidão a Deus. Quando devolvemos a Ele uma parte do que nos foi confiado, estamos reconhecendo Sua generosidade e soberania sobre nossas vidas. A prática de ofertar não apenas demonstra nossa confiança em Sua provisão, mas também reflete nossa disposição de participar ativamente em Sua obra.</p>
-                    <p className="mt-4 text-sm text-gray-600">Ao ofertar, estamos fazendo um investimento no avanço do Reino de Deus, apoiando projetos e ministérios que têm o potencial de impactar vidas de maneira significativa. Seja através de missões, ajuda a necessitados, ou suporte a atividades da igreja, cada contribuição se torna um instrumento de transformação. É uma oportunidade de ser parte de algo maior do que nós mesmos, de unir forças com outros crentes e criar um legado de fé e amor.</p>
+                    <h3 className="text-yellowBtnHover md:text-3xl text-2xl md:leading-10 font-bold">
+                        Veja o que Deus pode fazer através da sua generosidade.
+                    </h3>
+                    <p className="mt-10 text-sm text-gray-600">
+                        Contribuir é muito mais do que simplesmente entregar uma quantia em dinheiro; é uma profunda expressão de fé e gratidão a Deus. Quando devolvemos a Ele uma parte do que nos foi confiado, estamos reconhecendo Sua generosidade e soberania sobre nossas vidas. A prática de ofertar não apenas demonstra nossa confiança em Sua provisão, mas também reflete nossa disposição de participar ativamente em Sua obra.
+                    </p>
+                    <p className="mt-4 text-sm text-gray-600">
+                        Ao ofertar, estamos fazendo um investimento no avanço do Reino de Deus, apoiando projetos e ministérios que têm o potencial de impactar vidas de maneira significativa. Seja através de missões, ajuda a necessitados, ou suporte a atividades da igreja, cada contribuição se torna um instrumento de transformação. É uma oportunidade de ser parte de algo maior do que nós mesmos, de unir forças com outros crentes e criar um legado de fé e amor.
+                    </p>
                 </motion.div>
                 <motion.div
                     className="w-full h-auto md:h-[470px] overflow-hidden rounded-md md:pl-4 lg:pl-8"
                     variants={itemVariants}
                 >
-                    <img
-                        src={GivingImg}
+                    <Image
+                        src={GivingImgJPG}
+                        webp={GivingImgWebP}
                         className="w-full h-full object-cover object-center rounded-md"
                         alt="Giving"
+                        loading="lazy"
                     />
                 </motion.div>
             </motion.section>
+
             <motion.section
                 className="px-6 py-24 mb-24 bg-bottomBar"
                 initial="hidden"
@@ -68,18 +112,28 @@ const GivingSection = () => {
                         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-sm:gap-8 mt-12"
                         variants={containerVariants}
                     >
-                        {[
-                            { img: Venmo, title: "Contribua pelo Venmo", content: "Facilite sua contribuição enviando ofertas rapidamente pelo Venmo. Uma maneira prática e segura de apoiar nossa missão e fortalecer a obra de Deus.", link: "https://venmo.com/u/MOCOP-church", linkText: "Venmo", bgColor: "bg-blue-300" },
-                            { img: Zelle, title: "Contribua pelo Zelle", content: "Contribua de forma simples e segura usando o Zelle. Apoie nossa comunidade e ajude a expandir o reino de Deus com facilidade.", link: "https://zelle.com/", linkText: "Zelle", bgColor: "bg-purple-300" },
-                            { img: Donate, title: "Durante o Culto", content: "Quer trazer sua oferta pessoalmente? Você pode contribuir durante o culto de domingo. Sua presença e apoio são muito importantes para nós!", additionalInfo: "Domingos às 6:00PM", bgColor: "bg-stone-300" }
-                        ].map((card, index) => (
-                            <motion.div key={index} className="group overflow-hidden p-4 rounded-md hover:bg-primary transition-all duration-300" variants={itemVariants}>
+                        {cardData.map((card, index) => (
+                            <motion.div
+                                key={index}
+                                className="group overflow-hidden p-4 rounded-md hover:bg-primary transition-all duration-300"
+                                variants={itemVariants}
+                            >
                                 <div className={`${card.bgColor} rounded-md`}>
-                                    <img src={card.img} alt={card.title} className="w-full h-64 object-cover object-top rounded-md" />
+                                    <Image
+                                        src={card.img.src}
+                                        webp={card.img.webp}
+                                        alt={card.title}
+                                        className="w-full h-64 object-cover object-top rounded-md"
+                                        loading="lazy"
+                                    />
                                 </div>
                                 <div className="text-center">
-                                    <h3 className="text-xl font-bold text-white group-hover:text-black mb-4 mt-10 transition-colors duration-300">{card.title}</h3>
-                                    <p className="text-white group-hover:text-black text-sm transition-colors duration-300">{card.content}</p>
+                                    <h3 className="text-xl font-bold text-white group-hover:text-black mb-4 mt-10 transition-colors duration-300">
+                                        {card.title}
+                                    </h3>
+                                    <p className="text-white group-hover:text-black text-sm transition-colors duration-300">
+                                        {card.content}
+                                    </p>
                                     {card.link ? (
                                         <motion.a
                                             variants={itemVariants}
@@ -93,7 +147,9 @@ const GivingSection = () => {
                                             {card.linkText}
                                         </motion.a>
                                     ) : (
-                                        <p className="group-hover:text-black text-sm transition-colors duration-300 mt-6 md:mt-8 py-4 px-4 w-fit rounded-md mx-auto bg-yellowBtn text-footer uppercase font-bold">{card.additionalInfo}</p>
+                                        <p className="group-hover:text-black text-sm transition-colors duration-300 mt-6 md:mt-8 py-4 px-4 w-fit rounded-md mx-auto bg-yellowBtn text-footer uppercase font-bold">
+                                            {card.additionalInfo}
+                                        </p>
                                     )}
                                 </div>
                             </motion.div>
@@ -102,7 +158,7 @@ const GivingSection = () => {
                 </div>
             </motion.section>
         </div>
-    )
-}
+    );
+};
 
-export default GivingSection
+export default GivingSection;

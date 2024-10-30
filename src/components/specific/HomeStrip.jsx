@@ -49,13 +49,12 @@ const HomeStrip = () => {
             try {
                 setIsLoading(true);
 
-                // Check localStorage for cached verse
+                // Check localStorage first
                 const cachedData = localStorage.getItem('dailyVerse');
                 if (cachedData) {
                     const { verse: cachedVerse, timestamp } = JSON.parse(cachedData);
                     const now = new Date().getTime();
 
-                    // Check if the cached verse is less than 24 hours old
                     if (now - timestamp < 24 * 60 * 60 * 1000) {
                         setVerse(cachedVerse);
                         setIsLoading(false);
@@ -63,50 +62,45 @@ const HomeStrip = () => {
                     }
                 }
 
-                // If no cache or cache is expired, fetch new verse
-                const response = await fetch('https://www.abibliadigital.com.br/api/verses/nvi/random');
+                // Attempt to fetch from API with timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+                const response = await fetch('https://www.abibliadigital.com.br/api/verses/nvi/random', {
+                    signal: controller.signal,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                clearTimeout(timeoutId);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
                 const data = await response.json();
-
-                if (!data || !data.text || !data.book || !data.book.name || !data.chapter || !data.number) {
-                    throw new Error('Invalid API response format');
-                }
-
                 const newVerse = {
                     text: data.text,
                     reference: `${data.book.name} ${data.chapter}:${data.number}`
                 };
 
-                // Cache the new verse with timestamp
+                setVerse(newVerse);
                 localStorage.setItem('dailyVerse', JSON.stringify({
                     verse: newVerse,
                     timestamp: new Date().getTime()
                 }));
-
-                setVerse(newVerse);
             } catch (error) {
-                console.error('Erro ao buscar o versículo:', error);
+                console.warn('Using fallback verse due to:', error.message);
+                const randomVerse = fallbackVerses[Math.floor(Math.random() * fallbackVerses.length)];
+                setVerse(randomVerse);
 
-                // Check if there's a cached verse to use before falling back
-                const cachedData = localStorage.getItem('dailyVerse');
-                if (cachedData) {
-                    const { verse: cachedVerse } = JSON.parse(cachedData);
-                    setVerse(cachedVerse);
-                } else {
-                    // Use fallback verse if no cache available
-                    const randomIndex = Math.floor(Math.random() * fallbackVerses.length);
-                    setVerse(fallbackVerses[randomIndex]);
-
-                    // Cache the fallback verse
-                    localStorage.setItem('dailyVerse', JSON.stringify({
-                        verse: fallbackVerses[randomIndex],
-                        timestamp: new Date().getTime()
-                    }));
-                }
+                // Cache the fallback verse
+                localStorage.setItem('dailyVerse', JSON.stringify({
+                    verse: randomVerse,
+                    timestamp: new Date().getTime()
+                }));
             } finally {
                 setIsLoading(false);
             }
@@ -123,7 +117,6 @@ const HomeStrip = () => {
             className="relative min-h-[150px] py-6 px-6 md:py-8 md:px-16 bg-primary font-sans overflow-hidden -mt-20 z-10 max-w-[90%] lg:max-w-[80%] mx-auto rounded-lg mb-0 md:mb-24 lg:mb-8"
         >
             <FaQuoteRight className="absolute top-4 right-4 text-footer opacity-20 text-6xl md:text-7xl" />
-
             <div className="flex flex-col md:flex-row justify-between align-middle items-center gap-6 md:gap-10">
                 <div className="text-center md:text-left">
                     <h1 className="text-lg md:text-xl lg:text-xl text-gray-800 font-semibold">
@@ -143,6 +136,6 @@ const HomeStrip = () => {
             </div>
         </motion.div>
     );
-}
+};
 
 export default HomeStrip;

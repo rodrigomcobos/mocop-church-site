@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import Img from '../../assets/images/churchimg45.jpg';
+import Image from 'react-image-webp';
 import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -8,6 +8,8 @@ import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { FaMapLocationDot, FaPhone, FaEnvelope } from "react-icons/fa6";
+import ImgJPG from '../../assets/images/churchimg45.jpg';
+import ImgWebP from '../../assets/images/churchimg45.webp';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -30,7 +32,6 @@ const ContactForm = () => {
         message: ''
     });
 
-    // Contact information with links
     const contactInfo = [
         {
             icon: FaMapLocationDot,
@@ -55,7 +56,6 @@ const ContactForm = () => {
         }
     ];
 
-    // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -177,8 +177,7 @@ const ContactForm = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className={`p-4 rounded-lg mt-4 ${submitStatus.isError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
-                                    }`}
+                                className={`p-4 rounded-lg mt-4 ${submitStatus.isError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}
                             >
                                 {submitStatus.message}
                             </motion.div>
@@ -243,7 +242,13 @@ const ContactForm = () => {
                         variants={itemVariants}
                         whileHover={{ scale: 1.05 }}
                     >
-                        <img src={Img} className="w-3/4 object-contain block mx-auto rounded-lg" alt="Church" />
+                        <Image
+                            src={ImgJPG}
+                            webp={ImgWebP}
+                            className="w-3/4 object-contain block mx-auto rounded-lg"
+                            alt="Church"
+                            loading="lazy"
+                        />
                     </motion.div>
                 </motion.div>
 
