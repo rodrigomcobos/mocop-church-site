@@ -1,8 +1,12 @@
-import React from 'react'
-import HeroImg from '../../src/assets/images/headerimg4.jpeg'
-import GivingSection from '../components/specific/GivingSection'
-import Subscribe from '../components/specific/Subscribe'
-import GivingFaq from '../components/specific/GivingFaq'
+import React from 'react';
+import Image from 'react-image-webp';
+import GivingSection from '../components/specific/GivingSection';
+import Subscribe from '../components/specific/Subscribe';
+import GivingFaq from '../components/specific/GivingFaq';
+
+// Import both JPEG and WebP formats
+import HeroImgJPEG from '../../src/assets/images/headerimg4.jpeg';
+import HeroImgWebP from '../../src/assets/images/headerimg4.webp';
 
 const Giving = () => {
     return (
@@ -10,13 +14,24 @@ const Giving = () => {
             <header className="relative bg-gradient-to-r from-black to-yellow-900 font-[sans-serif] h-[40dvh] sm:h-[450px]">
                 {/* Set the image to cover the entire container */}
                 <div className="absolute inset-0">
-                    <img src={HeroImg} alt="Background Image" className="w-full h-[40dvh] sm:h-[450px] object-cover object-center opacity-45" />
+                    <Image
+                        src={HeroImgJPEG}
+                        webp={HeroImgWebP}
+                        alt="Ofertas Header Image"
+                        className="w-full h-[40dvh] sm:h-[450px] object-cover object-center opacity-45"
+                        loading="lazy"
+                        fadeIn
+                    />
                 </div>
 
                 <section className="absolute inset-0 pt-32 mx-6 flex justify-center items-center z-10 text-center text-white">
                     <div className="flex flex-col justify-center items-center">
-                        <h1 className="text-3xl md:text-5xl mb-6 drop-shadow-md shadow-gray-950 uppercase font-bold font-sanfrancisco">Ofertas</h1>
-                        <h2 className="text-md md:text-2xl uppercase font-sanfrancisco">Comprometa-se a doar e vamos mudar vidas juntos.</h2>
+                        <h1 className="text-3xl md:text-5xl mb-6 drop-shadow-md shadow-gray-950 uppercase font-bold font-sanfrancisco">
+                            Ofertas
+                        </h1>
+                        <h2 className="text-md md:text-2xl uppercase font-sanfrancisco">
+                            Comprometa-se a doar e vamos mudar vidas juntos.
+                        </h2>
                     </div>
                 </section>
             </header>
@@ -25,7 +40,7 @@ const Giving = () => {
             <GivingFaq />
             <Subscribe />
         </div>
-    )
-}
+    );
+};
 
-export default Giving
+export default Giving;
