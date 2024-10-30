@@ -1,12 +1,47 @@
+// src/components/specific/MeetThePastor.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'react-image-webp';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext';
 import PastorImagePNG from '../../assets/images/pastor.png';
 import PastorImageWebP from '../../assets/images/pastor.webp';
 
+// Translations object
+const translations = {
+    pt: {
+        powerOf: "O Poder de",
+        changes: "Jesus Muda",
+        everything: "Tudo",
+        description1: "Igreja é um momento para se reunir com uma comunidade de crentes, ser desafiado, encorajado e equipado pela palavra de Deus.",
+        description2: "Nossa experiência de adoração envolve louvor moderno e canções de adoração seguidas por um ensino centrado na Bíblia. Como uma igreja interdenominacional, damos boas-vindas a pessoas de todas as esferas da vida para se juntarem a nós.",
+        buttonText: "No que acreditamos",
+        pastorAlt: "Pastor Carlos Oliveira"
+    },
+    en: {
+        powerOf: "The Power of",
+        changes: "Jesus Changes",
+        everything: "Everything",
+        description1: "Church is a time to gather with a community of believers, be challenged, encouraged, and equipped by God's word.",
+        description2: "Our worship experience involves modern praise and worship songs followed by Bible-centered teaching. As an interdenominational church, we welcome people from all walks of life to join us.",
+        buttonText: "What We Believe",
+        pastorAlt: "Pastor Carlos Oliveira"
+    },
+    es: {
+        powerOf: "El Poder de",
+        changes: "Jesús Cambia",
+        everything: "Todo",
+        description1: "La iglesia es un momento para reunirse con una comunidad de creyentes, ser desafiado, animado y equipado por la palabra de Dios.",
+        description2: "Nuestra experiencia de adoración incluye canciones modernas de alabanza y adoración seguidas de una enseñanza centrada en la Biblia. Como iglesia interdenominacional, damos la bienvenida a personas de todos los ámbitos de la vida para que se unan a nosotros.",
+        buttonText: "Lo Que Creemos",
+        pastorAlt: "Pastor Carlos Oliveira"
+    }
+};
+
 const MeetThePastor = () => {
-    const MotionLink = motion.create(Link);
+    const { language } = useLanguage();
+    const texts = translations[language];
+    const MotionLink = motion(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -39,7 +74,7 @@ const MeetThePastor = () => {
                     <Image
                         src={PastorImagePNG}
                         webp={PastorImageWebP}
-                        alt="Pastor Carlos Oliveira"
+                        alt={texts.pastorAlt}
                         className="w-[90%] md:w-[90%] h-auto mx-auto"
                         loading="lazy"
                     />
@@ -56,31 +91,31 @@ const MeetThePastor = () => {
                         variants={itemVariants}
                         className="text-lg md:text-xl font-bold text-gray-800 uppercase"
                     >
-                        O Poder de
+                        {texts.powerOf}
                     </motion.h2>
                     <motion.h2
                         variants={itemVariants}
                         className="text-2xl md:text-3xl font-bold text-gray-800 uppercase"
                     >
-                        Jesus Muda
+                        {texts.changes}
                     </motion.h2>
                     <motion.h2
                         variants={itemVariants}
-                        className="text-8xl md:text-8xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3"
+                        className="text-8xl md:text-8xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3 z-50"
                     >
-                        Tudo
+                        {texts.everything}
                     </motion.h2>
                     <motion.p
                         variants={itemVariants}
                         className="mt-4 text-gray-600 text-md md:text-md text-left"
                     >
-                        Igreja é um momento para se reunir com uma comunidade de crentes, ser desafiado, encorajado e equipado pela palavra de Deus.
+                        {texts.description1}
                     </motion.p>
                     <motion.p
                         variants={itemVariants}
                         className="mt-4 text-gray-600 text-md md:text-md text-left"
                     >
-                        Nossa experiência de adoração envolve louvor moderno e canções de adoração seguidas por um ensino centrado na Bíblia. Como uma igreja interdenominacional, damos boas-vindas a pessoas de todas as esferas da vida para se juntarem a nós.
+                        {texts.description2}
                     </motion.p>
                     <MotionLink
                         to="/what-do-we-believe"
@@ -89,7 +124,7 @@ const MeetThePastor = () => {
                         whileTap={{ scale: 0.95 }}
                         className="btn mt-8"
                     >
-                        No que acreditamos
+                        {texts.buttonText}
                     </MotionLink>
                 </motion.div>
             </div>

@@ -1,15 +1,28 @@
+// src/components/specific/HomeStrip.jsx
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaQuoteRight } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
 
-const HomeStrip = () => {
-    const [verse, setVerse] = useState({
-        text: '',
-        reference: ''
-    });
-    const [isLoading, setIsLoading] = useState(true);
+// Interface translations
+const translations = {
+    pt: {
+        title: "Verso do Dia",
+        loading: "Carregando..."
+    },
+    en: {
+        title: "Verse of the Day",
+        loading: "Loading..."
+    },
+    es: {
+        title: "Versículo del Día",
+        loading: "Cargando..."
+    }
+};
 
-    const fallbackVerses = [
+// Fallback verses for each language
+const fallbackVerses = {
+    pt: [
         {
             text: "O Senhor é o meu pastor; nada me faltará.",
             reference: "Salmos 23:1"
@@ -23,34 +36,73 @@ const HomeStrip = () => {
             reference: "Filipenses 4:13"
         },
         {
-            text: "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus; eu te fortaleço, e te ajudo, e te sustento com a minha destra fiel.",
-            reference: "Isaías 41:10"
-        },
-        {
             text: "Confie no Senhor de todo o seu coração e não se apoie em seu próprio entendimento.",
             reference: "Provérbios 3:5"
-        },
-        {
-            text: "Busquem, pois, em primeiro lugar o Reino de Deus e a sua justiça, e todas essas coisas lhes serão acrescentadas.",
-            reference: "Mateus 6:33"
-        },
-        {
-            text: "Sejam fortes e corajosos. Não tenham medo nem fiquem apavorados por causa delas, pois o Senhor, o seu Deus, vai com vocês; nunca os deixará, nunca os abandonará.",
-            reference: "Deuteronômio 31:6"
-        },
-        {
-            text: "Mas os que esperam no Senhor renovarão as suas forças e subirão com asas como águias; correrão e não se cansarão; caminharão e não se fatigarão.",
-            reference: "Isaías 40:31"
         }
-    ];
+    ],
+    en: [
+        {
+            text: "The Lord is my shepherd; I shall not want.",
+            reference: "Psalms 23:1"
+        },
+        {
+            text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+            reference: "John 3:16"
+        },
+        {
+            text: "I can do all things through Christ who strengthens me.",
+            reference: "Philippians 4:13"
+        },
+        {
+            text: "Trust in the Lord with all your heart and lean not on your own understanding.",
+            reference: "Proverbs 3:5"
+        }
+    ],
+    es: [
+        {
+            text: "El Señor es mi pastor; nada me faltará.",
+            reference: "Salmos 23:1"
+        },
+        {
+            text: "Porque de tal manera amó Dios al mundo, que dio a su Hijo unigénito, para que todo aquel que cree en él no se pierda, sino que tenga vida eterna.",
+            reference: "Juan 3:16"
+        },
+        {
+            text: "Todo lo puedo en Cristo que me fortalece.",
+            reference: "Filipenses 4:13"
+        },
+        {
+            text: "Confía en el Señor con todo tu corazón y no te apoyes en tu propio entendimiento.",
+            reference: "Proverbios 3:5"
+        }
+    ]
+};
+
+// API configurations for different languages
+const apiConfigs = {
+    pt: { version: 'nvi', baseUrl: 'https://www.abibliadigital.com.br/api' },
+    en: { version: 'kjv', baseUrl: 'https://www.abibliadigital.com.br/api' },
+    es: { version: 'rvr', baseUrl: 'https://www.abibliadigital.com.br/api' }
+};
+
+const HomeStrip = () => {
+    const [verse, setVerse] = useState({
+        text: '',
+        reference: ''
+    });
+    const [isLoading, setIsLoading] = useState(true);
+    const { language } = useLanguage();
+    const texts = translations[language];
 
     useEffect(() => {
         const checkAndFetchVerse = async () => {
             try {
                 setIsLoading(true);
 
-                // Check localStorage first
-                const cachedData = localStorage.getItem('dailyVerse');
+                // Check localStorage with language key
+                const storageKey = `dailyVerse_${language}`;
+                const cachedData = localStorage.getItem(storageKey);
+
                 if (cachedData) {
                     const { verse: cachedVerse, timestamp } = JSON.parse(cachedData);
                     const now = new Date().getTime();
@@ -66,7 +118,8 @@ const HomeStrip = () => {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-                const response = await fetch('https://www.abibliadigital.com.br/api/verses/nvi/random', {
+                const { version, baseUrl } = apiConfigs[language];
+                const response = await fetch(`${baseUrl}/verses/${version}/random`, {
                     signal: controller.signal,
                     headers: {
                         'Accept': 'application/json',
@@ -87,17 +140,19 @@ const HomeStrip = () => {
                 };
 
                 setVerse(newVerse);
-                localStorage.setItem('dailyVerse', JSON.stringify({
+                localStorage.setItem(storageKey, JSON.stringify({
                     verse: newVerse,
                     timestamp: new Date().getTime()
                 }));
             } catch (error) {
                 console.warn('Using fallback verse due to:', error.message);
-                const randomVerse = fallbackVerses[Math.floor(Math.random() * fallbackVerses.length)];
+                const languageFallbacks = fallbackVerses[language];
+                const randomVerse = languageFallbacks[Math.floor(Math.random() * languageFallbacks.length)];
                 setVerse(randomVerse);
 
                 // Cache the fallback verse
-                localStorage.setItem('dailyVerse', JSON.stringify({
+                const storageKey = `dailyVerse_${language}`;
+                localStorage.setItem(storageKey, JSON.stringify({
                     verse: randomVerse,
                     timestamp: new Date().getTime()
                 }));
@@ -107,7 +162,7 @@ const HomeStrip = () => {
         };
 
         checkAndFetchVerse();
-    }, []);
+    }, [language]); // Re-run when language changes
 
     return (
         <motion.div
@@ -120,10 +175,10 @@ const HomeStrip = () => {
             <div className="flex flex-col md:flex-row justify-between align-middle items-center gap-6 md:gap-10">
                 <div className="text-center md:text-left">
                     <h1 className="text-lg md:text-xl lg:text-xl text-gray-800 font-semibold">
-                        Verso do Dia
+                        {texts.title}
                     </h1>
                     {isLoading ? (
-                        <p className="text-xl text-gray-600">Carregando...</p>
+                        <p className="text-xl text-gray-600">{texts.loading}</p>
                     ) : (
                         <p className="text-xl md:text-2xl lg:text-2xl text-yellowBtnHover font-bold mt-2">
                             "{verse.text}"
