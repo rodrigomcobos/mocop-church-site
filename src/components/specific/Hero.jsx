@@ -1,13 +1,18 @@
+// src/components/specific/Hero.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Image from 'react-image-webp';
+import { useLanguage } from '../../context/LanguageContext';
+import { heroTranslations } from '../../translations/hero';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import HeroImgJPG from '../../assets/images/churchimg19.jpeg';
 import HeroImgWebP from '../../assets/images/churchimg19.webp';
 
 const Hero = () => {
-    const MotionLink = motion.create(Link);
+    const { language } = useLanguage();
+    const texts = heroTranslations[language];
+    const MotionLink = motion(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -39,7 +44,9 @@ const Hero = () => {
                 <Image
                     src={HeroImgJPG}
                     webp={HeroImgWebP}
-                    alt="Imagem de uma igreja em um dia ensolarado"
+                    alt={language === 'en' ? "Image of a church on a sunny day" :
+                        language === 'es' ? "Imagen de una iglesia en un día soleado" :
+                            "Imagem de uma igreja em um dia ensolarado"}
                     className="w-full h-[95dvh] sm:h-[1000px] object-cover object-top opacity-45"
                     loading="lazy"
                 />
@@ -56,23 +63,21 @@ const Hero = () => {
                         variants={itemVariants}
                         className="text-md md:text-2xl mb-8 uppercase"
                     >
-                        Um lugar de fé, esperança e comunhão
+                        {texts.subtitle}
                     </motion.h2>
 
                     <motion.h1
                         variants={itemVariants}
                         className="text-5xl md:text-8xl font-seaweed mb-4 drop-shadow-md shadow-gray-950"
                     >
-                        Você é Bem Vindo Aqui
+                        {texts.title}
                     </motion.h1>
 
                     <motion.p
                         variants={itemVariants}
                         className="pt-8 text-sm md:text-lg mb-8 max-w-2xl"
                     >
-                        Venha fazer parte de uma comunidade que vive e compartilha o amor de Cristo.
-                        Aqui, você encontrará acolhimento, propósito e crescimento espiritual.
-                        Junte-se a nós para adorar, servir e transformar vidas com a graça de Deus.
+                        {texts.description}
                     </motion.p>
 
                     <MotionLink
@@ -82,7 +87,7 @@ const Hero = () => {
                         whileTap={{ scale: 0.95 }}
                         className="btn mt-0 md:mt-6"
                     >
-                        Conheça Nossa Igreja
+                        {texts.button}
                     </MotionLink>
                 </div>
             </motion.section>
