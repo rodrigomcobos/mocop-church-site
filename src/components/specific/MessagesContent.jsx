@@ -4,6 +4,70 @@ import { FaSearch, FaChevronLeft, FaChevronRight, FaChevronDown, FaTimes, FaPlay
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'react-image-webp';
 import VideoModal from './VideoModal';
+import { useLanguage } from '../../context/LanguageContext';
+
+const translations = {
+    pt: {
+        title: "Explore Nossas Pregações e Sermões",
+        description: "Explore as pregações e sermões da Comunidade Cristã Brasileira em Lewisville, disponíveis desde 2010. Aprofunde-se na palavra de Deus com mensagens inspiradoras e cheias de sabedoria, compartilhadas ao longo dos anos por pastores e líderes da nossa igreja. Acesse nossos vídeos e fortaleça sua fé com ensinamentos bíblicos para todas as fases da vida cristã.",
+        search: {
+            placeholder: "Pesquise pregações...",
+            clearFilters: "Limpar Filtros"
+        },
+        filters: {
+            allVideos: "Todos os Videos",
+            last24Hours: "Últimas 24 horas",
+            thisWeek: "Dessa semana",
+            thisMonth: "Desse mês",
+            thisYear: "Desse ano",
+            allYears: "Todos os Anos"
+        },
+        video: {
+            preachingOf: "Pregação do dia",
+            noDescription: "Nenhuma descrição disponível para este vídeo."
+        }
+    },
+    en: {
+        title: "Explore Our Preachings and Sermons",
+        description: "Explore the preachings and sermons from the Brazilian Christian Community in Lewisville, available since 2010. Dive deep into God's word with inspiring messages full of wisdom, shared over the years by pastors and leaders of our church. Access our videos and strengthen your faith with biblical teachings for all phases of Christian life.",
+        search: {
+            placeholder: "Search preachings...",
+            clearFilters: "Clear Filters"
+        },
+        filters: {
+            allVideos: "All Videos",
+            last24Hours: "Last 24 Hours",
+            thisWeek: "This Week",
+            thisMonth: "This Month",
+            thisYear: "This Year",
+            allYears: "All Years"
+        },
+        video: {
+            preachingOf: "Preaching of",
+            noDescription: "No description available for this video."
+        }
+    },
+    es: {
+        title: "Explora Nuestras Predicaciones y Sermones",
+        description: "Explora las predicaciones y sermones de la Comunidad Cristiana Brasileña en Lewisville, disponibles desde 2010. Profundiza en la palabra de Dios con mensajes inspiradores llenos de sabiduría, compartidos a lo largo de los años por pastores y líderes de nuestra iglesia. Accede a nuestros videos y fortalece tu fe con enseñanzas bíblicas para todas las fases de la vida cristiana.",
+        search: {
+            placeholder: "Buscar predicaciones...",
+            clearFilters: "Limpiar Filtros"
+        },
+        filters: {
+            allVideos: "Todos los Videos",
+            last24Hours: "Últimas 24 Horas",
+            thisWeek: "Esta Semana",
+            thisMonth: "Este Mes",
+            thisYear: "Este Año",
+            allYears: "Todos los Años"
+        },
+        video: {
+            preachingOf: "Predicación del",
+            noDescription: "No hay descripción disponible para este video."
+        }
+    }
+};
 
 // Animation variants
 const containerVariants = {
@@ -26,7 +90,7 @@ const itemVariants = {
 };
 
 // VideoCard Component
-const VideoCard = ({ video, onClick }) => (
+const VideoCard = ({ video, onClick, texts }) => (
     <motion.div
         className="bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg relative top-0 hover:-top-2 transition-all duration-300"
         variants={itemVariants}
@@ -37,7 +101,7 @@ const VideoCard = ({ video, onClick }) => (
             <div className="w-full h-60 relative">
                 <Image
                     src={video.snippet.thumbnails.high.url}
-                    webp={video.snippet.thumbnails.high.url} // YouTube thumbnails are already optimized
+                    webp={video.snippet.thumbnails.high.url}
                     alt={video.snippet.title}
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -54,20 +118,20 @@ const VideoCard = ({ video, onClick }) => (
         </div>
         <div className="p-6">
             <span className="text-md block text-gray-400 mb-2">
-                Pregação do dia&nbsp;
+                {texts.video.preachingOf}&nbsp;
                 {new Date(video.snippet.publishedAt).toLocaleDateString()}
             </span>
             <h3 className="text-xl font-bold text-yellowBtnHover">{video.snippet.title}</h3>
             <hr className="my-4" />
             <p className="text-footer text-md">
-                {video.snippet.description || "Nenhuma descrição disponível para este vídeo."}
+                {video.snippet.description || texts.video.noDescription}
             </p>
         </div>
     </motion.div>
 );
 
 // FilterForm Component
-const FilterForm = ({ searchQuery, setSearchQuery, dateFilter, yearFilter, handleSearch, handleDateFilterChange, handleYearFilterChange, clearFilters, generateYearOptions }) => (
+const FilterForm = ({ searchQuery, setSearchQuery, dateFilter, yearFilter, handleSearch, handleDateFilterChange, handleYearFilterChange, clearFilters, generateYearOptions, texts }) => (
     <motion.form
         onSubmit={handleSearch}
         className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-6xl mx-auto my-14"
@@ -78,7 +142,7 @@ const FilterForm = ({ searchQuery, setSearchQuery, dateFilter, yearFilter, handl
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Pesquise pregações..."
+                placeholder={texts.search.placeholder}
                 className="w-full outline-none bg-white text-footer text-md px-4 py-3"
             />
             <motion.button
@@ -96,11 +160,11 @@ const FilterForm = ({ searchQuery, setSearchQuery, dateFilter, yearFilter, handl
                 onChange={handleDateFilterChange}
                 className="w-full bg-white border-2 border-bottomBar text-footer text-md rounded-lg px-4 py-3 pr-10 outline-none appearance-none"
             >
-                <option value="any">Todos os Videos</option>
-                <option value="day">Últimos 24 horas</option>
-                <option value="week">Dessa semana</option>
-                <option value="month">Desse mês</option>
-                <option value="year">Desse ano</option>
+                <option value="any">{texts.filters.allVideos}</option>
+                <option value="day">{texts.filters.last24Hours}</option>
+                <option value="week">{texts.filters.thisWeek}</option>
+                <option value="month">{texts.filters.thisMonth}</option>
+                <option value="year">{texts.filters.thisYear}</option>
             </select>
             <FaChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-footer pointer-events-none" />
         </div>
@@ -110,7 +174,7 @@ const FilterForm = ({ searchQuery, setSearchQuery, dateFilter, yearFilter, handl
                 onChange={handleYearFilterChange}
                 className="w-full bg-white border-2 border-bottomBar text-footer text-md rounded-lg px-4 py-3 pr-10 outline-none appearance-none"
             >
-                <option value="all">Todos os Anos</option>
+                <option value="all">{texts.filters.allYears}</option>
                 {generateYearOptions()}
             </select>
             <FaChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-footer pointer-events-none" />
@@ -122,11 +186,10 @@ const FilterForm = ({ searchQuery, setSearchQuery, dateFilter, yearFilter, handl
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
         >
-            <FaTimes className="mr-2" /> Limpar Filtros
+            <FaTimes className="mr-2" /> {texts.search.clearFilters}
         </motion.button>
     </motion.form>
 );
-
 // Pagination Component
 const Pagination = ({ currentPage, totalPages, paginate }) => (
     <motion.div className="flex justify-center mt-8 mb-16 px-6" variants={itemVariants}>
@@ -174,6 +237,8 @@ const MessagesContent = () => {
     const [videosPerPage] = useState(12);
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const { language } = useLanguage();
+    const texts = translations[language];
 
     const API_KEY_1 = import.meta.env.VITE_YOUTUBE_API_KEY_1;
     const API_KEY_2 = import.meta.env.VITE_YOUTUBE_API_KEY_2;
@@ -363,6 +428,7 @@ const MessagesContent = () => {
     const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
     const totalPages = Math.ceil(videos.length / videosPerPage);
 
+
     return (
         <motion.section
             ref={sectionRef}
@@ -373,13 +439,10 @@ const MessagesContent = () => {
         >
             <motion.div className="max-w-6xl mx-auto text-center my-14" variants={itemVariants}>
                 <h2 className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-4">
-                    Explore Nossas Pregações e Sermões
+                    {texts.title}
                 </h2>
                 <p className="text-md text-gray-800 mt-6 leading-relaxed">
-                    Explore as pregações e sermões da Comunidade Cristã Brasileira em Lewisville, disponíveis desde 2010.
-                    Aprofunde-se na palavra de Deus com mensagens inspiradoras e cheias de sabedoria, compartilhadas ao
-                    longo dos anos por pastores e líderes da nossa igreja. Acesse nossos vídeos e fortaleça sua fé com
-                    ensinamentos bíblicos para todas as fases da vida cristã.
+                    {texts.description}
                 </p>
             </motion.div>
 
@@ -393,6 +456,7 @@ const MessagesContent = () => {
                 handleYearFilterChange={handleYearFilterChange}
                 clearFilters={clearFilters}
                 generateYearOptions={generateYearOptions}
+                texts={texts}
             />
 
             <motion.div className="bg-white my-4" variants={itemVariants}>
@@ -409,6 +473,7 @@ const MessagesContent = () => {
                                     key={video.id.videoId}
                                     video={video}
                                     onClick={handleVideoClick}
+                                    texts={texts}
                                 />
                             ))}
                         </motion.div>
