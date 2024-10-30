@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Image from 'react-image-webp';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import HeroImgJPG from '../../assets/images/churchimg19.jpeg';
 import HeroImgWebP from '../../assets/images/churchimg19.webp';

@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import StripImg from '../../assets/images/churchimg38.jpg';
-import Donate from '../../assets/images/donate.svg';
+import Image from 'react-image-webp';
 import { Link } from 'react-router-dom';
+
+// Import both formats for the strip image
+import StripImgJPG from '../../assets/images/churchimg38.jpg';
+import StripImgWebP from '../../assets/images/churchimg38.webp';
+// SVG doesn't need WebP conversion
+import Donate from '../../assets/images/donate.svg';
 
 const WaysToGive = () => {
     const MotionLink = motion.create(Link);
@@ -35,19 +40,76 @@ const WaysToGive = () => {
             variants={containerVariants}
         >
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 justify-center items-center gap-12 relative">
-                <img src={Donate} className="absolute right-80 top-[65%] transform -translate-y-1/2 opacity-10" alt="donate image" />
+                {/* SVG image doesn't need WebP conversion */}
+                <img
+                    src={Donate}
+                    className="absolute right-80 top-[65%] transform -translate-y-1/2 opacity-10"
+                    alt="donate image"
+                    loading="lazy"
+                />
 
                 <motion.div className="text-center md:text-left relative z-10" variants={containerVariants}>
-                    <motion.h2 variants={itemVariants} className="text-white text-5xl md:text-6xl mb-2 font-seaweed">Maneiras de Doar</motion.h2>
-                    <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-10">"Dê a outras pessoas e Deus dará a você. Ele lhe dará ainda mais do que você deu". <span className='font-thin italic'>- Lucas 6:38</span></motion.p>
-                    <motion.h4 variants={itemVariants} className="text-lg md:text-2xl font-extrabold text-white mb-1">Dizíme nos Domingos</motion.h4>
-                    <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-5">Aproveite a chance de fazer parte de algo maior e contribua com a nossa igreja durante os cultos dominicais. Sua doação não apenas apoia as atividades da nossa comunidade de fé, mas também fortalece os projetos que espalham amor e esperança.</motion.p>
+                    <motion.h2
+                        variants={itemVariants}
+                        className="text-white text-5xl md:text-6xl mb-2 font-seaweed"
+                    >
+                        Maneiras de Doar
+                    </motion.h2>
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-sm md:text-md text-white mb-10"
+                    >
+                        "Dê a outras pessoas e Deus dará a você. Ele lhe dará ainda mais do que você deu".
+                        <span className='font-thin italic'>- Lucas 6:38</span>
+                    </motion.p>
+
+                    <motion.h4
+                        variants={itemVariants}
+                        className="text-lg md:text-2xl font-extrabold text-white mb-1"
+                    >
+                        Dizíme nos Domingos
+                    </motion.h4>
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-sm md:text-md text-white mb-5"
+                    >
+                        Aproveite a chance de fazer parte de algo maior e contribua com a nossa igreja durante os cultos dominicais.
+                        Sua doação não apenas apoia as atividades da nossa comunidade de fé, mas também fortalece os projetos que
+                        espalham amor e esperança.
+                    </motion.p>
+
                     <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
-                    <motion.h4 variants={itemVariants} className="text-lg md:text-2xl font-extrabold text-white mb-1">Seja um Voluntário</motion.h4>
-                    <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-5">Venha fazer parte de nossa missão e sirva como voluntário em nossa igreja! Ao dedicar seu tempo e talentos, você estará contribuindo para transformar vidas, fortalecer nossa comunidade de fé e espalhar amor e esperança para todos.</motion.p>
+
+                    <motion.h4
+                        variants={itemVariants}
+                        className="text-lg md:text-2xl font-extrabold text-white mb-1"
+                    >
+                        Seja um Voluntário
+                    </motion.h4>
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-sm md:text-md text-white mb-5"
+                    >
+                        Venha fazer parte de nossa missão e sirva como voluntário em nossa igreja! Ao dedicar seu tempo e talentos,
+                        você estará contribuindo para transformar vidas, fortalecer nossa comunidade de fé e espalhar amor e esperança para todos.
+                    </motion.p>
+
                     <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
-                    <motion.h4 variants={itemVariants} className="text-lg md:text-2xl font-extrabold text-white mb-1">Ajude um missionário</motion.h4>
-                    <motion.p variants={itemVariants} className="text-sm md:text-md text-white mb-5">Estenda suas mãos e ajude um missionário da nossa igreja! Através de suas contribuições, estamos fortalecendo o trabalho de missionários dedicados que, com fé inabalável, levam esperança e amor a pessoas necessitadas em todo o mundo. Juntos, podemos apoiar essa missão sagrada de alcançar os perdidos e transformar vidas.</motion.p>
+
+                    <motion.h4
+                        variants={itemVariants}
+                        className="text-lg md:text-2xl font-extrabold text-white mb-1"
+                    >
+                        Ajude um missionário
+                    </motion.h4>
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-sm md:text-md text-white mb-5"
+                    >
+                        Estenda suas mãos e ajude um missionário da nossa igreja! Através de suas contribuições, estamos fortalecendo
+                        o trabalho de missionários dedicados que, com fé inabalável, levam esperança e amor a pessoas necessitadas em
+                        todo o mundo. Juntos, podemos apoiar essa missão sagrada de alcançar os perdidos e transformar vidas.
+                    </motion.p>
 
                     <MotionLink
                         to="/giving"
@@ -65,11 +127,17 @@ const WaysToGive = () => {
                     variants={itemVariants}
                     whileHover={{ scale: 1.05 }}
                 >
-                    <img src={StripImg} alt="giving image" className="max-w-sm md:max-w-md mx-auto rounded-lg shadow-md" />
+                    <Image
+                        src={StripImgJPG}
+                        webp={StripImgWebP}
+                        alt="giving image"
+                        className="max-w-sm md:max-w-md mx-auto rounded-lg shadow-md"
+                        loading="lazy"
+                    />
                 </motion.div>
             </div>
         </motion.div>
     );
-}
+};
 
 export default WaysToGive;

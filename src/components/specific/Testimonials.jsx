@@ -1,9 +1,17 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
+import Image from 'react-image-webp';
 import { FaQuoteRight, FaStar } from "react-icons/fa";
-import ReviewPhoto1 from '../../assets/images/review1.png';
-import ReviewPhoto2 from '../../assets/images/review2.png';
-import ReviewPhoto3 from '../../assets/images/review3.png';
+
+// Original images
+import ReviewPhoto1PNG from '../../assets/images/review1.png';
+import ReviewPhoto2PNG from '../../assets/images/review2.png';
+import ReviewPhoto3PNG from '../../assets/images/review3.png';
+
+// WebP versions
+import ReviewPhoto1WebP from '../../assets/images/review1.webp';
+import ReviewPhoto2WebP from '../../assets/images/review2.webp';
+import ReviewPhoto3WebP from '../../assets/images/review3.webp';
 
 const Testimonials = () => {
     const containerVariants = {
@@ -26,9 +34,21 @@ const Testimonials = () => {
     };
 
     const testimonials = [
-        { photo: ReviewPhoto1, name: "Paulo Lima", text: "A primeira vez que eu, minha esposa e minha filha entramos lá, nos sentimos em casa, um ótimo lugar para adorar e se conectar. Se você é brasileiro, americano ou de qualquer outro país, você será bem-vindo." },
-        { photo: ReviewPhoto2, name: "Anastacio Mesquita", text: "Culto maravilhoso, muitos receptivos." },
-        { photo: ReviewPhoto3, name: "Rodrigo Cobos", text: "Ótimo lugar para servir a Deus. Louvor muito bom, igreja bem atenciosa." }
+        {
+            photo: { png: ReviewPhoto1PNG, webp: ReviewPhoto1WebP },
+            name: "Paulo Lima",
+            text: "A primeira vez que eu, minha esposa e minha filha entramos lá, nos sentimos em casa, um ótimo lugar para adorar e se conectar. Se você é brasileiro, americano ou de qualquer outro país, você será bem-vindo."
+        },
+        {
+            photo: { png: ReviewPhoto2PNG, webp: ReviewPhoto2WebP },
+            name: "Anastacio Mesquita",
+            text: "Culto maravilhoso, muitos receptivos."
+        },
+        {
+            photo: { png: ReviewPhoto3PNG, webp: ReviewPhoto3WebP },
+            name: "Rodrigo Cobos",
+            text: "Ótimo lugar para servir a Deus. Louvor muito bom, igreja bem atenciosa."
+        }
     ];
 
     return (
@@ -40,9 +60,16 @@ const Testimonials = () => {
             variants={containerVariants}
         >
             <div className="max-w-7xl mx-auto">
-                <motion.div className="max-w-2xl mx-auto text-center" variants={itemVariants}>
-                    <h2 className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-4">Depoimentos dos Membros</h2>
-                    <p className="text-md text-gray-800 mt-6 leading-relaxed">Veja o que nossos membros e visitantes dizem sobre a nossa igreja. Suas palavras nos inspiram e fortalecem nossa comunidade de fé. Compartilhe sua experiência conosco!</p>
+                <motion.div
+                    className="max-w-2xl mx-auto text-center"
+                    variants={itemVariants}
+                >
+                    <h2 className="text-yellowBtnHover text-3xl md:text-4xl text-center font-bold mb-4">
+                        Depoimentos dos Membros
+                    </h2>
+                    <p className="text-md text-gray-800 mt-6 leading-relaxed">
+                        Veja o que nossos membros e visitantes dizem sobre a nossa igreja. Suas palavras nos inspiram e fortalecem nossa comunidade de fé. Compartilhe sua experiência conosco!
+                    </p>
                 </motion.div>
 
                 <div className="grid md:grid-cols-3 md:gap-6 max-md:gap-10 max-md:justify-center mt-16">
@@ -57,7 +84,13 @@ const Testimonials = () => {
                             </div>
 
                             <div className="flex items-center">
-                                <img src={testimonial.photo} className="w-14 h-14" alt={testimonial.name} />
+                                <Image
+                                    src={testimonial.photo.png}
+                                    webp={testimonial.photo.webp}
+                                    className="w-14 h-14"
+                                    alt={testimonial.name}
+                                    loading="lazy"
+                                />
 
                                 <div className="ml-4">
                                     <h4 className="text-md font-extrabold">{testimonial.name}</h4>
@@ -73,12 +106,12 @@ const Testimonials = () => {
                                 <p className="text-md leading-relaxed">{testimonial.text}</p>
                             </div>
                         </motion.div>
-
                     ))}
                 </div>
+
                 <motion.a
                     href="https://www.google.com/search?q=igreja+brasileira+em+lewisville&sca_esv=210a01dbe07330e6&sxsrf=ADLYWIKDjnkT0bZTbbH4qocPhUb8Hsv92Q%3A1728089586196&source=hp&ei=8o0AZ8q7Cbi40PEPrNHS-Aw&iflsig=AL9hbdgAAAAAZwCcAvcVFjKGICKJnLHmIEGyp5JGMc7D&oq=igre&gs_lp=Egdnd3Mtd2l6IgRpZ3JlKgIIADIEECMYJzIKECMYgAQYJxiKBTIEECMYJzILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgUQABiABDIQEC4YgAQYFBiHAhjHARivATIFEAAYgAQyBRAAGIAEMhAQLhiABBgUGIcCGMcBGK8BSIgQUJ0EWKsHcAF4AJABAJgBZqAB8wKqAQMzLjG4AQPIAQD4AQGYAgWgAoADqAIKwgIHECMYJxjqAsICCxAuGIAEGJECGIoFwgILEAAYgAQYsQMYgwHCAggQLhiABBixA8ICCBAuGIAEGNQCwgIOEC4YgAQYsQMY0QMYxwHCAg4QLhiABBjHARiOBRivAcICDRAAGIAEGLEDGBQYhwLCAggQABiABBixA5gDBJIHAzQuMaAH1jQ&sclient=gws-wiz#"
-                    target='_blank'
+                    target="_blank"
                     rel="noreferrer"
                     type="button"
                     className="btn flex mt-24"
@@ -89,7 +122,7 @@ const Testimonials = () => {
                 </motion.a>
             </div>
         </motion.div>
-    )
-}
+    );
+};
 
-export default Testimonials
+export default Testimonials;

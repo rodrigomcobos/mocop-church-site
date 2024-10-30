@@ -1,28 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import MissionImg1 from '../../assets/images/missionsimg1.png';
+import Image from 'react-image-webp';
+
+// Import both PNG/JPG and WebP formats
+import MissionImg1PNG from '../../assets/images/missionsimg1.png';
+import MissionImg1WebP from '../../assets/images/missionsimg1.webp';
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.3
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.5 }
+    }
+};
 
 const MissionsIntro = () => {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.3
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.5 }
-        }
-    };
-
     return (
         <motion.div
             initial="hidden"
@@ -40,12 +44,16 @@ const MissionsIntro = () => {
                     {/* Background gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
 
-                    {/* Image */}
-                    <img
-                        src={MissionImg1}
-                        alt="Missões"
-                        className="w-full h-full object-cover"
-                    />
+                    {/* Optimized Image */}
+                    <div className="w-full h-full">
+                        <Image
+                            src={MissionImg1PNG}
+                            webp={MissionImg1WebP}
+                            alt="Missões"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
 
                     {/* Optional overlay text */}
                     <div className="absolute bottom-6 left-6 right-6 text-white z-20">
