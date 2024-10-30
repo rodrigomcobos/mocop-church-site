@@ -20,7 +20,6 @@ const Messages = () => {
                         alt="Messages Header Image"
                         className="w-full h-[40dvh] sm:h-[450px] object-cover object-top opacity-45"
                         loading="lazy"
-                        fadeIn
                     />
                 </div>
 

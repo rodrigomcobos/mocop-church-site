@@ -79,7 +79,7 @@ const Footer = () => {
 
                     {/* Menu Links */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-8 text-footer">Menu</h4>
+                        <h2 className="text-lg font-semibold mb-8 text-footer">Menu</h2>
                         <ul className="space-y-4">
                             {navItems.map((item, index) => (
                                 <li key={index}>
@@ -97,7 +97,7 @@ const Footer = () => {
 
                     {/* Contact Information */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-8 text-footer">Contato</h4>
+                        <h2 className="text-lg font-semibold mb-8 text-footer">Contato</h2>
                         <div className="space-y-4">
                             <a href="https://www.google.com/maps/search/?api=1&query=2345+State+Hwy+121,+Lewisville,+TX+75067" target="_blank" rel="noopener noreferrer" className="text-footer text-sm block">2345 State Hwy 121, Lewisville, TX 75067</a>
                             <a href="mailto:lewisvillemocop@gmail.com" className="text-footer text-sm block">lewisvillemocop@gmail.com</a>

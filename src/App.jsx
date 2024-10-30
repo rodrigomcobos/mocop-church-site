@@ -19,6 +19,7 @@ import Ministry from './pages/Ministry'
 import WhatDoWeBelieve from './pages/WhatDoWeBelieve'
 import PlanYourVisit from './pages/PlanYourVisit'
 import NextStep from './pages/NextStep'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 // Layout component to wrap all pages
 const Layout = ({ children }) => (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/what-do-we-believe" element={<WhatDoWeBelieve />} />
         <Route path="/plan-your-visit" element={<PlanYourVisit />} />
         <Route path="/next-step" element={<NextStep />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         {/* Add a fallback route for 404 Not Found */}
         <Route path="*" element={<NotFound />} />
       </Routes>

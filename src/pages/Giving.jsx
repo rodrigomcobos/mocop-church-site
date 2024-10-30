@@ -20,7 +20,7 @@ const Giving = () => {
                         alt="Ofertas Header Image"
                         className="w-full h-[40dvh] sm:h-[450px] object-cover object-center opacity-45"
                         loading="lazy"
-                        fadeIn
+
                     />
                 </div>
 
