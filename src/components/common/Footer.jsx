@@ -193,11 +193,11 @@ const Footer = () => {
                         href="https://rodrigomcobos.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:no-underline text-white"
+                        className="underline text-white"
                     >
                         {texts.websiteBy}
                     </a>
-                    <NavLink to="/privacy-policy" className="hover:no-underline text-white ml-2">
+                    <NavLink to="/privacy-policy" className="hover:no-underline text-white ml-2 hover:text-yellowBtn">
                         {texts.privacyPolicy}
                     </NavLink>
                 </p>
