@@ -91,12 +91,11 @@ const HomeSermons = () => {
                     <MotionLink
                         to="/messages"
                         className='btn mt-6 md:mt-8'
-                        aria-description='Veja mais messagens na nossa pagina de mensagens'
-                        alt="Veja mais messagens na nossa pagina de mensagens"
+                        aria-label='Ver todas as mensagens disponíveis'
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        VEJA MAIS
+                        VER TODAS AS MENSAGENS
                     </MotionLink>
                 </motion.section>
                 <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:col-span-2">
