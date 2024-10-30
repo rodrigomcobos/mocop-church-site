@@ -109,7 +109,15 @@ const Footer = () => {
 
             {/* Bottom Section */}
             <div className="text-center py-5 bg-bottomBar">
-                <p className='text-white text-sm'>© Comunidade Cristã Brasileira em Lewisville 2024. All rights reserved. <a href="https://rodrigomcobos.com" target="_blank" rel="noopener noreferrer" className="hover:no-underline text-white">Website criado por Rodrigo Cobos.</a></p>
+                <p className='text-white text-sm'>
+                    © Comunidade Cristã Brasileira em Lewisville 2024. All rights reserved.
+                    <a href="https://rodrigomcobos.com" target="_blank" rel="noopener noreferrer" className="hover:no-underline text-white">
+                        Website criado por Rodrigo Cobos.
+                    </a>
+                    <NavLink to="/privacy-policy" className="hover:no-underline text-white ml-2">
+                        Política de Privacidade
+                    </NavLink>
+                </p>
             </div>
         </footer>
     )
