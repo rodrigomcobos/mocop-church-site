@@ -39,6 +39,7 @@ const Hero = () => {
                 <Image
                     src={HeroImgJPG}
                     webp={HeroImgWebP}
+                    alt="Imagem de uma igreja em um dia ensolarado"
                     className="w-full h-[95dvh] sm:h-[1000px] object-cover object-top opacity-45"
                     loading="lazy"
                 />

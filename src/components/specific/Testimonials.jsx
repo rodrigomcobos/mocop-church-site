@@ -93,7 +93,7 @@ const Testimonials = () => {
                                 />
 
                                 <div className="ml-4">
-                                    <h4 className="text-md font-extrabold">{testimonial.name}</h4>
+                                    <h2 className="text-md font-extrabold">{testimonial.name}</h2>
                                     <div className="flex space-x-1 mt-2">
                                         {[...Array(5)].map((_, i) => (
                                             <FaStar key={i} className="w-4 fill-yellow-600" />

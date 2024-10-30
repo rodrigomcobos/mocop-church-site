@@ -39,11 +39,41 @@ const Footer = () => {
                     <div className="lg:col-span-2">
                         <NavLink to='/' onClick={() => handleNavClick('/')}><img src={Logo} alt="logo" className='w-44 mb-8' /></NavLink>
                         <p className="text-footer mr-0 sm:mr-14 text-sm mb-6">Junte-se a nós para descobrir como a fé em Jesus pode transformar sua vida. Através do amor e da graça de Cristo, somos capacitados a enfrentar qualquer desafio e a viver com propósito.</p>
-                        <h4 className="text-lg font-semibold mb-4 text-footer">Redes Sociais</h4>
+                        <h2 className="text-lg font-semibold mb-4 text-footer">Redes Sociais</h2>
                         <ul className="flex gap-6">
-                            <li><a href="https://www.youtube.com/@mocopchurchinlewisville7125" target="_blank" rel="noopener noreferrer" className="text-footer hover:text-white"><FaYoutube className="text-footer hover:text-white w-6 h-6" /></a></li>
-                            <li><a href="https://www.facebook.com/igrejabrasileiratexas" target="_blank" rel="noopener noreferrer" className="text-footer hover:text-white"><FaFacebook className="text-footer hover:text-white w-6 h-6" /></a></li>
-                            <li><a href="https://www.instagram.com/ccbltx/" target="_blank" rel="noopener noreferrer" className="text-footer hover:text-white"><FaInstagram className="text-footer hover:text-white w-6 h-6" /></a></li>
+                            <li>
+                                <a
+                                    href="https://www.youtube.com/@mocopchurchinlewisville7125"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-footer hover:text-white"
+                                    aria-label="YouTube channel"
+                                >
+                                    <FaYoutube className="text-footer hover:text-white w-6 h-6" />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.facebook.com/igrejabrasileiratexas"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-footer hover:text-white"
+                                    aria-label="Facebook page"
+                                >
+                                    <FaFacebook className="text-footer hover:text-white w-6 h-6" />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.instagram.com/ccbltx/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-footer hover:text-white"
+                                    aria-label="Instagram profile"
+                                >
+                                    <FaInstagram className="text-footer hover:text-white w-6 h-6" />
+                                </a>
+                            </li>
                         </ul>
                     </div>
 

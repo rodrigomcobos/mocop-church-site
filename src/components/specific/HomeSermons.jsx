@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaPlayCircle } from 'react-icons/fa';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import VideoModal from './VideoModal';
+import VideoModal from './VideoModal'; // Adjust path as needed
 
 const HomeSermons = () => {
     const [latestVideos, setLatestVideos] = useState([]);
@@ -54,7 +52,7 @@ const HomeSermons = () => {
     }, []);
 
     const handleVideoClick = (videoId, e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent navigation if it's a link
         setSelectedVideo(videoId);
     };
 
@@ -89,12 +87,12 @@ const HomeSermons = () => {
                 <motion.section variants={itemVariants}>
                     <h2 className="text-3xl text-yellowBtnHover mb-4 font-bold">Mensagens</h2>
                     <hr className="border-t-2 border-yellowBtnHover mb-6 max-w-[15rem] mx-auto lg:mx-0" />
-                    <h2 className="text-3xl max-md:text-2xl font-extrabold text-gray-800">
-                        Revisite nossas pregações de Domingos passados
-                    </h2>
+                    <h2 className="text-3xl max-md:text-2xl font-extrabold text-gray-800">Revisite nossas pregações de Domingos passados</h2>
                     <MotionLink
                         to="/messages"
                         className='btn mt-6 md:mt-8'
+                        aria-description='Veja mais messagens na nossa pagina de mensagens'
+                        alt="Veja mais messagens na nossa pagina de mensagens"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
@@ -110,13 +108,10 @@ const HomeSermons = () => {
                             onClick={(e) => handleVideoClick(video.id.videoId, e)}
                         >
                             <div className="relative group">
-                                <LazyLoadImage
+                                <motion.img
                                     src={video.snippet.thumbnails.high.url}
                                     alt={video.snippet.title}
                                     className="w-full h-52 object-cover"
-                                    effect="blur"
-                                    loading="lazy"
-                                    placeholderSrc={video.snippet.thumbnails.default.url}
                                 />
                                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
                                     <motion.div

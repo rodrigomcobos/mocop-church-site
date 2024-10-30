@@ -63,12 +63,12 @@ const WaysToGive = () => {
                         <span className='font-thin italic'>- Lucas 6:38</span>
                     </motion.p>
 
-                    <motion.h4
+                    <motion.h2
                         variants={itemVariants}
                         className="text-lg md:text-2xl font-extrabold text-white mb-1"
                     >
                         Dizíme nos Domingos
-                    </motion.h4>
+                    </motion.h2>
                     <motion.p
                         variants={itemVariants}
                         className="text-sm md:text-md text-white mb-5"
@@ -80,12 +80,12 @@ const WaysToGive = () => {
 
                     <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
 
-                    <motion.h4
+                    <motion.h2
                         variants={itemVariants}
                         className="text-lg md:text-2xl font-extrabold text-white mb-1"
                     >
                         Seja um Voluntário
-                    </motion.h4>
+                    </motion.h2>
                     <motion.p
                         variants={itemVariants}
                         className="text-sm md:text-md text-white mb-5"
@@ -96,12 +96,12 @@ const WaysToGive = () => {
 
                     <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
 
-                    <motion.h4
+                    <motion.h2
                         variants={itemVariants}
                         className="text-lg md:text-2xl font-extrabold text-white mb-1"
                     >
                         Ajude um missionário
-                    </motion.h4>
+                    </motion.h2>
                     <motion.p
                         variants={itemVariants}
                         className="text-sm md:text-md text-white mb-5"
