@@ -8,6 +8,8 @@ import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
+import { useLanguage } from '../../context/LanguageContext';
+
 
 // Import images for Amac (Muito Além de um Câncer)
 import AmacImg1PNG from '../../assets/images/amacimg1.png';
@@ -93,102 +95,193 @@ import AmisImg12WebP from '../../assets/images/amisimg12.webp';
 import AmisImg13JPG from '../../assets/images/amisimg13.jpg';
 import AmisImg13WebP from '../../assets/images/amisimg13.webp';
 
-// Define responsive slider settings
-const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3, // Default for desktop
-    slidesToScroll: 1,
-    responsive: [
-        {
-            breakpoint: 1024, // Tablet
-            settings: {
-                slidesToShow: 2,
+const translations = {
+    pt: {
+        title: "Nossas Missões",
+        followOnInstagram: "Seguir no Instagram",
+        remainingPhotos: "+{count}",
+        missions: [
+            {
+                name: "AMIS Pá Bissau",
+                location: "Guiné-Bissau, África",
+                description: "Nossa missão na Guiné-Bissau trabalha para transformar vidas através do evangelho, educação e assistência social. Em parceria com organizações locais, desenvolvemos projetos que impactam comunidades e formam novos líderes, levando esperança e transformação para a região.",
+                instagram: "@amispabissau",
+                instagramLink: "https://www.instagram.com/amispabissau/",
+                imageAltPrefix: "AMIS Pá Bissau - Imagem"
+            },
+            {
+                name: "Muito Além de um Câncer",
+                location: "Brasil",
+                description: "Uma missão dedicada a oferecer apoio, esperança e amor a pessoas que enfrentam o câncer e suas famílias. Através de ações práticas e suporte espiritual, trabalhamos para mostrar que existe vida, propósito e alegria mesmo durante os momentos mais desafiadores da jornada contra o câncer.",
+                instagram: "@muitoalemdeumcancer",
+                instagramLink: "https://www.instagram.com/muitoalemdeumcancer/",
+                imageAltPrefix: "Muito Além de um Câncer - Imagem"
+            },
+            {
+                name: "Projeto AMIC",
+                location: "Brasil",
+                description: "O Projeto AMIC atua no apoio e desenvolvimento de comunidades necessitadas, focando em educação, saúde e desenvolvimento social. Através de ações práticas e programas estruturados, trabalhamos para criar oportunidades e transformar realidades.",
+                instagram: "@projeto_amic",
+                instagramLink: "https://www.instagram.com/projeto_amic/",
+                imageAltPrefix: "Projeto AMIC - Imagem"
             }
-        },
-        {
-            breakpoint: 768, // Mobile
-            settings: {
-                slidesToShow: 1,
+        ]
+    },
+    en: {
+        title: "Our Missions",
+        followOnInstagram: "Follow on Instagram",
+        remainingPhotos: "+{count}",
+        missions: [
+            {
+                name: "AMIS Pá Bissau",
+                location: "Guinea-Bissau, Africa",
+                description: "Our mission in Guinea-Bissau works to transform lives through the gospel, education, and social assistance. In partnership with local organizations, we develop projects that impact communities and form new leaders, bringing hope and transformation to the region.",
+                instagram: "@amispabissau",
+                instagramLink: "https://www.instagram.com/amispabissau/",
+                imageAltPrefix: "AMIS Pá Bissau - Image"
+            },
+            {
+                name: "Beyond Cancer",
+                location: "Brazil",
+                description: "A mission dedicated to offering support, hope, and love to people facing cancer and their families. Through practical actions and spiritual support, we work to show that there is life, purpose, and joy even during the most challenging moments of the cancer journey.",
+                instagram: "@muitoalemdeumcancer",
+                instagramLink: "https://www.instagram.com/muitoalemdeumcancer/",
+                imageAltPrefix: "Beyond Cancer - Image"
+            },
+            {
+                name: "AMIC Project",
+                location: "Brazil",
+                description: "The AMIC Project works to support and develop communities in need, focusing on education, health, and social development. Through practical actions and structured programs, we work to create opportunities and transform realities.",
+                instagram: "@projeto_amic",
+                instagramLink: "https://www.instagram.com/projeto_amic/",
+                imageAltPrefix: "AMIC Project - Image"
             }
+        ]
+    },
+    es: {
+        title: "Nuestras Misiones",
+        followOnInstagram: "Seguir en Instagram",
+        remainingPhotos: "+{count}",
+        missions: [
+            {
+                name: "AMIS Pá Bissau",
+                location: "Guinea-Bisáu, África",
+                description: "Nuestra misión en Guinea-Bisáu trabaja para transformar vidas a través del evangelio, la educación y la asistencia social. En colaboración con organizaciones locales, desarrollamos proyectos que impactan comunidades y forman nuevos líderes, llevando esperanza y transformación a la región.",
+                instagram: "@amispabissau",
+                instagramLink: "https://www.instagram.com/amispabissau/",
+                imageAltPrefix: "AMIS Pá Bissau - Imagen"
+            },
+            {
+                name: "Más Allá del Cáncer",
+                location: "Brasil",
+                description: "Una misión dedicada a ofrecer apoyo, esperanza y amor a personas que enfrentan el cáncer y sus familias. A través de acciones prácticas y apoyo espiritual, trabajamos para mostrar que existe vida, propósito y alegría incluso durante los momentos más desafiantes del viaje contra el cáncer.",
+                instagram: "@muitoalemdeumcancer",
+                instagramLink: "https://www.instagram.com/muitoalemdeumcancer/",
+                imageAltPrefix: "Más Allá del Cáncer - Imagen"
+            },
+            {
+                name: "Proyecto AMIC",
+                location: "Brasil",
+                description: "El Proyecto AMIC trabaja en el apoyo y desarrollo de comunidades necesitadas, enfocándose en la educación, la salud y el desarrollo social. A través de acciones prácticas y programas estructurados, trabajamos para crear oportunidades y transformar realidades.",
+                instagram: "@projeto_amic",
+                instagramLink: "https://www.instagram.com/projeto_amic/",
+                imageAltPrefix: "Proyecto AMIC - Imagen"
+            }
+        ]
+    }
+};
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.3
         }
-    ]
+    }
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.5 }
+    }
 };
 
 const MissionsContent = () => {
-    // const [modalOpen, setModalOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(-1);
     const [currentMissionIndex, setCurrentMissionIndex] = useState(0);
+    const { language } = useLanguage();
+    const texts = translations[language];
 
-    const missions = [
+    // Keep all existing image arrays and mission data
+    const missionData = [
         {
-            name: "AMIS Pá Bissau",
-            location: "Guiné-Bissau, África",
-            description: "Nossa missão na Guiné-Bissau trabalha para transformar vidas através do evangelho, educação e assistência social. Em parceria com organizações locais, desenvolvemos projetos que impactam comunidades e formam novos líderes, levando esperança e transformação para a região.",
-            instagram: "@amispabissau",
-            instagramLink: "https://www.instagram.com/amispabissau/",
+            baseName: "AMIS Pá Bissau",
             images: [
-                { src: AmisImg1PNG, webp: AmisImg1WebP, alt: "AMIS Pá Bissau - Imagem 1" },
-                { src: AmisImg2PNG, webp: AmisImg2WebP, alt: "AMIS Pá Bissau - Imagem 2" },
-                { src: AmisImg3PNG, webp: AmisImg3WebP, alt: "AMIS Pá Bissau - Imagem 3" },
-                { src: AmisImg4PNG, webp: AmisImg4WebP, alt: "AMIS Pá Bissau - Imagem 4" },
-                { src: AmisImg5PNG, webp: AmisImg5WebP, alt: "AMIS Pá Bissau - Imagem 5" },
-                { src: AmisImg6PNG, webp: AmisImg6WebP, alt: "AMIS Pá Bissau - Imagem 6" },
-                { src: AmisImg7PNG, webp: AmisImg7WebP, alt: "AMIS Pá Bissau - Imagem 7" },
-                { src: AmisImg8PNG, webp: AmisImg8WebP, alt: "AMIS Pá Bissau - Imagem 8" },
-                { src: AmisImg9PNG, webp: AmisImg9WebP, alt: "AMIS Pá Bissau - Imagem 9" },
-                { src: AmisImg10PNG, webp: AmisImg10WebP, alt: "AMIS Pá Bissau - Imagem 10" },
-                { src: AmisImg11PNG, webp: AmisImg11WebP, alt: "AMIS Pá Bissau - Imagem 11" },
-                { src: AmisImg12PNG, webp: AmisImg12WebP, alt: "AMIS Pá Bissau - Imagem 12" },
-                { src: AmisImg13JPG, webp: AmisImg13WebP, alt: "AMIS Pá Bissau - Imagem 13" },
+                { src: AmisImg1PNG, webp: AmisImg1WebP },
+                { src: AmisImg2PNG, webp: AmisImg2WebP },
+                { src: AmisImg3PNG, webp: AmisImg3WebP },
+                { src: AmisImg4PNG, webp: AmisImg4WebP },
+                { src: AmisImg5PNG, webp: AmisImg5WebP },
+                { src: AmisImg6PNG, webp: AmisImg6WebP },
+                { src: AmisImg7PNG, webp: AmisImg7WebP },
+                { src: AmisImg8PNG, webp: AmisImg8WebP },
+                { src: AmisImg9PNG, webp: AmisImg9WebP },
+                { src: AmisImg10PNG, webp: AmisImg10WebP },
+                { src: AmisImg11PNG, webp: AmisImg11WebP },
+                { src: AmisImg12PNG, webp: AmisImg12WebP },
+                { src: AmisImg13JPG, webp: AmisImg13WebP }
             ]
         },
         {
-            name: "Muito Além de um Câncer",
-            location: "Brasil",
-            description: "Uma missão dedicada a oferecer apoio, esperança e amor a pessoas que enfrentam o câncer e suas famílias. Através de ações práticas e suporte espiritual, trabalhamos para mostrar que existe vida, propósito e alegria mesmo durante os momentos mais desafiadores da jornada contra o câncer.",
-            instagram: "@muitoalemdeumcancer",
-            instagramLink: "https://www.instagram.com/muitoalemdeumcancer/",
+            baseName: "Muito Além de um Câncer",
             images: [
-                { src: AmacImg1PNG, webp: AmacImg1WebP, alt: "Muito Além de um Câncer - Imagem 1" },
-                { src: AmacImg2PNG, webp: AmacImg2WebP, alt: "Muito Além de um Câncer - Imagem 2" },
-                { src: AmacImg3PNG, webp: AmacImg3WebP, alt: "Muito Além de um Câncer - Imagem 3" },
-                { src: AmacImg4PNG, webp: AmacImg4WebP, alt: "Muito Além de um Câncer - Imagem 4" },
-                { src: AmacImg5PNG, webp: AmacImg5WebP, alt: "Muito Além de um Câncer - Imagem 5" },
-                { src: AmacImg6PNG, webp: AmacImg6WebP, alt: "Muito Além de um Câncer - Imagem 6" },
-                { src: AmacImg7PNG, webp: AmacImg7WebP, alt: "Muito Além de um Câncer - Imagem 7" },
-                { src: AmacImg8PNG, webp: AmacImg8WebP, alt: "Muito Além de um Câncer - Imagem 8" },
-                { src: AmacImg9PNG, webp: AmacImg9WebP, alt: "Muito Além de um Câncer - Imagem 9" },
-                { src: AmacImg10PNG, webp: AmacImg10WebP, alt: "Muito Além de um Câncer - Imagem 10" },
-                { src: AmacImg11PNG, webp: AmacImg11WebP, alt: "Muito Além de um Câncer - Imagem 11" },
-                { src: AmacImg12PNG, webp: AmacImg12WebP, alt: "Muito Além de um Câncer - Imagem 12" },
-                { src: AmacImg13PNG, webp: AmacImg13WebP, alt: "Muito Além de um Câncer - Imagem 13" },
+                { src: AmacImg1PNG, webp: AmacImg1WebP },
+                { src: AmacImg2PNG, webp: AmacImg2WebP },
+                { src: AmacImg3PNG, webp: AmacImg3WebP },
+                { src: AmacImg4PNG, webp: AmacImg4WebP },
+                { src: AmacImg5PNG, webp: AmacImg5WebP },
+                { src: AmacImg6PNG, webp: AmacImg6WebP },
+                { src: AmacImg7PNG, webp: AmacImg7WebP },
+                { src: AmacImg8PNG, webp: AmacImg8WebP },
+                { src: AmacImg9PNG, webp: AmacImg9WebP },
+                { src: AmacImg10PNG, webp: AmacImg10WebP },
+                { src: AmacImg11PNG, webp: AmacImg11WebP },
+                { src: AmacImg12PNG, webp: AmacImg12WebP },
+                { src: AmacImg13PNG, webp: AmacImg13WebP }
             ]
         },
         {
-            name: "Projeto AMIC",
-            location: "Brasil",
-            description: "O Projeto AMIC atua no apoio e desenvolvimento de comunidades necessitadas, focando em educação, saúde e desenvolvimento social. Através de ações práticas e programas estruturados, trabalhamos para criar oportunidades e transformar realidades.",
-            instagram: "@projeto_amic",
-            instagramLink: "https://www.instagram.com/projeto_amic/",
+            baseName: "Projeto AMIC",
             images: [
-                { src: AmicImg1PNG, webp: AmicImg1WebP, alt: "Projeto AMIC - Imagem 1" },
-                { src: AmicImg2PNG, webp: AmicImg2WebP, alt: "Projeto AMIC - Imagem 2" },
-                { src: AmicImg3PNG, webp: AmicImg3WebP, alt: "Projeto AMIC - Imagem 3" },
-                { src: AmicImg4PNG, webp: AmicImg4WebP, alt: "Projeto AMIC - Imagem 4" },
-                { src: AmicImg5PNG, webp: AmicImg5WebP, alt: "Projeto AMIC - Imagem 5" },
-                { src: AmicImg6PNG, webp: AmicImg6WebP, alt: "Projeto AMIC - Imagem 6" },
-                { src: AmicImg7PNG, webp: AmicImg7WebP, alt: "Projeto AMIC - Imagem 7" },
-                { src: AmicImg8PNG, webp: AmicImg8WebP, alt: "Projeto AMIC - Imagem 8" },
-                { src: AmicImg9PNG, webp: AmicImg9WebP, alt: "Projeto AMIC - Imagem 9" },
-                { src: AmicImg10PNG, webp: AmicImg10WebP, alt: "Projeto AMIC - Imagem 10" },
-                { src: AmicImg11PNG, webp: AmicImg11WebP, alt: "Projeto AMIC - Imagem 11" },
-                { src: AmicImg12PNG, webp: AmicImg12WebP, alt: "Projeto AMIC - Imagem 12" },
-                { src: AmicImg13PNG, webp: AmicImg13WebP, alt: "Projeto AMIC - Imagem 13" },
+                { src: AmicImg1PNG, webp: AmicImg1WebP },
+                { src: AmicImg2PNG, webp: AmicImg2WebP },
+                { src: AmicImg3PNG, webp: AmicImg3WebP },
+                { src: AmicImg4PNG, webp: AmicImg4WebP },
+                { src: AmicImg5PNG, webp: AmicImg5WebP },
+                { src: AmicImg6PNG, webp: AmicImg6WebP },
+                { src: AmicImg7PNG, webp: AmicImg7WebP },
+                { src: AmicImg8PNG, webp: AmicImg8WebP },
+                { src: AmicImg9PNG, webp: AmicImg9WebP },
+                { src: AmicImg10PNG, webp: AmicImg10WebP },
+                { src: AmicImg11PNG, webp: AmicImg11WebP },
+                { src: AmicImg12PNG, webp: AmicImg12WebP },
+                { src: AmicImg13PNG, webp: AmicImg13WebP }
             ]
         }
     ];
+
+    // Combine translation data with image data
+    const missions = texts.missions.map((mission, index) => ({
+        ...mission,
+        images: missionData[index].images.map((img, imgIndex) => ({
+            ...img,
+            alt: `${mission.imageAltPrefix} ${imgIndex + 1}`
+        }))
+    }));
 
     const openLightbox = (missionIndex, imageIndex) => {
         setCurrentMissionIndex(missionIndex);
@@ -215,7 +308,7 @@ const MissionsContent = () => {
                     {index === 5 && images.length > 6 && (
                         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                             <span className="text-white text-xl font-bold">
-                                +{images.length - 6}
+                                {texts.remainingPhotos.replace("{count}", images.length - 6)}
                             </span>
                         </div>
                     )}
@@ -223,39 +316,6 @@ const MissionsContent = () => {
             ))}
         </div>
     );
-
-
-    // const handleImageClick = (mission, slideIndex) => {
-    //     setSelectedMission(mission);
-    //     setInitialSlide(slideIndex);
-    //     setModalOpen(true);
-    //     document.body.style.overflow = 'hidden';
-    // };
-
-    // const closeModal = () => {
-    //     setModalOpen(false);
-    //     setSelectedMission(null);
-    //     document.body.style.overflow = 'unset';
-    // };
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.3
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.5 }
-        }
-    };
 
     return (
         <motion.div
@@ -269,7 +329,7 @@ const MissionsContent = () => {
                     className="text-3xl md:text-4xl font-bold text-footer text-center mb-8 md:mb-12"
                     variants={itemVariants}
                 >
-                    Nossas Missões
+                    {texts.title}
                 </motion.h1>
 
                 <div className="space-y-12 md:space-y-16">
@@ -320,7 +380,7 @@ const MissionsContent = () => {
                                                 whileHover={{ scale: 1.05 }}
                                                 whileTap={{ scale: 0.95 }}
                                             >
-                                                Seguir no Instagram
+                                                {texts.followOnInstagram}
                                             </motion.button>
                                         </div>
                                     </motion.div>
