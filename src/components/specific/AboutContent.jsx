@@ -93,7 +93,7 @@ const staggerChildren = {
 };
 
 const AboutContent = () => {
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
     const { language } = useLanguage();
     const texts = translations[language];
 

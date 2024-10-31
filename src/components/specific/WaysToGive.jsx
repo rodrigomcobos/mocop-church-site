@@ -95,7 +95,7 @@ const translations = {
 const WaysToGive = () => {
     const { language } = useLanguage();
     const texts = translations[language];
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },

@@ -52,7 +52,7 @@ const HomeSermons = () => {
     const [error, setError] = useState(null);
     const { language } = useLanguage();
     const texts = translations[language];
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY_1;
     const CHANNEL_ID_1 = import.meta.env.VITE_YOUTUBE_CHANNEL_ID_1;

@@ -191,42 +191,100 @@ const FilterForm = ({ searchQuery, setSearchQuery, dateFilter, yearFilter, handl
     </motion.form>
 );
 // Pagination Component
-const Pagination = ({ currentPage, totalPages, paginate }) => (
-    <motion.div className="flex justify-center mt-8 mb-16 px-6" variants={itemVariants}>
-        <motion.button
-            onClick={() => paginate(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="mx-1 px-4 py-2 bg-bottomBar text-white rounded-md disabled:bg-gray-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+const Pagination = ({ currentPage, totalPages, paginate }) => {
+    // Calculate the range of page numbers to display
+    const getPageRange = () => {
+        const delta = 2; // Number of pages to show on each side of current page
+        const range = [];
+        let start = Math.max(1, currentPage - delta);
+        let end = Math.min(totalPages, currentPage + delta);
+
+        // Adjust start and end to always show 5 numbers if possible
+        if (end - start + 1 < 5) {
+            if (start === 1) {
+                end = Math.min(5, totalPages);
+            } else if (end === totalPages) {
+                start = Math.max(1, totalPages - 4);
+            }
+        }
+
+        for (let i = start; i <= end; i++) {
+            range.push(i);
+        }
+
+        return range;
+    };
+
+    return (
+        <motion.div
+            className="flex justify-center items-center mt-8 mb-16 px-6 gap-1"
+            variants={itemVariants}
         >
-            <FaChevronLeft />
-        </motion.button>
-        {[...Array(totalPages).keys()].map((number) => (
             <motion.button
-                key={number + 1}
-                onClick={() => paginate(number + 1)}
-                className={`mx-1 px-4 py-2 rounded-md ${currentPage === number + 1
-                    ? 'bg-bottomBar text-white'
-                    : 'bg-gray-200'
-                    }`}
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="mx-1 px-3 py-2 bg-bottomBar text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                {number + 1}
+                <FaChevronLeft />
             </motion.button>
-        ))}
-        <motion.button
-            onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="mx-1 px-4 py-2 bg-bottomBar text-white rounded-md disabled:bg-gray-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-        >
-            <FaChevronRight />
-        </motion.button>
-    </motion.div>
-);
+
+            {currentPage > 3 && totalPages > 5 && (
+                <>
+                    <motion.button
+                        onClick={() => paginate(1)}
+                        className="mx-1 px-3 py-1 rounded-md bg-gray-200"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        1
+                    </motion.button>
+                    <span className="mx-1">...</span>
+                </>
+            )}
+
+            {getPageRange().map((number) => (
+                <motion.button
+                    key={number}
+                    onClick={() => paginate(number)}
+                    className={`mx-1 px-3 py-1 rounded-md ${currentPage === number
+                            ? 'bg-bottomBar text-white'
+                            : 'bg-gray-200'
+                        }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    {number}
+                </motion.button>
+            ))}
+
+            {currentPage < totalPages - 2 && totalPages > 5 && (
+                <>
+                    <span className="mx-1">...</span>
+                    <motion.button
+                        onClick={() => paginate(totalPages)}
+                        className="mx-1 px-3 py-1 rounded-md bg-gray-200"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {totalPages}
+                    </motion.button>
+                </>
+            )}
+
+            <motion.button
+                onClick={() => paginate(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="mx-1 px-3 py-2 bg-bottomBar text-white rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+            >
+                <FaChevronRight />
+            </motion.button>
+        </motion.div>
+    );
+};
 
 const MessagesContent = () => {
     const [videos, setVideos] = useState([]);
@@ -427,7 +485,6 @@ const MessagesContent = () => {
     const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
     const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo);
     const totalPages = Math.ceil(videos.length / videosPerPage);
-
 
     return (
         <motion.section

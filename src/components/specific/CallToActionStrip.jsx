@@ -22,7 +22,7 @@ const translations = {
 };
 
 const CallToActionStrip = () => {
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
     const { language } = useLanguage();
     const texts = translations[language];
 

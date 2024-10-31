@@ -12,7 +12,7 @@ import HeroImgWebP from '../../assets/images/churchimg19.webp';
 const Hero = () => {
     const { language } = useLanguage();
     const texts = heroTranslations[language];
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -53,7 +53,7 @@ const Hero = () => {
             </div>
 
             <motion.section
-                className="absolute inset-0 pt-28 mx-6 flex justify-center items-center z-10 text-center text-white"
+                className="absolute inset-0 pt-28 mx-4 flex justify-center items-center z-10 text-center text-white"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
