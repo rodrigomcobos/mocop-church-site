@@ -1,4 +1,3 @@
-// src/components/specific/Hero.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,7 @@ import HeroImgWebP from '../../assets/images/churchimg19.webp';
 const Hero = () => {
     const { language } = useLanguage();
     const texts = heroTranslations[language];
-    const MotionLink = motion.create(Link);
+    const MotionLink = motion(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },
