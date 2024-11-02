@@ -11,7 +11,7 @@ import HeroImgWebP from '../../assets/images/churchimg19.webp';
 const Hero = () => {
     const { language } = useLanguage();
     const texts = heroTranslations[language];
-    const MotionLink = motion(Link);
+    const MotionLink = motion.create(Link);
 
     const containerVariants = {
         hidden: { opacity: 0 },
