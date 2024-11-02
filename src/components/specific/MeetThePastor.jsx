@@ -67,8 +67,8 @@ const MeetThePastor = () => {
     };
 
     return (
-        <div className="bg-white pt-36 px-2">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 px-4 gap-6">
+        <div className="bg-white pt-36 px-2 overflow-visible">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 px-2 gap-6 overflow-visible">
                 {/* Left Column - Image with WebP support */}
                 <div className="relative order-2 md:order-1 mt-8 md:mt-0">
                     <Image
@@ -82,7 +82,7 @@ const MeetThePastor = () => {
 
                 {/* Right Column - Text Content with Animations */}
                 <motion.div
-                    className="flex flex-col justify-center text-center md:text-center order-1 md:order-2 -mt-10 md:-mt-38 sm:-mt-44"
+                    className="flex flex-col justify-center text-center md:text-center order-1 md:order-2 -mt-10 md:-mt-52 sm:-mt-44 overflow-visible"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -99,21 +99,23 @@ const MeetThePastor = () => {
                     >
                         {texts.changes}
                     </motion.h2>
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-8xl md:text-8xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3 z-50 overflow-visible pb-5 sm:pb-5"
-                    >
-                        {texts.everything}
-                    </motion.h2>
+                    <div className="overflow-visible w-full">
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-8xl md:text-8xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3 z-50 overflow-visible pb-5 sm:pb-4"
+                        >
+                            {texts.everything}
+                        </motion.h2>
+                    </div>
                     <motion.p
                         variants={itemVariants}
-                        className="mt-4 text-gray-600 text-md md:text-md text-left"
+                        className="mt-4 text-gray-600 text-sm md:text-md text-left"
                     >
                         {texts.description1}
                     </motion.p>
                     <motion.p
                         variants={itemVariants}
-                        className="mt-4 text-gray-600 text-md md:text-md text-left"
+                        className="mt-4 text-gray-600 text-sm md:text-md text-left"
                     >
                         {texts.description2}
                     </motion.p>
