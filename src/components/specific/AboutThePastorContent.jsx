@@ -43,13 +43,13 @@ const AboutThePastorContent = () => {
 
     return (
         <div>
-            <div className="grid md:grid-cols-2 items-center md:gap-8 gap-6 font-[sans-serif] max-w-7xl max-md:max-w-md mx-auto my-24 px-6">
+            <div className="grid md:grid-cols-2 items-center md:gap-8 gap-6 font-[sans-serif] max-w-7xl max-md:max-w-md mx-auto my-12 sm:my-24 px-6">
                 <div className="max-md:order-1 max-md:text-center">
                     <h2 className="md:text-4xl text-3xl md:leading-10 font-extrabold text-yellowBtnHover mb-4">
                         {texts.title}
                     </h2>
                     {texts.paragraphs.map((paragraph, index) => (
-                        <p key={index} className="mt-4 text-base text-gray-600 leading-relaxed">
+                        <p key={index} className="mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
                             {paragraph}
                         </p>
                     ))}

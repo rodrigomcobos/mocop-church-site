@@ -72,7 +72,7 @@ const MissionsIntro = () => {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="max-w-7xl mx-auto mt-24 px-4"
+            className="max-w-7xl mx-auto mt-12 sm:mt-24 px-4"
         >
             <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Image Column */}

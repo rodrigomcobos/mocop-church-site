@@ -148,7 +148,7 @@ const PlanYourVisit = () => {
             </header>
 
             <motion.div
-                className="max-w-6xl mx-auto px-6 py-24"
+                className="max-w-6xl mx-auto px-6 py-12 sm:py-24"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
