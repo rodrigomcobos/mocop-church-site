@@ -102,7 +102,7 @@ const PastorTimeline = () => {
     return (
         <div className="min-h-screen w-full bg-white">
             <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold text-center mb-8">História Pastoral</h1>
+                <h1 className="text-3xl font-bold text-center mb-8 text-[#b66a25]">História Pastoral</h1>
                 <div className="min-h-[calc(100vh-8rem)]">
                     <Chrono
                         items={items}
@@ -117,11 +117,45 @@ const PastorTimeline = () => {
                             secondary: "#b66a25",
                             cardBgColor: "#f4ebdc",
                             cardForeColor: "#1F2937",
-                            titleColor: "#1F2937"
+                            titleColor: "#b66a25",
+                            titleColorActive: "#f4ebdc",
+                            cardTitleColor: "#b66a25",
+                            cardSubtitleColor: "#1F2937",
+                            cardDetailsColor: "#1F2937"
                         }}
                     />
                 </div>
             </div>
+            <style>
+                {`
+             .timeline-card-content {
+  background-color: #f4ebdc !important;
+}
+.timeline-card-title {
+  color: #b66a25 !important;
+}
+.timeline-title-wrapper {
+  background-color: #b66a25 !important;
+}
+.timeline-item-title {
+  color: #f4ebdc !important;
+}
+.timeline-item-wrap:hover .timeline-title-wrapper {
+  background-color: #ffc360 !important;
+  transform: scale(1.05);  /* Optional: adds a subtle scale effect on hover */
+}
+.timeline-item-wrap:hover .timeline-item-title {
+  color: #f4ebdc !important;
+}
+/* Optional: add a smooth transition */
+.timeline-title-wrapper {
+  transition: all 0.3s ease !important;
+}
+.timeline-item-title {
+  transition: color 0.3s ease !important;
+}
+            `}
+            </style>
         </div>
     );
 };
