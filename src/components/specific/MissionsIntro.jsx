@@ -138,13 +138,15 @@ const MissionsIntro = () => {
                         {texts.content.p2}
                     </motion.p>
 
-                    <motion.button
-                        className="btn"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {texts.button}
-                    </motion.button>
+                    <Link to="/contact">
+                        <motion.button
+                            className="btn mt-14"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {texts.button}
+                        </motion.button>
+                    </Link>
                 </motion.div>
             </div>
             <hr className='border-gray-300 max-w-7xl mx-auto my-24' />
