@@ -1,6 +1,10 @@
 import React from 'react';
-import PastorImg1 from '../../assets/images/pastorimg1.png';
+import Image from 'react-image-webp';
 import { useLanguage } from '../../context/LanguageContext';
+
+// Import both PNG/JPG and WebP formats
+import PastorImg1PNG from '../../assets/images/pastorimg1.png';
+import PastorImg1WebP from '../../assets/images/pastorimg1.webp';
 
 // Translations object
 const translations = {
@@ -51,10 +55,12 @@ const AboutThePastorContent = () => {
                     ))}
                 </div>
                 <div className="md:h-[450px]">
-                    <img
-                        src={PastorImg1}
-                        className="w-full h-full object-cover rounded-lg shadow-xl"
+                    <Image
+                        src={PastorImg1PNG}
+                        webp={PastorImg1WebP}
                         alt={texts.imageAlt}
+                        className="w-full h-full object-cover rounded-lg shadow-xl"
+                        loading="lazy"
                     />
                 </div>
             </div>

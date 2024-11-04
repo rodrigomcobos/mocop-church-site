@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'react-image-webp';
 import { motion } from 'framer-motion';
+import WeekEvents from '../components/specific/WeekEvents';
 import Subscribe from '../components/specific/Subscribe';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -189,6 +190,7 @@ const PlanYourVisit = () => {
                     </Link>
                 </motion.div>
             </motion.div>
+            < WeekEvents />
             <Subscribe />
         </div>
     );

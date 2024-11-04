@@ -102,7 +102,7 @@ const MeetThePastor = () => {
                     <div className="overflow-visible w-full">
                         <motion.h2
                             variants={itemVariants}
-                            className="text-8xl md:text-8xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3 z-50 overflow-visible pb-5 sm:pb-4"
+                            className="text-[5.6rem] md:text-8xl sm:text-8xl font-bold bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text font-seaweed -mt-3 z-50 overflow-visible pb-5 sm:pb-4"
                         >
                             {texts.everything}
                         </motion.h2>

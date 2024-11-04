@@ -5,8 +5,8 @@ import Image from 'react-image-webp';
 import { useLanguage } from '../../context/LanguageContext';
 
 // Import both PNG/JPG and WebP formats
-import MissionImg1PNG from '../../assets/images/missionsimg1.png';
-import MissionImg1WebP from '../../assets/images/missionsimg1.webp';
+import MissionImg1PNG from '../../assets/images/pastorimg2.jpg';
+import MissionImg1WebP from '../../assets/images/pastorimg2.webp';
 
 const translations = {
     pt: {
