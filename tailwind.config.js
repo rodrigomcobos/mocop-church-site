@@ -31,10 +31,6 @@ export default {
           '@apply uppercase bg-yellowBtn text-footer hover:bg-yellowBtnHover hover:text-white text-sm md:text-base tracking-wide px-6 py-3 rounded-md transition duration-300 ease-in-out hover:shadow-xl hover:ring-2 hover:ring-white font-bold inline-block w-fit mx-auto cursor-pointer':
             {},
         },
-        '.btn': {
-          '@apply uppercase bg-yellowBtn text-footer hover:bg-yellowBtnHover hover:text-white text-sm md:text-base tracking-wide px-6 py-3 rounded-md transition duration-300 ease-in-out hover:shadow-xl hover:ring-2 hover:ring-white font-bold inline-block w-fit mx-auto cursor-pointer':
-            {},
-        },
       });
     }),
   ],

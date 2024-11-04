@@ -1,8 +1,11 @@
 import React from 'react';
 import { Chrono } from "react-chrono";
-import { GiPrayerBeads, GiChurch } from "react-icons/gi";
-import { FaPassport, FaGraduationCap, FaPlaneDeparture } from "react-icons/fa";
-import { MdFamilyRestroom } from "react-icons/md";
+
+// Image Imports
+import PastorImg3 from '../../assets/images/pastorimg3.jpg';
+import PastorImg4 from '../../assets/images/pastorimg4.jpg';
+import PastorImg5 from '../../assets/images/pastorimg5.png';
+import PastorImg6 from '../../assets/images/pastorimg6.jpeg';
 
 const PastorTimeline = () => {
     const items = [
@@ -13,7 +16,7 @@ const PastorTimeline = () => {
             cardDetailedText: "Carlos Jorge Lima de Oliveira nasceu em Salvador, Bahia.",
             media: {
                 source: {
-                    url: "/api/placeholder/150/150"
+                    url: "/api/placeholder/300/200"
                 },
                 type: "IMAGE",
                 support: "Foto de Salvador"
@@ -26,7 +29,7 @@ const PastorTimeline = () => {
             cardDetailedText: "Convertido na Igreja Batista do Caminho das Árvores sob liderança do Bispo Átila Brandão em Salvador, Bahia.",
             media: {
                 source: {
-                    url: "/api/placeholder/150/150"
+                    url: PastorImg3
                 },
                 type: "IMAGE",
                 support: "Foto da Igreja"
@@ -39,7 +42,7 @@ const PastorTimeline = () => {
             cardDetailedText: "Mudança para os Estados Unidos, frequentando a igreja Shady Grove Brazilian Church do pastor Julio Pinto em Garland, Texas.",
             media: {
                 source: {
-                    url: "/api/placeholder/150/150"
+                    url: "/api/placeholder/300/200"
                 },
                 type: "IMAGE",
                 support: "Foto da Igreja Shady Grove"
@@ -52,7 +55,7 @@ const PastorTimeline = () => {
             cardDetailedText: "Período de estudos e consagração como pastor teológico na Christ for the Nations.",
             media: {
                 source: {
-                    url: "/api/placeholder/150/150"
+                    url: PastorImg6
                 },
                 type: "IMAGE",
                 support: "Foto da Instituição"
@@ -65,7 +68,7 @@ const PastorTimeline = () => {
             cardDetailedText: "Início da Comunidade Cristã Brasileira em Lewisville, Texas.",
             media: {
                 source: {
-                    url: "/api/placeholder/150/150"
+                    url: "/api/placeholder/300/200"
                 },
                 type: "IMAGE",
                 support: "Foto da Igreja"
@@ -78,7 +81,7 @@ const PastorTimeline = () => {
             cardDetailedText: "Realizou missões em Cuba (2x) e Guiné Bissau (1x). Pastora Tereza realizou missões em Recife, Brasil e Cuba.",
             media: {
                 source: {
-                    url: "/api/placeholder/150/150"
+                    url: PastorImg4
                 },
                 type: "IMAGE",
                 support: "Foto Missionária"
@@ -91,7 +94,7 @@ const PastorTimeline = () => {
             cardDetailedText: "Atualmente lidera a igreja junto com a Pastora Kesia Silva como co-pastora e os pastores Ocidi e Maria como pastores auxiliares.",
             media: {
                 source: {
-                    url: "/api/placeholder/150/150"
+                    url: PastorImg5
                 },
                 type: "IMAGE",
                 support: "Foto da Equipe Pastoral"
@@ -100,21 +103,21 @@ const PastorTimeline = () => {
     ];
 
     return (
-        <div className="min-h-screen w-full bg-white">
+        <div className="min-h-screen max-w-7xl mx-auto bg-white">
             <div className="container mx-auto px-4 py-8">
                 <h1 className="text-3xl font-bold text-center mb-8 text-[#b66a25]">História Pastoral</h1>
                 <div className="min-h-[calc(100vh-8rem)]">
                     <Chrono
                         items={items}
                         mode="VERTICAL_ALTERNATING"
-                        cardHeight={150}
+                        cardHeight={250}
                         disableToolbar
                         hideControls
                         scrollable={{ scrollbar: true }}
                         useReadMore={false}
                         theme={{
-                            primary: "#ffc360",
-                            secondary: "#b66a25",
+                            primary: "#b66a25",
+                            secondary: "#ffc360",
                             cardBgColor: "#f4ebdc",
                             cardForeColor: "#1F2937",
                             titleColor: "#b66a25",
@@ -128,33 +131,55 @@ const PastorTimeline = () => {
             </div>
             <style>
                 {`
-             .timeline-card-content {
-  background-color: #f4ebdc !important;
-}
-.timeline-card-title {
-  color: #b66a25 !important;
-}
-.timeline-title-wrapper {
-  background-color: #b66a25 !important;
-}
-.timeline-item-title {
-  color: #f4ebdc !important;
-}
-.timeline-item-wrap:hover .timeline-title-wrapper {
-  background-color: #ffc360 !important;
-  transform: scale(1.05);  /* Optional: adds a subtle scale effect on hover */
-}
-.timeline-item-wrap:hover .timeline-item-title {
-  color: #f4ebdc !important;
-}
-/* Optional: add a smooth transition */
-.timeline-title-wrapper {
-  transition: all 0.3s ease !important;
-}
-.timeline-item-title {
-  transition: color 0.3s ease !important;
-}
-            `}
+                .timeline-card-content {
+                    background-color: #f4ebdc !important;
+                    padding: 1.5rem !important;
+                }
+                .timeline-card-title {
+                    color: #b66a25 !important;
+                    padding: 0 0 1rem 0 !important;
+                }
+                .timeline-title-wrapper {
+                    background-color: #ffc360 !important;
+                }
+                .timeline-item-title {
+                    color: #2A2928 !important;
+                }
+                .timeline-item-wrap:hover .timeline-title-wrapper {
+                    background-color: #ffc360 !important;
+                    transform: scale(1.05);
+                }
+                .timeline-item-wrap:hover .timeline-item-title {
+                    color: #ffc360 !important;
+                }
+                .timeline-card-subtitle {
+                    color: #1F2937 !important;
+                    text-transform: uppercase !important;
+                    padding: 1rem 0 !important;
+                    margin-bottom: 0.5rem !important;
+                    font-size: 0.9rem !important;
+                }
+                .timeline-card-content p {
+                    margin-top: 0.5rem !important;
+                    line-height: 1.5 !important;
+                }
+                .timeline-media-wrapper {
+                    width: 300px !important;
+                    height: 200px !important;
+                    margin: 1rem auto !important;
+                }
+                .timeline-media-wrapper img {
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: cover !important;
+                }
+                .timeline-title-wrapper {
+                    transition: all 0.3s ease !important;
+                }
+                .timeline-item-title {
+                    transition: color 0.3s ease !important;
+                }
+                `}
             </style>
         </div>
     );
