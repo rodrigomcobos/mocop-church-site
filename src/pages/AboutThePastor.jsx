@@ -1,4 +1,6 @@
 import React from 'react';
+import AboutThePastorContent from '../components/specific/AboutThePastorContent';
+import PastorTimeline from '../components/specific/PastorTimeline';
 import Image from 'react-image-webp';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -59,6 +61,9 @@ const AboutThePastor = () => {
                     </div>
                 </section>
             </header>
+
+            <AboutThePastorContent />
+            <PastorTimeline />
         </div>
     );
 };
