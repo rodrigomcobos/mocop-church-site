@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'react-image-webp';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 
 // Import both PNG/JPG and WebP formats
@@ -37,6 +38,47 @@ const translations = {
     }
 };
 
+const contentVariants = {
+    hidden: {
+        opacity: 0,
+        x: -50
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const imageVariants = {
+    hidden: {
+        opacity: 0,
+        x: 50
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const paragraphVariants = {
+    hidden: {
+        opacity: 0,
+        y: 20
+    },
+    visible: {
+        opacity: 1,
+        y: 0
+    }
+};
+
 const AboutThePastorContent = () => {
     const { language } = useLanguage();
     const texts = translations[language];
@@ -44,17 +86,42 @@ const AboutThePastorContent = () => {
     return (
         <div>
             <div className="grid md:grid-cols-2 items-center md:gap-8 gap-6 font-[sans-serif] max-w-7xl max-md:max-w-md mx-auto my-12 sm:my-24 px-6">
-                <div className="max-md:order-1 max-md:text-center">
-                    <h2 className="md:text-4xl text-3xl md:leading-10 font-extrabold text-yellowBtnHover mb-4">
+                <motion.div
+                    className="max-md:order-1 max-md:text-center"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={contentVariants}
+                >
+                    <motion.h2
+                        className="md:text-3xl text-3xl md:leading-10 font-extrabold text-yellowBtnHover mb-4"
+                    >
                         {texts.title}
-                    </h2>
+                    </motion.h2>
                     {texts.paragraphs.map((paragraph, index) => (
-                        <p key={index} className="mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
+                        <motion.p
+                            key={index}
+                            className="mt-4 text-sm sm:text-base text-gray-600 leading-relaxed"
+                            variants={paragraphVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            transition={{
+                                duration: 0.5,
+                                delay: index * 0.2
+                            }}
+                        >
                             {paragraph}
-                        </p>
+                        </motion.p>
                     ))}
-                </div>
-                <div className="md:h-[450px]">
+                </motion.div>
+                <motion.div
+                    className="md:h-[450px]"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={imageVariants}
+                >
                     <Image
                         src={PastorImg1PNG}
                         webp={PastorImg1WebP}
@@ -62,7 +129,7 @@ const AboutThePastorContent = () => {
                         className="w-full h-full object-cover rounded-lg shadow-xl"
                         loading="lazy"
                     />
-                </div>
+                </motion.div>
             </div>
         </div>
     );

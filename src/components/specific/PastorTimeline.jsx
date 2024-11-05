@@ -3,10 +3,13 @@ import { Chrono } from "react-chrono";
 import { useLanguage } from '../../context/LanguageContext';
 
 // Image Imports
+import PastorImg from '../../assets/images/pastorimg.jpg';
 import PastorImg3 from '../../assets/images/pastorimg3.jpg';
 import PastorImg4 from '../../assets/images/pastorimg4.jpg';
 import PastorImg5 from '../../assets/images/pastorimg5.png';
 import PastorImg6 from '../../assets/images/pastorimg6.jpeg';
+import PastorImg7 from '../../assets/images/pastorimg7.jpeg';
+import PastorImg8 from '../../assets/images/pastorimg8.jpeg';
 
 const translations = {
     pt: {
@@ -182,10 +185,13 @@ const PastorTimeline = () => {
         media: {
             source: {
                 url: index === 1 ? PastorImg3 :
-                    index === 3 ? PastorImg6 :
-                        index === 5 ? PastorImg4 :
-                            index === 6 ? PastorImg5 :
-                                "/api/placeholder/300/200"
+                    index === 2 ? PastorImg7 :
+                        index === 3 ? PastorImg6 :
+                            index === 4 ? PastorImg :
+                                index === 5 ? PastorImg4 :
+                                    index === 6 ? PastorImg5 :
+                                        index === 7 ? PastorImg5 :
+                                            PastorImg8
             },
             type: "IMAGE",
             support: item.support
@@ -248,18 +254,18 @@ const PastorTimeline = () => {
                 .timeline-card-subtitle {
                     color: #1F2937 !important;
                     text-transform: uppercase !important;
-                    padding: 0.5rem 0 !important; /* Reduced padding */
-                    margin-bottom: 0.25rem !important; /* Reduced margin */
+                    padding: 0.5rem 0 !important;
+                    margin-bottom: 0.25rem !important;
                     font-size: 0.9rem !important;
                 }
                 .timeline-card-content p {
-                    margin-top: 0.25rem !important; /* Reduced margin */
+                    margin-top: 0.25rem !important;
                     line-height: 1.5 !important;
                 }
                 .timeline-media-wrapper {
-                    width: 400px !important; /* Increased width */
-                    height: 250px !important; /* Increased height */
-                    margin: 0.5rem auto !important; /* Reduced margin */
+                    width: 400px !important;
+                    height: 350px !important;
+                    margin: 0.5rem auto !important;
                 }
                 .timeline-media-wrapper img {
                     width: 100% !important;
