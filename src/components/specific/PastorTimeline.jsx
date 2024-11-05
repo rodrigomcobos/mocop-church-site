@@ -1,15 +1,23 @@
 import React from 'react';
 import { Chrono } from "react-chrono";
 import { useLanguage } from '../../context/LanguageContext';
+import Image from 'react-image-webp';
 
-// Image Imports
-import PastorImg from '../../assets/images/pastorimg.jpg';
-import PastorImg3 from '../../assets/images/pastorimg3.jpg';
-import PastorImg4 from '../../assets/images/pastorimg4.jpg';
-import PastorImg5 from '../../assets/images/pastorimg5.png';
-import PastorImg6 from '../../assets/images/pastorimg6.jpeg';
-import PastorImg7 from '../../assets/images/pastorimg7.jpeg';
-import PastorImg8 from '../../assets/images/pastorimg8.jpeg';
+// Image Imports - Both PNG/JPG and WebP formats
+import PastorImgPNG from '../../assets/images/pastorimg.jpg';
+import PastorImgWebP from '../../assets/images/pastorimg.webp';
+import PastorImg3PNG from '../../assets/images/pastorimg3.jpg';
+import PastorImg3WebP from '../../assets/images/pastorimg3.webp';
+import PastorImg4PNG from '../../assets/images/pastorimg4.jpg';
+import PastorImg4WebP from '../../assets/images/pastorimg4.webp';
+import PastorImg5PNG from '../../assets/images/pastorimg5.png';
+import PastorImg5WebP from '../../assets/images/pastorimg5.webp';
+import PastorImg6PNG from '../../assets/images/pastorimg6.jpeg';
+import PastorImg6WebP from '../../assets/images/pastorimg6.webp';
+import PastorImg7PNG from '../../assets/images/pastorimg7.jpeg';
+import PastorImg7WebP from '../../assets/images/pastorimg7.webp';
+import PastorImg8PNG from '../../assets/images/pastorimg8.jpeg';
+import PastorImg8WebP from '../../assets/images/pastorimg8.webp';
 
 const translations = {
     pt: {
@@ -180,22 +188,54 @@ const PastorTimeline = () => {
     const { language } = useLanguage();
     const texts = translations[language];
 
+    const getTimelineMedia = (index) => {
+        let png, webp;
+        switch (index) {
+            case 0:
+                png = PastorImg8PNG;
+                webp = PastorImg8WebP;
+                break;
+            case 1:
+                png = PastorImg3PNG;
+                webp = PastorImg3WebP;
+                break;
+            case 2:
+                png = PastorImg7PNG;
+                webp = PastorImg7WebP;
+                break;
+            case 3:
+                png = PastorImg6PNG;
+                webp = PastorImg6WebP;
+                break;
+            case 4:
+                png = PastorImgPNG;
+                webp = PastorImgWebP;
+                break;
+            case 5:
+                png = PastorImg4PNG;
+                webp = PastorImg4WebP;
+                break;
+            case 6:
+                png = PastorImg5PNG;
+                webp = PastorImg5WebP;
+                break;
+            default:
+                png = PastorImg8PNG;
+                webp = PastorImg8WebP;
+        }
+
+        return {
+            source: {
+                url: webp,
+                fallback: png
+            },
+            type: "IMAGE"
+        };
+    };
+
     const items = texts.timelineItems.map((item, index) => ({
         ...item,
-        media: {
-            source: {
-                url: index === 1 ? PastorImg3 :
-                    index === 2 ? PastorImg7 :
-                        index === 3 ? PastorImg6 :
-                            index === 4 ? PastorImg :
-                                index === 5 ? PastorImg4 :
-                                    index === 6 ? PastorImg5 :
-                                        index === 7 ? PastorImg5 :
-                                            PastorImg8
-            },
-            type: "IMAGE",
-            support: item.support
-        }
+        media: getTimelineMedia(index)
     }));
 
     return (
@@ -209,7 +249,7 @@ const PastorTimeline = () => {
                         key={language}
                         items={items}
                         mode="VERTICAL_ALTERNATING"
-                        cardHeight={300} // Increased card height to accommodate larger images
+                        cardHeight={300}
                         disableToolbar
                         hideControls
                         scrollable={{ scrollbar: true }}
@@ -232,11 +272,11 @@ const PastorTimeline = () => {
                 {`
                 .timeline-card-content {
                     background-color: #f4ebdc !important;
-                    padding: 1rem !important; /* Reduced padding */
+                    padding: 1rem !important;
                 }
                 .timeline-card-title {
                     color: #b66a25 !important;
-                    padding: 0 0 0.5rem 0 !important; /* Reduced padding */
+                    padding: 0 0 0.5rem 0 !important;
                 }
                 .timeline-title-wrapper {
                     background-color: #ffc360 !important;
