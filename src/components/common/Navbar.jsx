@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FaTimes, FaBars, FaPhoneAlt, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa'
-import { motion, AnimatePresence } from 'framer-motion'; import LogoWhite from '../../assets/logos/logowhite.png'
+import { motion } from 'framer-motion'
+import LogoWhite from '../../assets/logos/logowhite.png'
 import LogoColor from '../../assets/logos/logocolor.png'
 import { useLanguage } from '../../context/LanguageContext'
 // Import flag-icons CSS
@@ -238,113 +239,69 @@ const Navbar = () => {
                     </NavLink>
 
                     {/* Mobile Menu Toggle */}
-                    <motion.button
+                    <button
                         onClick={toggleMenu}
                         className="lg:hidden text-2xl focus:outline-none rounded"
                         aria-label="Toggle navigation menu"
                         aria-expanded={isMenuOpen}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
                     >
                         {isMenuOpen ? (
                             <FaTimes className="text-white" />
                         ) : (
                             <FaBars className={`${isScrolled ? 'text-black' : 'text-white'}`} />
                         )}
-                    </motion.button>
+                    </button>
 
                     {/* Navigation Links */}
-                    <AnimatePresence mode="wait">
-                        <motion.nav
-                            className={`lg:block w-full lg:w-auto ${isMenuOpen ? 'block' : 'hidden'}`}
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{
-                                height: isMenuOpen ? 'auto' : 0,
-                                opacity: isMenuOpen ? 1 : 0,
-                            }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                        >
-                            <motion.ul
-                                className="flex flex-col lg:flex-row lg:space-x-6 mt-4 lg:mt-0 bg-white lg:bg-transparent p-4 lg:p-0 lg:space-y-0 space-y-2"
-                                initial={{ y: -20 }}
-                                animate={{ y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.1 }}
-                            >
-                                {navItems.map((item, index) => (
-                                    <motion.li
-                                        key={index}
-                                        className="relative"
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                                    >
-                                        {item.dropdown ? (
-                                            <div ref={dropdownRef}>
-                                                <button
-                                                    onClick={toggleAboutDropdown}
-                                                    className={`flex items-center justify-between w-full lg:w-auto px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isScrolled || isMenuOpen ? 'text-black' : 'text-white'
-                                                        }`}
-                                                >
-                                                    {item.name}
-                                                    <motion.span
-                                                        animate={{ rotate: isAboutDropdownOpen ? 180 : 0 }}
-                                                        transition={{ duration: 0.2 }}
-                                                    >
-                                                        <FaChevronDown className="ml-1" />
-                                                    </motion.span>
-                                                </button>
-                                                <AnimatePresence>
-                                                    {isAboutDropdownOpen && (
-                                                        <motion.ul
-                                                            initial={{ opacity: 0, height: 0 }}
-                                                            animate={{ opacity: 1, height: 'auto' }}
-                                                            exit={{ opacity: 0, height: 0 }}
-                                                            transition={{ duration: 0.2 }}
-                                                            className="lg:absolute lg:left-0 lg:mt-4 space-y-2 lg:w-48 bg-white lg:shadow-lg overflow-hidden"
-                                                        >
-                                                            {item.dropdown.map((subItem, subIndex) => (
-                                                                <motion.li
-                                                                    key={subIndex}
-                                                                    initial={{ opacity: 0, x: -20 }}
-                                                                    animate={{ opacity: 1, x: 0 }}
-                                                                    transition={{ duration: 0.2, delay: subIndex * 0.1 }}
-                                                                >
-                                                                    <NavLink
-                                                                        to={subItem.path}
-                                                                        className="block px-4 py-4 text-sm text-gray-700 hover:bg-bottomBar hover:text-white"
-                                                                        onClick={() => {
-                                                                            setIsMenuOpen(false);
-                                                                            setIsAboutDropdownOpen(false);
-                                                                        }}
-                                                                    >
-                                                                        {subItem.name}
-                                                                    </NavLink>
-                                                                </motion.li>
-                                                            ))}
-                                                        </motion.ul>
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        ) : (
-                                            <NavLink
-                                                to={item.path}
-                                                className={({ isActive }) =>
-                                                    `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
-                                                        ? 'bg-bottomBar text-white'
-                                                        : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
-                                                    }`
-                                                }
-                                                onClick={() => setIsMenuOpen(false)}
+                    <nav className={`${isMenuOpen ? 'block' : 'hidden'} lg:block w-full lg:w-auto`}>
+                        <ul className="flex flex-col lg:flex-row lg:space-x-6 mt-4 lg:mt-0 bg-white lg:bg-transparent p-4 lg:p-0 lg:space-y-0 space-y-2">
+                            {navItems.map((item, index) => (
+                                <li key={index} className="relative">
+                                    {item.dropdown ? (
+                                        <div ref={dropdownRef}>
+                                            <button
+                                                onClick={toggleAboutDropdown}
+                                                className={`flex items-center justify-between w-full lg:w-auto px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isScrolled || isMenuOpen ? 'text-black' : 'text-white'
+                                                    }`}
                                             >
                                                 {item.name}
-                                            </NavLink>
-                                        )}
-                                    </motion.li>
-                                ))}
-                            </motion.ul>
-                        </motion.nav>
-                    </AnimatePresence>
+                                                <FaChevronDown className={`ml-1 transform transition-transform duration-200 ${isAboutDropdownOpen ? 'rotate-180' : ''}`} />
+                                            </button>
+                                            <ul className={`lg:absolute lg:left-0 lg:mt-4 space-y-2 lg:w-48 bg-white lg:shadow-lg ${isAboutDropdownOpen ? 'block' : 'hidden'}`}>
+                                                {item.dropdown.map((subItem, subIndex) => (
+                                                    <li key={subIndex}>
+                                                        <NavLink
+                                                            to={subItem.path}
+                                                            className="block px-4 py-4 text-sm text-gray-700 hover:bg-bottomBar hover:text-white"
+                                                            onClick={() => {
+                                                                setIsMenuOpen(false);
+                                                                setIsAboutDropdownOpen(false);
+                                                            }}
+                                                        >
+                                                            {subItem.name}
+                                                        </NavLink>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ) : (
+                                        <NavLink
+                                            to={item.path}
+                                            className={({ isActive }) =>
+                                                `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
+                                                    ? 'bg-bottomBar text-white'
+                                                    : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
+                                                }`
+                                            }
+                                            onClick={() => setIsMenuOpen(false)}
+                                        >
+                                            {item.name}
+                                        </NavLink>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
                 </div>
             </header>
 
