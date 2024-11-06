@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'react-image-webp';
 import { useLanguage } from '../context/LanguageContext';
+import AboutChurchContent from '../components/specific/AboutChurchContent';
+import Subscribe from '../components/specific/Subscribe';
 
 // Import both JPG and WebP formats
 import HeroImgJPG from '../../src/assets/images/churchimg.jpg';
@@ -59,6 +61,9 @@ const About = () => {
                     </div>
                 </section>
             </header>
+
+            <AboutChurchContent />
+            <Subscribe />
         </div>
     );
 };
