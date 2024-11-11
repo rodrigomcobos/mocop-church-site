@@ -143,17 +143,17 @@ const memberImages = {
 };
 
 const TeamMemberCard = ({ member, roles }) => (
-    <div className="border rounded-md overflow-hidden max-md:max-w-[300px]">
-        <div className="relative w-full pb-[100%]">
+    <div className="rounded-md overflow-hidden max-md:max-w-[300px] text-center">
+        <div className="relative w-full pb-[100%] overflow-hidden rounded-full">
             <Image
                 src={memberImages[member.name].png}
                 webp={memberImages[member.name].webp}
-                className="absolute top-0 left-0 w-full h-full object-cover object-top"
+                className="absolute top-0 left-0 w-full h-full object-cover object-top rounded-full"
                 alt={member.name}
                 loading="lazy"
             />
         </div>
-        <div className="p-4 bg-white">
+        <div className="p-4 bg-white text-center">
             <h4 className="text-yellowBtnHover text-lg font-bold">{member.name}</h4>
             <p className="text-gray-600 text-md mt-1">{roles[member.role]}</p>
         </div>
