@@ -15,10 +15,14 @@ import ValPNG from '../../assets/images/val.png';
 import ValWebP from '../../assets/images/val.webp';
 import MarkPNG from '../../assets/images/mark.png';
 import MarkWebP from '../../assets/images/mark.webp';
+import MariaPNG from '../../assets/images/maria.png';
+import MariaWebP from '../../assets/images/maria.webp';
+import OcdPNG from '../../assets/images/ocd.png';
+import OcdWebP from '../../assets/images/ocd.webp';
 
 const translations = {
     pt: {
-        title: "Conheça a nossa equipe",
+        title: "Conheça a Nossa Liderança",
         subtitle: "Unidos pela fé e pelo propósito de servir, nossa equipe está comprometida em liderar, guiar e fortalecer nossa comunidade em cada passo da jornada espiritual.",
         roles: {
             pastor: "Pastor",
@@ -26,37 +30,46 @@ const translations = {
             worshipLeader: "Tesoureira",
             cameraman: "Cameraman",
             coordinator: "Coordenadora",
-            webDesigner: "Web Designer"
+            webDesigner: "Web Designer",
+            auxpastor: "Pastor Auxiliar",
         },
         teamMembers: [
             {
-                name: "Carlos Oliveira",
+                name: "Pr. Carlos Oliveira",
                 role: "pastor"
             },
             {
-                name: "Kesia Veras",
+                name: "Pra. Kesia Veras",
                 role: "coPastor"
             },
+            // {
+            //     name: "Tauane Araujo",
+            //     role: "worshipLeader"
+            // },
+            // {
+            //     name: "Marc Cobos",
+            //     role: "cameraman"
+            // },
+            // {
+            //     name: "Val Souza",
+            //     role: "coordinator"
+            // },
+            // {
+            //     name: "Rodrigo Cobos",
+            //     role: "webDesigner"
+            // },
             {
-                name: "Tauane Araujo",
-                role: "worshipLeader"
+                name: "Pra. Maria Vale",
+                role: "auxpastor"
             },
             {
-                name: "Marc Cobos",
-                role: "cameraman"
-            },
-            {
-                name: "Val Souza",
-                role: "coordinator"
-            },
-            {
-                name: "Rodrigo Cobos",
-                role: "webDesigner"
+                name: "Pr. Ocidi Vale",
+                role: "auxpastor"
             }
         ]
     },
     en: {
-        title: "Meet Our Team",
+        title: "Meet Our Leadership",
         subtitle: "United by faith and the purpose to serve, our team is committed to leading, guiding, and strengthening our community in every step of the spiritual journey.",
         roles: {
             pastor: "Pastor",
@@ -64,37 +77,46 @@ const translations = {
             worshipLeader: "Treasurer",
             cameraman: "Cameraman",
             coordinator: "Coordinator",
-            webDesigner: "Web Designer"
+            webDesigner: "Web Designer",
+            auxpastor: "Auxiliary Pastor",
         },
         teamMembers: [
             {
-                name: "Carlos Oliveira",
+                name: "Pr. Carlos Oliveira",
                 role: "pastor"
             },
             {
-                name: "Kesia Veras",
+                name: "Pra. Kesia Veras",
                 role: "coPastor"
             },
+            // {
+            //     name: "Tauane Araujo",
+            //     role: "worshipLeader"
+            // },
+            // {
+            //     name: "Marc Cobos",
+            //     role: "cameraman"
+            // },
+            // {
+            //     name: "Val Souza",
+            //     role: "coordinator"
+            // },
+            // {
+            //     name: "Rodrigo Cobos",
+            //     role: "webDesigner"
+            // },
             {
-                name: "Tauane Araujo",
-                role: "worshipLeader"
+                name: "Pra. Maria Vale",
+                role: "auxpastor"
             },
             {
-                name: "Marc Cobos",
-                role: "cameraman"
-            },
-            {
-                name: "Val Souza",
-                role: "coordinator"
-            },
-            {
-                name: "Rodrigo Cobos",
-                role: "webDesigner"
+                name: "Pr. Ocidi Vale",
+                role: "auxpastor"
             }
         ]
     },
     es: {
-        title: "Conoce a Nuestro Equipo",
+        title: "Conoce a Nuestro Liderazgo",
         subtitle: "Unidos por la fe y el propósito de servir, nuestro equipo está comprometido a liderar, guiar y fortalecer nuestra comunidad en cada paso del camino espiritual.",
         roles: {
             pastor: "Pastor",
@@ -102,53 +124,64 @@ const translations = {
             worshipLeader: "Tesorera",
             cameraman: "Camarógrafo",
             coordinator: "Coordinadora",
-            webDesigner: "Diseñador Web"
+            webDesigner: "Diseñador Web",
+            auxpastor: "Pastor Auxiliar",
         },
         teamMembers: [
             {
-                name: "Carlos Oliveira",
+                name: "Pr. Carlos Oliveira",
                 role: "pastor"
             },
             {
-                name: "Kesia Veras",
+                name: "Pra. Kesia Veras",
                 role: "coPastor"
             },
+            // {
+            //     name: "Tauane Araujo",
+            //     role: "worshipLeader"
+            // },
+            // {
+            //     name: "Marc Cobos",
+            //     role: "cameraman"
+            // },
+            // {
+            //     name: "Val Souza",
+            //     role: "coordinator"
+            // },
+            // {
+            //     name: "Rodrigo Cobos",
+            //     role: "webDesigner"
+            // },
             {
-                name: "Tauane Araujo",
-                role: "worshipLeader"
+                name: "Pra. Maria Vale",
+                role: "auxpastor"
             },
             {
-                name: "Marc Cobos",
-                role: "cameraman"
-            },
-            {
-                name: "Val Souza",
-                role: "coordinator"
-            },
-            {
-                name: "Rodrigo Cobos",
-                role: "webDesigner"
+                name: "Pr. Ocidi Vale",
+                role: "auxpastor"
             }
         ]
     }
 };
 
 const memberImages = {
-    "Carlos Oliveira": { png: CarlosPNG, webp: CarlosWebP },
-    "Kesia Veras": { png: KesiaPNG, webp: KesiaWebP },
+    "Pr. Carlos Oliveira": { png: CarlosPNG, webp: CarlosWebP },
+    "Pra. Kesia Veras": { png: KesiaPNG, webp: KesiaWebP },
     "Tauane Araujo": { png: TauanePNG, webp: TauaneWebP },
     "Marc Cobos": { png: MarkPNG, webp: MarkWebP },
     "Val Souza": { png: ValPNG, webp: ValWebP },
-    "Rodrigo Cobos": { png: RodrigoPNG, webp: RodrigoWebP }
+    "Rodrigo Cobos": { png: RodrigoPNG, webp: RodrigoWebP },
+    "Pra. Maria Vale": { png: MariaPNG, webp: MariaWebP },
+    "Pr. Ocidi Vale": { png: OcdPNG, webp: OcdWebP }
 };
 
 const TeamMemberCard = ({ member, roles }) => (
     <div className="rounded-md overflow-hidden max-md:max-w-[300px] text-center">
-        <div className="relative w-full pb-[100%] overflow-hidden rounded-full">
+        <div className="relative w-full pb-[100%] rounded-full border-2 border-yellowBtnHover overflow-hidden">
             <Image
                 src={memberImages[member.name].png}
                 webp={memberImages[member.name].webp}
-                className="absolute top-0 left-0 w-full h-full object-cover object-top rounded-full"
+                className="absolute top-0 left-0 w-full h-full object-cover object-top rounded-full border-2 border-yellowBtnHover"
                 alt={member.name}
                 loading="lazy"
             />
