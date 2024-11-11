@@ -234,7 +234,7 @@ const Navbar = () => {
                         <img
                             src={isScrolled ? LogoColor : LogoWhite}
                             alt="MOCOP Church Logo"
-                            className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-14'}`}
+                            className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8 sm:h-8' : 'h-10 sm:h-10'}`}
                         />
                     </NavLink>
 
