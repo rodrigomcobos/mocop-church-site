@@ -97,7 +97,7 @@ import AmisImg13WebP from '../../assets/images/amisimg13.webp';
 
 const translations = {
     pt: {
-        title: "Nossas Missões",
+        title: "Missões que Apoiamos",
         followOnInstagram: "Seguir no Instagram",
         remainingPhotos: "+{count}",
         missions: [
@@ -128,7 +128,7 @@ const translations = {
         ]
     },
     en: {
-        title: "Our Missions",
+        title: "Missions We Support",
         followOnInstagram: "Follow on Instagram",
         remainingPhotos: "+{count}",
         missions: [
@@ -159,7 +159,7 @@ const translations = {
         ]
     },
     es: {
-        title: "Nuestras Misiones",
+        title: "Misiones que Apoyamos",
         followOnInstagram: "Seguir en Instagram",
         remainingPhotos: "+{count}",
         missions: [
