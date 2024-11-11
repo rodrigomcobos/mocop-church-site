@@ -23,7 +23,7 @@ const translations = {
             },
             whatToExpect: {
                 title: "O que Esperar",
-                content: "Na Comunidade Cristã Brasileira em Lewisville, acreditamos que a igreja deve ser divertida! Você vai perceber que nossos cultos são energéticos e animados. Nossa experiência de adoração envolve músicas modernas de louvor e adoração, seguidas por um ensino centrado na Bíblia. A igreja é um momento para se reunir com uma comunidade de crentes, ser desafiado, encorajado e equipado através da palavra de Deus. Sabemos que ser novo às vezes pode ser intimidante, mas na Comunidade Cristã Brasileira em Lewisville, é nosso desejo que você se sinta bem-vindo desde o início! Nossa experiência de adoração dura cerca de uma hora à uma hora e meia. Encorajamos você a chegar cedo, passar um tempo conosco para nós se conhecer melhor. Mal podemos esperar para conhecê-lo!"
+                content: "Na Comunidade Cristã Brasileira em Lewisville envolve uma experiência de adoração vibrante e transformadora. Nossa experiência de adoração envolve músicas modernas de louvor e adoração, seguidas por um ensino centrado na Bíblia. A igreja é um momento para se reunir com uma comunidade de crentes, ser desafiado, encorajado e equipado através da palavra de Deus. Sabemos que ser novo às vezes pode ser intimidante, mas na Comunidade Cristã Brasileira em Lewisville, é nosso desejo que você se sinta bem-vindo desde o início! Nossa experiência de adoração dura cerca de uma hora à uma hora e meia. Encorajamos você a chegar cedo, passar um tempo conosco para nós se conhecer melhor. Mal podemos esperar para conhecê-lo!"
             },
             comeAsYouAre: {
                 title: "Venha Como Você Está",
@@ -50,7 +50,7 @@ const translations = {
             },
             whatToExpect: {
                 title: "What to Expect",
-                content: "At the Brazilian Christian Community in Lewisville, we believe church should be fun! You'll notice our services are energetic and lively. Our worship experience involves modern praise and worship songs, followed by Bible-centered teaching. Church is a time to gather with a community of believers, be challenged, encouraged, and equipped through God's word. We know being new can sometimes be intimidating, but at the Brazilian Christian Community in Lewisville, it's our desire that you feel welcome from the start! Our worship experience lasts about an hour to an hour and a half. We encourage you to arrive early, spend time with us to get to know each other better. We can't wait to meet you!"
+                content: "The Brazilian Christian Community in Lewisville involves a vibrant and transformative worship experience. Our worship experience involves modern praise and worship songs, followed by Bible-centered teaching. Church is a time to gather with a community of believers, be challenged, encouraged, and equipped through God's word. We know being new can sometimes be intimidating, but at the Brazilian Christian Community in Lewisville, it's our desire that you feel welcome from the start! Our worship experience lasts about an hour to an hour and a half. We encourage you to arrive early, spend time with us to get to know each other better. We can't wait to meet you!"
             },
             comeAsYouAre: {
                 title: "Come As You Are",
@@ -77,7 +77,7 @@ const translations = {
             },
             whatToExpect: {
                 title: "Qué Esperar",
-                content: "¡En la Comunidad Cristiana Brasileña en Lewisville, creemos que la iglesia debe ser divertida! Notarás que nuestros servicios son energéticos y animados. Nuestra experiencia de adoración involucra canciones modernas de alabanza y adoración, seguidas de una enseñanza centrada en la Biblia. La iglesia es un momento para reunirse con una comunidad de creyentes, ser desafiado, animado y equipado a través de la palabra de Dios. Sabemos que ser nuevo a veces puede ser intimidante, ¡pero en la Comunidad Cristiana Brasileña en Lewisville, es nuestro deseo que te sientas bienvenido desde el principio! Nuestra experiencia de adoración dura aproximadamente una hora a una hora y media. Te animamos a llegar temprano, pasar tiempo con nosotros para conocernos mejor. ¡Estamos ansiosos por conocerte!"
+                content: "La comunidad cristiana brasileña en Lewisville ofrece una experiencia de adoración vibrante y transformadora. Nuestra experiencia de adoración involucra canciones modernas de alabanza y adoración, seguidas de una enseñanza centrada en la Biblia. La iglesia es un momento para reunirse con una comunidad de creyentes, ser desafiado, animado y equipado a través de la palabra de Dios. Sabemos que ser nuevo a veces puede ser intimidante, ¡pero en la Comunidad Cristiana Brasileña en Lewisville, es nuestro deseo que te sientas bienvenido desde el principio! Nuestra experiencia de adoración dura aproximadamente una hora a una hora y media. Te animamos a llegar temprano, pasar tiempo con nosotros para conocernos mejor. ¡Estamos ansiosos por conocerte!"
             },
             comeAsYouAre: {
                 title: "Ven Como Eres",
