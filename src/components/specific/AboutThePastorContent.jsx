@@ -10,29 +10,26 @@ import PastorImg1WebP from '../../assets/images/pastorimg1.webp';
 // Translations object
 const translations = {
     pt: {
-        title: "Pastor Carlos Jorge Lima de Oliveira",
+        title: "Pastor Carlos Oliveira",
         paragraphs: [
-            "Carlos Jorge Lima de Oliveira nasceu em 1962, em Salvador, Bahia, e viveu uma jornada de fé inspiradora. Em 1994, ele e sua esposa, Tereza Cristina Guimarães de Oliveira, encontraram a Cristo e se converteram na Igreja Batista do Caminho das Árvores, sob a liderança do Bispo Átila Brandão. Três anos depois, em 1997, o casal se mudou para os Estados Unidos, onde continuaram a fortalecer sua caminhada espiritual na Shady Grove Brazilian Church, pastoreada por Julio Pinto, em Garland, Texas. Em busca de uma formação teológica mais profunda, ambos frequentaram o Christ for the Nations, onde foram consagrados como pastores.",
-            "Em janeiro de 2004, o casal fundou a Comunidade Cristã Brasileira em Lewisville, Texas, com o propósito de criar uma comunidade de fé sólida e acolhedora. Pastor Carlos sempre teve um forte compromisso com missões e, ao longo dos anos, realizou viagens missionárias a Cuba e à Guiné-Bissau, levando o evangelho a novas fronteiras. Sua esposa, Tereza, também se dedicou a missões, visitando Recife, no Brasil, e Cuba.",
-            "Hoje, Pastor Carlos lidera a Comunidade Cristã Brasileira em Lewisville com o apoio da Pastora Kesia Silva como co-pastora e dos Pastores auxiliares Ocidi e Maria. Juntos, continuam a obra de amor e serviço à comunidade, compartilhando o evangelho e mantendo viva a chama da fé."
+            "Carlos Oliveira nasceu em 1962, em Salvador, Bahia, e viveu uma trajetória de fé marcante. Em 1994, ele e sua esposa, Tereza Cristina, encontraram Cristo na Igreja Batista do Caminho das Árvores. Em 1997, mudaram-se para os EUA, fortalecendo sua caminhada espiritual na Shady Grove Brazilian Church, em Texas. Ambos cursaram o Christ for the Nations, onde foram consagrados pastores.",
+            "Em 2004, fundaram a Comunidade Cristã Brasileira em Lewisville, Texas, com a missão de construir uma comunidade de fé acolhedora. Pastor Carlos tem um forte compromisso com missões, realizando viagens a Cuba e Guiné-Bissau, enquanto Tereza visitou Recife e Cuba. Atualmente, ele lidera a igreja com o apoio de Pastora Kesia Silva e os pastores auxiliares Ocidi e Maria, dedicados a compartilhar o evangelho e servir à comunidade."
         ],
         imageAlt: "Pastor Carlos Jorge"
     },
     en: {
-        title: "Pastor Carlos Jorge Lima de Oliveira",
+        title: "Pastor Carlos Oliveira",
         paragraphs: [
-            "Carlos Jorge Lima de Oliveira was born in 1962 in Salvador, Bahia, and lived an inspiring journey of faith. In 1994, he and his wife, Tereza Cristina Guimarães de Oliveira, found Christ and were converted at Igreja Batista do Caminho das Árvores under the leadership of Bishop Átila Brandão. Three years later, in 1997, the couple moved to the United States, where they continued to strengthen their spiritual walk at Shady Grove Brazilian Church, pastored by Julio Pinto, in Garland, Texas. In pursuit of deeper theological training, both attended Christ for the Nations, where they were consecrated as pastors.",
-            "In January 2004, the couple founded the Brazilian Christian Community in Lewisville, Texas, with the purpose of creating a solid and welcoming faith community. Pastor Carlos has always had a strong commitment to missions and, over the years, has conducted missionary trips to Cuba and Guinea-Bissau, taking the gospel to new frontiers. His wife, Tereza, also dedicated herself to missions, visiting Recife, Brazil, and Cuba.",
-            "Today, Pastor Carlos leads the Brazilian Christian Community in Lewisville with the support of Pastor Kesia Silva as co-pastor and auxiliary Pastors Ocidi and Maria. Together, they continue the work of love and service to the community, sharing the gospel and keeping the flame of faith alive."
+            "Carlos Oliveira was born in 1962 in Salvador, Bahia, and has lived a remarkable journey of faith. In 1994, he and his wife, Tereza Cristina, found Christ at the Baptist Church of Caminho das Árvores. In 1997, they moved to the United States, where they strengthened their spiritual walk at Shady Grove Brazilian Church in Texas. Both attended Christ for the Nations, where they were ordained as pastors.",
+            "In 2004, they founded the Brazilian Christian Community in Lewisville, Texas, with the mission of building a welcoming community of faith. Pastor Carlos has a strong commitment to missions, undertaking trips to Cuba and Guinea-Bissau, while Tereza visited Recife and Cuba. Today, he leads the church with the support of Pastor Kesia Silva and assistant pastors Ocidi and Maria, dedicated to sharing the gospel and serving the community."
         ],
         imageAlt: "Pastor Carlos Jorge"
     },
     es: {
-        title: "Pastor Carlos Jorge Lima de Oliveira",
+        title: "Pastor Carlos Oliveira",
         paragraphs: [
-            "Carlos Jorge Lima de Oliveira nació en 1962 en Salvador, Bahía, y vivió un inspirador viaje de fe. En 1994, él y su esposa, Tereza Cristina Guimarães de Oliveira, encontraron a Cristo y se convirtieron en la Igreja Batista do Caminho das Árvores bajo el liderazgo del Obispo Átila Brandão. Tres años después, en 1997, la pareja se mudó a los Estados Unidos, donde continuaron fortaleciendo su caminar espiritual en la Shady Grove Brazilian Church, pastoreada por Julio Pinto, en Garland, Texas. En busca de una formación teológica más profunda, ambos asistieron a Christ for the Nations, donde fueron consagrados como pastores.",
-            "En enero de 2004, la pareja fundó la Comunidad Cristiana Brasileña en Lewisville, Texas, con el propósito de crear una comunidad de fe sólida y acogedora. El Pastor Carlos siempre ha tenido un fuerte compromiso con las misiones y, a lo largo de los años, ha realizado viajes misioneros a Cuba y Guinea-Bissau, llevando el evangelio a nuevas fronteras. Su esposa, Tereza, también se dedicó a las misiones, visitando Recife, Brasil, y Cuba.",
-            "Hoy, el Pastor Carlos lidera la Comunidad Cristiana Brasileña en Lewisville con el apoyo de la Pastora Kesia Silva como co-pastora y los Pastores auxiliares Ocidi y Maria. Juntos, continúan la obra de amor y servicio a la comunidad, compartiendo el evangelio y manteniendo viva la llama de la fe."
+            "Carlos Oliveira nació en 1962 en Salvador, Bahía, y ha vivido una notable trayectoria de fe. En 1994, él y su esposa, Tereza Cristina, encontraron a Cristo en la Iglesia Bautista del Camino de los Árboles. En 1997, se mudaron a los Estados Unidos, donde fortalecieron su camino espiritual en la Iglesia Brasileña Shady Grove en Texas. Ambos asistieron al instituto Christ for the Nations, donde fueron consagrados como pastores.",
+            "En 2004, fundaron la Comunidad Cristiana Brasileña en Lewisville, Texas, con la misión de construir una comunidad de fe acogedora. El Pastor Carlos tiene un fuerte compromiso con las misiones, realizando viajes a Cuba y Guinea-Bisáu, mientras que Tereza visitó Recife y Cuba. Actualmente, lidera la iglesia con el apoyo de la Pastora Kesia Silva y los pastores asistentes Ocidi y María, dedicados a compartir el evangelio y servir a la comunidad."
         ],
         imageAlt: "Pastor Carlos Jorge"
     }
