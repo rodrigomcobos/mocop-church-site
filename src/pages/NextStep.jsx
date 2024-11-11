@@ -62,7 +62,7 @@ const NextStep = () => {
                 </section>
             </header>
             <NextStepContent />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

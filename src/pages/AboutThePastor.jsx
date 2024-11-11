@@ -65,7 +65,7 @@ const AboutThePastor = () => {
 
             <AboutThePastorContent />
             <PastorTimeline />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

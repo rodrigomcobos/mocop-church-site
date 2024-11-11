@@ -66,7 +66,7 @@ const WhatDoWeBelieve = () => {
             <AboutContent />
             <CoreValues />
             <Team />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

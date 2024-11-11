@@ -64,7 +64,7 @@ const Giving = () => {
 
             <GivingSection />
             <GivingFaq />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

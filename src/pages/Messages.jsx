@@ -62,7 +62,7 @@ const Messages = () => {
             </header>
 
             <MessagesContent />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

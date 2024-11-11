@@ -63,7 +63,7 @@ const About = () => {
             </header>
 
             <AboutChurchContent />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

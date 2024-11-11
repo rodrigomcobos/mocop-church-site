@@ -62,7 +62,7 @@ const Ministry = () => {
             </header>
 
             <Ministries />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

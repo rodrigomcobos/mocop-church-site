@@ -32,7 +32,7 @@ const translations = {
             },
             bringKids: {
                 title: "Traga as Crianças",
-                content: "A salinha das crianças na Comunidade Cristã Brasileira em Lewisville está disponível para crianças de 6 semanas até o 5º ano. Nosso objetivo é fazer uma parceria com você para ajudar seus filhos a descobrir Deus em um ambiente seguro e amoroso. Oramos para que cada criança aceite Jesus como seu Senhor e Salvador e comece a desenvolver um relacionamento profundo com Ele. A salinha das crianças oferece ambientes acolhedores e apropriados para cada idade, brincadeiras interativas e ensinamentos criativos de princípios bíblicos. A salinha das crianças está disponível durante cada experiência de adoração, para que você possa desfrutar de um ótimo culto sabendo que seu filho está sendo amado e nutrido!"
+                content: "A salinha das crianças na Comunidade Cristã Brasileira em Lewisville está disponível para crianças. Nosso objetivo é fazer uma parceria com você para ajudar seus filhos a descobrir Deus em um ambiente seguro e amoroso. Oramos para que cada criança aceite Jesus como seu Senhor e Salvador e comece a desenvolver um relacionamento profundo com Ele. A salinha das crianças está disponível durante cada experiência de adoração, para que você possa desfrutar de um ótimo culto sabendo que seu filho está sendo amado e nutrido!"
             }
         },
         button: "Tome o Próximo Passo",
@@ -59,7 +59,7 @@ const translations = {
             },
             bringKids: {
                 title: "Bring the Kids",
-                content: "The children's room at the Brazilian Christian Community in Lewisville is available for children from 6 weeks to 5th grade. Our goal is to partner with you to help your children discover God in a safe and loving environment. We pray that each child accepts Jesus as their Lord and Savior and begins to develop a deep relationship with Him. The children's room offers welcoming and age-appropriate environments, interactive games, and creative teaching of biblical principles. The children's room is available during each worship experience, so you can enjoy a great service knowing your child is being loved and nurtured!"
+                content: "The children's room at the Brazilian Christian Community in Lewisville is available for children. Our goal is to partner with you to help your children discover God in a safe and loving environment. We pray that each child accepts Jesus as their Lord and Savior and begins to develop a deep relationship with Him. The children's room is available during each worship experience, so you can enjoy a great service knowing your child is being loved and nurtured!"
             }
         },
         button: "Take the Next Step",
@@ -86,7 +86,7 @@ const translations = {
             },
             bringKids: {
                 title: "Trae a los Niños",
-                content: "La sala de niños en la Comunidad Cristiana Brasileña en Lewisville está disponible para niños desde 6 semanas hasta 5º grado. Nuestro objetivo es asociarnos contigo para ayudar a tus hijos a descubrir a Dios en un ambiente seguro y amoroso. Oramos para que cada niño acepte a Jesús como su Señor y Salvador y comience a desarrollar una relación profunda con Él. La sala de niños ofrece ambientes acogedores y apropiados para cada edad, juegos interactivos y enseñanza creativa de principios bíblicos. La sala de niños está disponible durante cada experiencia de adoración, ¡para que puedas disfrutar de un gran servicio sabiendo que tu hijo está siendo amado y nutrido!"
+                content: "La sala de niños en la Comunidad Cristiana Brasileña en Lewisville está disponible para niños. Nuestro objetivo es asociarnos contigo para ayudar a tus hijos a descubrir a Dios en un ambiente seguro y amoroso. Oramos para que cada niño acepte a Jesús como su Señor y Salvador y comience a desarrollar una relación profunda con Él. La sala de niños está disponible durante cada experiencia de adoración, ¡para que puedas disfrutar de un gran servicio sabiendo que tu hijo está siendo amado y nutrido!"
             }
         },
         button: "Da el Siguiente Paso",
@@ -191,7 +191,7 @@ const PlanYourVisit = () => {
                 </motion.div>
             </motion.div>
             < WeekEvents />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };

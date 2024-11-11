@@ -62,7 +62,7 @@ const Contact = () => {
             </header>
 
             <ContactForm />
-            <Subscribe />
+            {/* <Subscribe /> */}
         </div>
     );
 };
