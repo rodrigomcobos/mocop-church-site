@@ -127,7 +127,7 @@ const GivingFaq = () => {
             animate="visible"
             variants={containerVariants}
         >
-            <section className="space-y-4 max-w-7xl mx-auto px-6">
+            <section className="space-y-4 max-w-7xl mx-auto px-6 mb-14 sm:mb-24">
                 <motion.h2
                     className="text-3xl font-extrabold text-yellowBtnHover mb-8"
                     variants={itemVariants}
