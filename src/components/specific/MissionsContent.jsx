@@ -104,7 +104,7 @@ const translations = {
             {
                 name: "AMIS Pá Bissau",
                 location: "Guiné-Bissau, África",
-                description: "Nossa missão na Guiné-Bissau trabalha para transformar vidas através do evangelho, educação e assistência social. Em parceria com organizações locais, desenvolvemos projetos que impactam comunidades e formam novos líderes, levando esperança e transformação para a região.",
+                description: "A missão na Guiné-Bissau trabalha para transformar vidas através do evangelho, educação e assistência social. Em parceria com organizações locais, desenvolvemos projetos que impactam comunidades e formam novos líderes, levando esperança e transformação para a região.",
                 instagram: "@amispabissau",
                 instagramLink: "https://www.instagram.com/amispabissau/",
                 imageAltPrefix: "AMIS Pá Bissau - Imagem"
@@ -135,7 +135,7 @@ const translations = {
             {
                 name: "AMIS Pá Bissau",
                 location: "Guinea-Bissau, Africa",
-                description: "Our mission in Guinea-Bissau works to transform lives through the gospel, education, and social assistance. In partnership with local organizations, we develop projects that impact communities and form new leaders, bringing hope and transformation to the region.",
+                description: "The mission in Guinea-Bissau works to transform lives through the gospel, education, and social assistance. In partnership with local organizations, we develop projects that impact communities and form new leaders, bringing hope and transformation to the region.",
                 instagram: "@amispabissau",
                 instagramLink: "https://www.instagram.com/amispabissau/",
                 imageAltPrefix: "AMIS Pá Bissau - Image"
@@ -166,7 +166,7 @@ const translations = {
             {
                 name: "AMIS Pá Bissau",
                 location: "Guinea-Bisáu, África",
-                description: "Nuestra misión en Guinea-Bisáu trabaja para transformar vidas a través del evangelio, la educación y la asistencia social. En colaboración con organizaciones locales, desarrollamos proyectos que impactan comunidades y forman nuevos líderes, llevando esperanza y transformación a la región.",
+                description: "La misión en Guinea-Bisáu trabaja para transformar vidas a través del evangelio, la educación y la asistencia social. En colaboración con organizaciones locales, desarrollamos proyectos que impactan comunidades y forman nuevos líderes, llevando esperanza y transformación a la región.",
                 instagram: "@amispabissau",
                 instagramLink: "https://www.instagram.com/amispabissau/",
                 imageAltPrefix: "AMIS Pá Bissau - Imagen"

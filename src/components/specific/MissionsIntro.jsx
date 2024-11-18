@@ -14,7 +14,7 @@ const translations = {
         overlaySubtitle: "Através do amor e da palavra de Deus",
         mainTitle: "Nosso Compromisso com as Missões",
         content: {
-            p1: "Na Comunidade Cristã Brasileira, acreditamos profundamente no poder transformador do evangelho, que tem a capacidade de mudar corações e renovar vidas. Nosso compromisso vai além das fronteiras da nossa igreja local; estamos empenhados em apoiar missões que levam a palavra de Deus a diversos lugares, atingindo comunidades carentes, tanto espiritualmente quanto materialmente.",
+            p1: "Na Comunidade Cristã Brasileira em Lewisville, acreditamos profundamente no poder transformador do evangelho, que tem a capacidade de mudar corações e renovar vidas. Nosso compromisso vai além das fronteiras da nossa igreja local; estamos empenhados em apoiar missões que levam a palavra de Deus a diversos lugares, atingindo comunidades carentes, tanto espiritualmente quanto materialmente.",
             p2: "Com grande alegria, colaboramos com missionários dedicados, que atuam em regiões desafiadoras, compartilhando o amor de Cristo e oferecendo auxílio prático a pessoas em necessidade. Abaixo, você pode conhecer mais sobre as missões que temos o privilégio de apoiar e acompanhar de perto."
         },
         button: "Contactar para Apoiar",
@@ -25,7 +25,7 @@ const translations = {
         overlaySubtitle: "Through God's love and word",
         mainTitle: "Our Commitment to Missions",
         content: {
-            p1: "At the Brazilian Christian Community, we deeply believe in the transforming power of the gospel, which has the ability to change hearts and renew lives. Our commitment extends beyond the boundaries of our local church; we are dedicated to supporting missions that bring God's word to various places, reaching communities in need, both spiritually and materially.",
+            p1: "At the Brazilian Christian Community in Lewisville, we deeply believe in the transforming power of the gospel, which has the ability to change hearts and renew lives. Our commitment extends beyond the boundaries of our local church; we are dedicated to supporting missions that bring God's word to various places, reaching communities in need, both spiritually and materially.",
             p2: "With great joy, we collaborate with dedicated missionaries who work in challenging regions, sharing Christ's love and offering practical help to people in need. Below, you can learn more about the missions we have the privilege of supporting and following closely."
         },
         button: "Contact to Support",
@@ -36,7 +36,7 @@ const translations = {
         overlaySubtitle: "A través del amor y la palabra de Dios",
         mainTitle: "Nuestro Compromiso con las Misiones",
         content: {
-            p1: "En la Comunidad Cristiana Brasileña, creemos profundamente en el poder transformador del evangelio, que tiene la capacidad de cambiar corazones y renovar vidas. Nuestro compromiso va más allá de las fronteras de nuestra iglesia local; estamos dedicados a apoyar misiones que llevan la palabra de Dios a diversos lugares, alcanzando comunidades necesitadas, tanto espiritual como materialmente.",
+            p1: "En la Comunidad Cristiana Brasileña en Lewisville, creemos profundamente en el poder transformador del evangelio, que tiene la capacidad de cambiar corazones y renovar vidas. Nuestro compromiso va más allá de las fronteras de nuestra iglesia local; estamos dedicados a apoyar misiones que llevan la palabra de Dios a diversos lugares, alcanzando comunidades necesitadas, tanto espiritual como materialmente.",
             p2: "Con gran alegría, colaboramos con misioneros dedicados que trabajan en regiones desafiantes, compartiendo el amor de Cristo y ofreciendo ayuda práctica a personas necesitadas. A continuación, puedes conocer más sobre las misiones que tenemos el privilegio de apoyar y seguir de cerca."
         },
         button: "Contactar para Apoyar",
