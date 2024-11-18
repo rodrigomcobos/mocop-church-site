@@ -34,7 +34,7 @@ const translations = {
                 {
                     title: "Contribua pelo Zelle",
                     content: "Contribua de forma simples e segura usando o Zelle. Apoie nossa comunidade e ajude a expandir o reino de Deus com facilidade.",
-                    linkText: "Zelle"
+                    linkText: "Zelle @ (469) 810-5158"
                 },
                 {
                     title: "Durante o Culto",
@@ -62,7 +62,7 @@ const translations = {
                 {
                     title: "Give through Zelle",
                     content: "Contribute simply and securely using Zelle. Support our community and help expand God's kingdom with ease.",
-                    linkText: "Zelle"
+                    linkText: "Zelle @ (469) 810-5158"
                 },
                 {
                     title: "During Service",
@@ -90,7 +90,7 @@ const translations = {
                 {
                     title: "Contribuye por Zelle",
                     content: "Contribuye de forma simple y segura usando Zelle. Apoya nuestra comunidad y ayuda a expandir el reino de Dios con facilidad.",
-                    linkText: "Zelle"
+                    linkText: "Zelle @ (469) 810-5158"
                 },
                 {
                     title: "Durante el Servicio",
@@ -139,7 +139,7 @@ const GivingSection = () => {
     const cardBackgrounds = ["bg-blue-300", "bg-purple-300", "bg-stone-300"];
     const cardLinks = [
         "https://venmo.com/u/MOCOP-church",
-        "https://zelle.com/",
+        "https://enroll.zellepay.com/register",
         null
     ];
 
