@@ -1,6 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
+import AboutChurchImg1 from '../../assets/images/aboutchurchimg1.png';
+import AboutChurchImg2 from '../../assets/images/aboutchurchimg2.png';
+import AboutChurchImg3 from '../../assets/images/aboutchurchimg3.png';
+import AboutChurchImg4 from '../../assets/images/aboutchurchimg4.png';
 
 const translations = {
     pt: {
@@ -69,13 +73,13 @@ const AboutChurchContent = () => {
                 >
                     <div className="md:w-1/2">
                         <img
-                            src="/api/placeholder/600/400"
+                            src={AboutChurchImg1}
                             alt="MOCOP Church History"
-                            className="w-full h-auto rounded-lg shadow-lg"
+                            className="w-full h-auto"
                         />
                     </div>
                     <div className="md:w-1/2">
-                        <p className="text-gray-700 text-lg leading-relaxed">
+                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                             {formatText(texts.section1.text)}
                         </p>
                     </div>
@@ -90,13 +94,13 @@ const AboutChurchContent = () => {
                 >
                     <div className="md:w-1/2">
                         <img
-                            src="/api/placeholder/600/400"
+                            src={AboutChurchImg2}
                             alt="MOCOP Church Growth"
-                            className="w-full h-auto rounded-lg shadow-lg"
+                            className="w-full h-auto"
                         />
                     </div>
                     <div className="md:w-1/2">
-                        <p className="text-gray-700 text-lg leading-relaxed">
+                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                             {formatText(texts.section2.text)}
                         </p>
                     </div>
@@ -111,13 +115,13 @@ const AboutChurchContent = () => {
                 >
                     <div className="md:w-1/2">
                         <img
-                            src="/api/placeholder/600/400"
+                            src={AboutChurchImg3}
                             alt="MOCOP Church Community"
-                            className="w-full h-auto rounded-lg shadow-lg"
+                            className="w-full h-auto"
                         />
                     </div>
                     <div className="md:w-1/2">
-                        <p className="text-gray-700 text-lg leading-relaxed">
+                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                             {formatText(texts.section3.text)}
                         </p>
                     </div>
@@ -132,13 +136,13 @@ const AboutChurchContent = () => {
                 >
                     <div className="md:w-1/2">
                         <img
-                            src="/api/placeholder/600/400"
+                            src={AboutChurchImg4}
                             alt="MOCOP Church Mission"
-                            className="w-full h-auto rounded-lg shadow-lg"
+                            className="w-full h-auto"
                         />
                     </div>
                     <div className="md:w-1/2">
-                        <p className="text-gray-700 text-lg leading-relaxed">
+                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                             {formatText(texts.section4.text)}
                         </p>
                     </div>
