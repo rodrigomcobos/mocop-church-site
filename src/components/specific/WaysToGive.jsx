@@ -8,7 +8,7 @@ import { useLanguage } from '../../context/LanguageContext';
 // Import images
 import StripImgJPG from '../../assets/images/churchimg38.jpg';
 import StripImgWebP from '../../assets/images/churchimg38.webp';
-import Donate from '../../assets/images/donate.svg';
+import TitleBackground from '../../assets/images/tithebackground.svg';
 
 // Translations object
 const translations = {
@@ -95,7 +95,7 @@ const translations = {
 const WaysToGive = () => {
     const { language } = useLanguage();
     const texts = translations[language];
-    const MotionLink = motion.create(Link);
+    const MotionLink = motion(Link); // Updated to use motion() instead of motion.create()
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -117,105 +117,112 @@ const WaysToGive = () => {
     };
 
     return (
-        <motion.div
-            className="bg-bottomBar px-6 md:px-8 py-16 md:py-24 font-[sans-serif] relative"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-        >
-            <div className="max-w-7xl mx-auto grid md:grid-cols-2 justify-center items-center gap-12 relative">
+        <div className="relative bg-bottomBar overflow-hidden">
+            {/* Background Image Container */}
+            <div className="absolute inset-0 pointer-events-none">
                 <img
-                    src={Donate}
-                    className="absolute right-80 top-[65%] transform -translate-y-1/2 opacity-10"
-                    alt={texts.imageAlt}
+                    src={TitleBackground}
+                    className="absolute left-20 top-[60%] transform -translate-y-1/2 opacity-10 w-[800px] md:w-[800px]"
+                    alt=""
+                    aria-hidden="true"
                     loading="lazy"
                 />
+            </div>
 
-                <motion.div className="text-center md:text-left relative z-10" variants={containerVariants}>
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-white text-5xl md:text-6xl mb-2 font-seaweed"
-                    >
-                        {texts.title}
-                    </motion.h2>
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-sm md:text-md text-white mb-10"
-                    >
-                        "{texts.quote}"
-                        <span className='font-thin italic'>{texts.reference}</span>
-                    </motion.p>
+            {/* Main Content */}
+            <motion.div
+                className="px-6 md:px-8 py-16 md:py-24 font-[sans-serif] relative"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={containerVariants}
+            >
+                <div className="max-w-7xl mx-auto grid md:grid-cols-2 justify-center items-center gap-12 relative">
+                    <motion.div className="text-center md:text-left relative z-10" variants={containerVariants}>
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-white text-5xl md:text-6xl mb-2 font-seaweed"
+                        >
+                            {texts.title}
+                        </motion.h2>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-sm md:text-md text-white mb-10"
+                        >
+                            "{texts.quote}"
+                            <span className='font-thin italic'>{texts.reference}</span>
+                        </motion.p>
 
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-lg md:text-2xl font-extrabold text-white mb-1"
-                    >
-                        {texts.sections.tithe.title}
-                    </motion.h2>
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-sm md:text-md text-white mb-5"
-                    >
-                        {texts.sections.tithe.description}
-                    </motion.p>
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-lg md:text-2xl font-extrabold text-white mb-1"
+                        >
+                            {texts.sections.tithe.title}
+                        </motion.h2>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-sm md:text-md text-white mb-5"
+                        >
+                            {texts.sections.tithe.description}
+                        </motion.p>
 
-                    <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
+                        <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
 
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-lg md:text-2xl font-extrabold text-white mb-1"
-                    >
-                        {texts.sections.volunteer.title}
-                    </motion.h2>
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-sm md:text-md text-white mb-5"
-                    >
-                        {texts.sections.volunteer.description}
-                    </motion.p>
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-lg md:text-2xl font-extrabold text-white mb-1"
+                        >
+                            {texts.sections.volunteer.title}
+                        </motion.h2>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-sm md:text-md text-white mb-5"
+                        >
+                            {texts.sections.volunteer.description}
+                        </motion.p>
 
-                    <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
+                        <motion.hr variants={itemVariants} className='border-t-2 border-white my-6 md:my-8' />
 
-                    <motion.h2
-                        variants={itemVariants}
-                        className="text-lg md:text-2xl font-extrabold text-white mb-1"
-                    >
-                        {texts.sections.missionary.title}
-                    </motion.h2>
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-sm md:text-md text-white mb-5"
-                    >
-                        {texts.sections.missionary.description}
-                    </motion.p>
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-lg md:text-2xl font-extrabold text-white mb-1"
+                        >
+                            {texts.sections.missionary.title}
+                        </motion.h2>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-sm md:text-md text-white mb-5"
+                        >
+                            {texts.sections.missionary.description}
+                        </motion.p>
 
-                    <MotionLink
-                        to="/giving"
-                        className="btn mt-8"
+                        <MotionLink
+                            to="/giving"
+                            className="btn mt-8"
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {texts.button}
+                        </MotionLink>
+                    </motion.div>
+
+                    <motion.div
+                        className="hidden md:block text-center"
                         variants={itemVariants}
                         whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
                     >
-                        {texts.button}
-                    </MotionLink>
-                </motion.div>
-
-                <motion.div
-                    className="hidden md:block text-center overflow-hidden"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                >
-                    <Image
-                        src={StripImgJPG}
-                        webp={StripImgWebP}
-                        alt={texts.imageAlt}
-                        className="max-w-sm md:max-w-md mx-auto rounded-lg shadow-md"
-                        loading="lazy"
-                    />
-                </motion.div>
-            </div>
-        </motion.div>
+                        <Image
+                            src={StripImgJPG}
+                            webp={StripImgWebP}
+                            alt={texts.imageAlt}
+                            className="max-w-sm md:max-w-md mx-auto rounded-lg shadow-md"
+                            loading="lazy"
+                        />
+                    </motion.div>
+                </div>
+            </motion.div>
+        </div>
     );
 };
 
