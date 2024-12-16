@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { NavLink } from 'react-router-dom'
-import { FaTimes, FaBars, FaPhoneAlt, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa'
-import { motion } from 'framer-motion'
-import LogoWhite from '../../assets/logos/logowhite.png'
-import LogoColor from '../../assets/logos/logocolor.png'
-import { useLanguage } from '../../context/LanguageContext'
-// Import flag-icons CSS
-import 'flag-icons/css/flag-icons.min.css'
+import React, { useState, useEffect, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
+import { FaTimes, FaBars, FaPhoneAlt, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import LogoWhite from '../../assets/logos/logowhite.png';
+import LogoColor from '../../assets/logos/logocolor.png';
+import { useLanguage } from '../../context/LanguageContext';
+import 'flag-icons/css/flag-icons.min.css';
 
 // Navbar translations
 const navTranslations = {
@@ -60,6 +59,44 @@ const languages = [
     { code: 'en', name: 'English', flag: 'us' },    // USA flag
     { code: 'es', name: 'Español', flag: 'es' }     // Spain flag
 ];
+
+// Scroll direction hook to hide the navbar
+const useScrollDirection = () => {
+    const [scrollDirection, setScrollDirection] = useState("up");
+    const [prevOffset, setPrevOffset] = useState(0);
+    const [isAtTop, setIsAtTop] = useState(true);
+
+    useEffect(() => {
+        const threshold = 100;
+        let ticking = false;
+
+        const updateScrollDirection = () => {
+            const scrollY = window.scrollY;
+            setIsAtTop(scrollY < 50);
+
+            if (Math.abs(scrollY - prevOffset) < threshold) {
+                ticking = false;
+                return;
+            }
+
+            setScrollDirection(scrollY > prevOffset ? "down" : "up");
+            setPrevOffset(scrollY > 0 ? scrollY : 0);
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateScrollDirection);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+    }, [prevOffset]);
+
+    return { scrollDirection, isAtTop };
+};
 
 // Floating Action Buttons Component
 const FloatingActionButtons = ({ address }) => {
@@ -150,14 +187,16 @@ const Navbar = () => {
     const dropdownRef = useRef(null);
     const { language } = useLanguage();
     const texts = navTranslations[language];
+    const { scrollDirection, isAtTop } = useScrollDirection();
+
+    const navbarVariants = {
+        visible: { y: 0, transition: { duration: 0.3 } },
+        hidden: { y: '-100%', transition: { duration: 0.3 } }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
+            setIsScrolled(window.scrollY > 50);
         };
 
         const handleClickOutside = (event) => {
@@ -202,110 +241,118 @@ const Navbar = () => {
         { path: '/contact', name: texts.contact },
     ];
 
+    const shouldShowNavbar = scrollDirection === "up" || isAtTop || isMenuOpen;
+
     return (
         <>
-            <header className={`fixed top-0 left-0 w-full transition-colors duration-300 z-50 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
-                {/* Top Bar Section - Modified to show only language selector on mobile */}
-                <section className='py-2 bg-bottomBar text-white px-4'>
-                    <div className='max-w-7xl mx-auto flex items-center justify-between'>
-                        <LanguageSelector />
-                        {/* Contact info - visible only on desktop */}
-                        <p className='text-sm items-center hidden sm:flex'>
-                            <FaMapMarkerAlt className="mr-1" />
-                            <a href="https://maps.google.com/maps?q=2345+S+State+Hwy+121,+Lewisville,+TX+75067"
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                {texts.address}
-                            </a>
-                            <span className="mx-2 font-bold flex items-center">
-                                <FaPhoneAlt className="ml-2 mr-1" />
-                            </span>
-                            <a href="tel:+12146776646">
-                                (214) 677-6646
-                            </a>
-                        </p>
-                    </div>
-                </section>
+            <AnimatePresence>
+                <motion.header
+                    className={`fixed top-0 left-0 w-full transition-colors duration-300 z-50 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}
+                    variants={navbarVariants}
+                    animate={shouldShowNavbar ? 'visible' : 'hidden'}
+                    initial="visible"
+                >
+                    {/* Top Bar Section */}
+                    <section className='py-2 bg-bottomBar text-white px-4'>
+                        <div className='max-w-7xl mx-auto flex items-center justify-between'>
+                            <LanguageSelector />
+                            {/* Contact info - visible only on desktop */}
+                            <p className='text-sm items-center hidden sm:flex'>
+                                <FaMapMarkerAlt className="mr-1" />
+                                <a href="https://maps.google.com/maps?q=2345+S+State+Hwy+121,+Lewisville,+TX+75067"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    {texts.address}
+                                </a>
+                                <span className="mx-2 font-bold flex items-center">
+                                    <FaPhoneAlt className="ml-2 mr-1" />
+                                </span>
+                                <a href="tel:+12146776646">
+                                    (214) 677-6646
+                                </a>
+                            </p>
+                        </div>
+                    </section>
 
-                {/* Main Navbar Section */}
-                <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-4 min-h-[70px]">
-                    {/* Logo */}
-                    <NavLink to="/" className="text-2xl font-bold transition-colors duration-300" aria-label="Home">
-                        <img
-                            src={isScrolled ? LogoColor : LogoWhite}
-                            alt="MOCOP Church Logo"
-                            className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8 sm:h-8' : 'h-10 sm:h-10'}`}
-                        />
-                    </NavLink>
+                    {/* Main Navbar Section */}
+                    <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-4 min-h-[70px]">
+                        {/* Logo */}
+                        <NavLink to="/" className="text-2xl font-bold transition-colors duration-300" aria-label="Home">
+                            <img
+                                src={isScrolled ? LogoColor : LogoWhite}
+                                alt="MOCOP Church Logo"
+                                className={`w-auto transition-all duration-300 ${isScrolled ? 'h-8 sm:h-8' : 'h-10 sm:h-10'}`}
+                            />
+                        </NavLink>
 
-                    {/* Mobile Menu Toggle */}
-                    <button
-                        onClick={toggleMenu}
-                        className="lg:hidden text-2xl focus:outline-none rounded"
-                        aria-label="Toggle navigation menu"
-                        aria-expanded={isMenuOpen}
-                    >
-                        {isMenuOpen ? (
-                            <FaTimes className="text-white" />
-                        ) : (
-                            <FaBars className={`${isScrolled ? 'text-black' : 'text-white'}`} />
-                        )}
-                    </button>
+                        {/* Mobile Menu Toggle */}
+                        <button
+                            onClick={toggleMenu}
+                            className="lg:hidden text-2xl focus:outline-none rounded"
+                            aria-label="Toggle navigation menu"
+                            aria-expanded={isMenuOpen}
+                        >
+                            {isMenuOpen ? (
+                                <FaTimes className="text-white" />
+                            ) : (
+                                <FaBars className={`${isScrolled ? 'text-black' : 'text-white'}`} />
+                            )}
+                        </button>
 
-                    {/* Navigation Links */}
-                    <nav className={`${isMenuOpen ? 'block' : 'hidden'} lg:block w-full lg:w-auto`}>
-                        <ul className="flex flex-col lg:flex-row lg:space-x-6 mt-4 lg:mt-0 bg-white lg:bg-transparent p-4 lg:p-0 lg:space-y-0 space-y-2">
-                            {navItems.map((item, index) => (
-                                <li key={index} className="relative">
-                                    {item.dropdown ? (
-                                        <div ref={dropdownRef}>
-                                            <button
-                                                onClick={toggleAboutDropdown}
-                                                className={`flex items-center justify-between w-full lg:w-auto px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isScrolled || isMenuOpen ? 'text-black' : 'text-white'
-                                                    }`}
+                        {/* Navigation Links */}
+                        <nav className={`${isMenuOpen ? 'block' : 'hidden'} lg:block w-full lg:w-auto`}>
+                            <ul className="flex flex-col lg:flex-row lg:space-x-6 mt-4 lg:mt-0 bg-white lg:bg-transparent p-4 lg:p-0 lg:space-y-0 space-y-2">
+                                {navItems.map((item, index) => (
+                                    <li key={index} className="relative">
+                                        {item.dropdown ? (
+                                            <div ref={dropdownRef}>
+                                                <button
+                                                    onClick={toggleAboutDropdown}
+                                                    className={`flex items-center justify-between w-full lg:w-auto px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isScrolled || isMenuOpen ? 'text-black' : 'text-white'}`}
+                                                >
+                                                    {item.name}
+                                                    <FaChevronDown className={`ml-1 transform transition-transform duration-200 ${isAboutDropdownOpen ? 'rotate-180' : ''}`} />
+                                                </button>
+                                                <ul className={`lg:absolute lg:left-0 lg:mt-4 space-y-2 lg:w-48 bg-white lg:shadow-lg ${isAboutDropdownOpen ? 'block' : 'hidden'}`}>
+                                                    {item.dropdown.map((subItem, subIndex) => (
+                                                        <li key={subIndex}>
+                                                            <NavLink
+                                                                to={subItem.path}
+                                                                className="block px-4 py-4 text-sm text-gray-700 hover:bg-bottomBar hover:text-white"
+                                                                onClick={() => {
+                                                                    setIsMenuOpen(false);
+                                                                    setIsAboutDropdownOpen(false);
+                                                                }}
+                                                            >
+                                                                {subItem.name}
+                                                            </NavLink>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ) : (
+                                            <NavLink
+                                                to={item.path}
+                                                className={({ isActive }) =>
+                                                    `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
+                                                        ? 'bg-bottomBar text-white'
+                                                        : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
+                                                    }`
+                                                }
+                                                onClick={() => setIsMenuOpen(false)}
                                             >
                                                 {item.name}
-                                                <FaChevronDown className={`ml-1 transform transition-transform duration-200 ${isAboutDropdownOpen ? 'rotate-180' : ''}`} />
-                                            </button>
-                                            <ul className={`lg:absolute lg:left-0 lg:mt-4 space-y-2 lg:w-48 bg-white lg:shadow-lg ${isAboutDropdownOpen ? 'block' : 'hidden'}`}>
-                                                {item.dropdown.map((subItem, subIndex) => (
-                                                    <li key={subIndex}>
-                                                        <NavLink
-                                                            to={subItem.path}
-                                                            className="block px-4 py-4 text-sm text-gray-700 hover:bg-bottomBar hover:text-white"
-                                                            onClick={() => {
-                                                                setIsMenuOpen(false);
-                                                                setIsAboutDropdownOpen(false);
-                                                            }}
-                                                        >
-                                                            {subItem.name}
-                                                        </NavLink>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    ) : (
-                                        <NavLink
-                                            to={item.path}
-                                            className={({ isActive }) =>
-                                                `block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${isActive
-                                                    ? 'bg-bottomBar text-white'
-                                                    : isScrolled || isMenuOpen ? 'text-black' : 'text-white'
-                                                }`
-                                            }
-                                            onClick={() => setIsMenuOpen(false)}
-                                        >
-                                            {item.name}
-                                        </NavLink>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
-                </div>
-            </header>
+                                            </NavLink>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    </div>
+                </motion.header>
+            </AnimatePresence>
 
-            {/* Floating Action Buttons - Show only on mobile */}
+            {/* Floating Action Buttons */}
             <FloatingActionButtons address={texts.address} />
         </>
     );
