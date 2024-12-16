@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'react-image-webp';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 import AboutChurchImg1 from '../../assets/images/aboutchurchimg1.png';
@@ -6,10 +7,15 @@ import AboutChurchImg2 from '../../assets/images/aboutchurchimg2.png';
 import AboutChurchImg3 from '../../assets/images/aboutchurchimg3.png';
 import AboutChurchImg4 from '../../assets/images/aboutchurchimg4.png';
 
+import AboutChurchImg1WebP from '../../assets/images/aboutchurchimg1.webp';
+import AboutChurchImg2WebP from '../../assets/images/aboutchurchimg2.webp';
+import AboutChurchImg3WebP from '../../assets/images/aboutchurchimg3.webp';
+import AboutChurchImg4WebP from '../../assets/images/aboutchurchimg4.webp';
+
 const translations = {
     pt: {
         section1: {
-            text: "A **MOCOP Church**, localizada em Lewisville, Texas, nasceu em 2005 como um sonho de Deus que foi tomando forma através do trabalho fiel e dedicado de seus fundadores. Tudo começou com uma multiplicação de células da igreja da qual éramos membros na época. Reuníamos pessoas em casas da comunidade para compartilhar a Palavra de Deus e criar conexões que transformavam vidas. Em pouco tempo, essas reuniões cresceram significativamente, alcançando cerca de 80 pessoas, que participavam ativamente dos cultos realizados em nosso apartamento."
+            text: "A **MOCOP Church**, localizada em Lewisville, Texas, nasceu em 2004 como um sonho de Deus que foi tomando forma através do trabalho fiel e dedicado de seus fundadores. Tudo começou com uma multiplicação de células da igreja da qual éramos membros na época. Reuníamos pessoas em casas da comunidade para compartilhar a Palavra de Deus e criar conexões que transformavam vidas. Em pouco tempo, essas reuniões cresceram significativamente, alcançando cerca de 80 pessoas, que participavam ativamente dos cultos realizados em nosso apartamento."
         },
         section2: {
             text: "Com o crescimento contínuo, sentimos o chamado de Deus para dar um passo de fé ainda maior. Após a ordenação do pastor **Carlos Oliveira** pelo Instituto Cristo para as Nações (CFNI) em Dallas, Texas, e pela igreja local, começamos a buscar um espaço físico onde pudéssemos estabelecer a igreja oficialmente. Esse processo foi marcado por muita oração, desafios e também pela graça de Deus, que nos guiou em cada decisão. A jornada foi fortalecida pela parceria e liderança da co-pastora **Kesia Silva**, cuja dedicação tem sido essencial no desenvolvimento espiritual e administrativo da nossa igreja."
@@ -23,7 +29,7 @@ const translations = {
     },
     en: {
         section1: {
-            text: "MOCOP Church, located in Lewisville, Texas, was born in 2005 as God's dream that took shape through the faithful and dedicated work of its founders. It all started with cell multiplication from the church where we were members at the time. We gathered people in community homes to share God's Word and create connections that transformed lives. In a short time, these meetings grew significantly, reaching about 80 people who actively participated in services held in our apartment."
+            text: "MOCOP Church, located in Lewisville, Texas, was born in 2004 as God's dream that took shape through the faithful and dedicated work of its founders. It all started with cell multiplication from the church where we were members at the time. We gathered people in community homes to share God's Word and create connections that transformed lives. In a short time, these meetings grew significantly, reaching about 80 people who actively participated in services held in our apartment."
         },
         section2: {
             text: "With continuous growth, we felt God's call to take an even greater step of faith. After Pastor Carlos Oliveira's ordination by Christ For The Nations Institute (CFNI) in Dallas, Texas, and the local church, we began searching for a physical space where we could officially establish the church. This process was marked by much prayer, challenges, and also by God's grace, which guided us in every decision. The journey was strengthened by the partnership and leadership of Co-Pastor Kesia Silva, whose dedication has been essential in our church's spiritual and administrative development."
@@ -37,7 +43,7 @@ const translations = {
     },
     es: {
         section1: {
-            text: "La Iglesia MOCOP, ubicada en Lewisville, Texas, nació en 2005 como un sueño de Dios que tomó forma a través del trabajo fiel y dedicado de sus fundadores. Todo comenzó con la multiplicación de células de la iglesia donde éramos miembros en ese momento. Reuníamos a personas en hogares de la comunidad para compartir la Palabra de Dios y crear conexiones que transformaban vidas. En poco tiempo, estas reuniones crecieron significativamente, alcanzando a cerca de 80 personas que participaban activamente en los servicios realizados en nuestro apartamento."
+            text: "La Iglesia MOCOP, ubicada en Lewisville, Texas, nació en 2004 como un sueño de Dios que tomó forma a través del trabajo fiel y dedicado de sus fundadores. Todo comenzó con la multiplicación de células de la iglesia donde éramos miembros en ese momento. Reuníamos a personas en hogares de la comunidad para compartir la Palabra de Dios y crear conexiones que transformaban vidas. En poco tiempo, estas reuniones crecieron significativamente, alcanzando a cerca de 80 personas que participaban activamente en los servicios realizados en nuestro apartamento."
         },
         section2: {
             text: "Con el crecimiento continuo, sentimos el llamado de Dios para dar un paso de fe aún mayor. Después de la ordenación del Pastor Carlos Oliveira por el Instituto Cristo para las Naciones (CFNI) en Dallas, Texas, y la iglesia local, comenzamos a buscar un espacio físico donde pudiéramos establecer oficialmente la iglesia. Este proceso estuvo marcado por mucha oración, desafíos y también por la gracia de Dios, que nos guió en cada decisión. El viaje se fortaleció con la asociación y el liderazgo de la Co-Pastora Kesia Silva, cuya dedicación ha sido esencial en el desarrollo espiritual y administrativo de nuestra iglesia."
@@ -72,10 +78,13 @@ const AboutChurchContent = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <div className="md:w-1/2">
-                        <img
+                        <Image
                             src={AboutChurchImg1}
-                            alt="MOCOP Church History"
+                            webp={AboutChurchImg1WebP}
+                            alt={texts.section1.imgAlt}
                             className="w-full h-auto"
+                            loading="lazy"
+                            aria-description={texts.section1.imgDesc}
                         />
                     </div>
                     <div className="md:w-1/2">
@@ -93,10 +102,13 @@ const AboutChurchContent = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
                     <div className="md:w-1/2">
-                        <img
+                        <Image
                             src={AboutChurchImg2}
-                            alt="MOCOP Church Growth"
+                            webp={AboutChurchImg2WebP}
+                            alt={texts.section2.imgAlt}
                             className="w-full h-auto"
+                            loading="lazy"
+                            aria-description={texts.section2.imgDesc}
                         />
                     </div>
                     <div className="md:w-1/2">
@@ -114,10 +126,13 @@ const AboutChurchContent = () => {
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
                     <div className="md:w-1/2">
-                        <img
+                        <Image
                             src={AboutChurchImg3}
-                            alt="MOCOP Church Community"
+                            webp={AboutChurchImg3WebP}
+                            alt={texts.section3.imgAlt}
                             className="w-full h-auto"
+                            loading="lazy"
+                            aria-description={texts.section3.imgDesc}
                         />
                     </div>
                     <div className="md:w-1/2">
@@ -135,10 +150,13 @@ const AboutChurchContent = () => {
                     transition={{ duration: 0.5, delay: 0.6 }}
                 >
                     <div className="md:w-1/2">
-                        <img
+                        <Image
                             src={AboutChurchImg4}
-                            alt="MOCOP Church Mission"
+                            webp={AboutChurchImg4WebP}
+                            alt={texts.section4.imgAlt}
                             className="w-full h-auto"
+                            loading="lazy"
+                            aria-description={texts.section4.imgDesc}
                         />
                     </div>
                     <div className="md:w-1/2">
