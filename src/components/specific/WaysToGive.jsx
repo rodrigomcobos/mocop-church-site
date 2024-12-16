@@ -119,10 +119,10 @@ const WaysToGive = () => {
     return (
         <div className="relative bg-bottomBar overflow-hidden">
             {/* Background Image Container */}
-            <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
                 <img
                     src={TitleBackground}
-                    className="absolute left-20 top-[60%] transform -translate-y-1/2 opacity-10 w-[800px] md:w-[800px]"
+                    className="w-full h-auto opacity-10 object-cover min-w-[1200px]"
                     alt=""
                     aria-hidden="true"
                     loading="lazy"
